@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Overview-rsses on Devops.faith KrakenD</title>
+    <link>http://krakend.io/overview/index.xml</link>
+    <description>Recent content in Overview-rsses on Devops.faith KrakenD</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://krakend.io/overview/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title></title>
+      <link>http://krakend.io/overview/ssl/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/overview/ssl/</guid>
+      <description>&lt;p&gt;Example of generation &lt;code&gt;$ openssl req -x509 -nodes -newkey rsa:2048 -keyout server.rsa.key -out server.rsa.crt -days 3650&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Introduction to KrakenD</title>
+      <link>http://krakend.io/overview/introduction/</link>
+      <pubDate>Tue, 25 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/overview/introduction/</guid>
+      <description>
+
+&lt;p&gt;Consumers of REST API content (specially in microservices) often query backend services that weren&amp;rsquo;t coded for the UI implementation. This is of course a good practice, but the UI consumers need to do implementations that suffer a lot of complexity and burden with the sizes of their microservices responses.&lt;/p&gt;
+
+&lt;p&gt;KrakenD is an &lt;strong&gt;API Gateway&lt;/strong&gt; and proxy generator that sits between the client and all the source servers, adding a new layer that removes all the complexity to the clients, providing them only the information that the UI needs. KrakenD acts as an &lt;strong&gt;aggregator&lt;/strong&gt; of many sources into single endpoints and allows you to group, wrap, transform and shrink responses. Additionally it supports a myriad of middelwares and plugins that allow you to extend the functionality, such as adding Oauth authorization or security layers (SSL, certificates, HTTP Strict Transport Security, Clickjacking protection, HTTP Public Key Pinning, MIME-sniffing prevention, XSS protection).&lt;/p&gt;
+
+&lt;p&gt;KrakenD not only supports HTTP(S), but because it is a set of generic libraries you can build all type of API Gateways and proxies, including for instance, a RPC gateway.&lt;/p&gt;
+
+&lt;p&gt;KrakenD is written in &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt; with support for multiple platforms.&lt;/p&gt;
+
+&lt;h1 id=&#34;practical-example&#34;&gt;Practical Example&lt;/h1&gt;
+
+&lt;p&gt;Fred Calamari is a mobile developer that needs to construct a single front page that requires data from several calls to their backend services, e.g:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1) api.store.server/products
+2) api.store.server/marketing-promos
+3) api.users.server/users/{id_user}
+4) api.users.server/shopping-cart/{id_user}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The screen is very simple and &lt;em&gt;only&lt;/em&gt; needs to retrieve data from 4 different sources, wait for the round trip and then pick only a few fields of the response. Instead of thing these calls, the mobile could call a single endpoint to KrakenD:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1) krakend.server/frontpage/{id_user}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this is how it would look like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://krakend.io/docs/images/krakend-gateway.png&#34; alt=&#34;Gateway&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The difference in size in this example would be because KrakenD server would have removed unneeded attributes from the responses.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Installing KrakenD</title>
+      <link>http://krakend.io/overview/installing/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/overview/installing/</guid>
+      <description>
+
+&lt;h1 id=&#34;rpm-installation&#34;&gt;RPM installation&lt;/h1&gt;
+
+&lt;p&gt;The installation process requires following these steps:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Install the repo package&lt;/li&gt;
+&lt;li&gt;Install the KrakenD package&lt;/li&gt;
+&lt;li&gt;Start the KrakenD service&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;It can be done with this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ rpm -Uvh http://repo.krakend.io/rpm/krakend-repo-0.1-0.noarch.rpm
+$ yum install -y krakend
+$ systemctl start krakend
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Since fedora has deprecated &lt;code&gt;yum&lt;/code&gt; in favor of &lt;code&gt;dnf&lt;/code&gt;, you must replace one for the other (btw, &lt;code&gt;dnf&lt;/code&gt; will start your KrakenD service):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ rpm -Uvh http://repo.krakend.io/rpm/krakend-repo-0.1-0.noarch.rpm
+$ dnf install -y krakend
+$ systemctl start krakend
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The process has been tested on centos 7 &amp;amp; fedora 24&lt;/p&gt;
+
+&lt;h1 id=&#34;deb-installation&#34;&gt;DEB installation&lt;/h1&gt;
+
+&lt;p&gt;The installation process requires following these steps:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Add the key&lt;/li&gt;
+&lt;li&gt;Add the repo to the sources.list&lt;/li&gt;
+&lt;li&gt;Update your package list&lt;/li&gt;
+&lt;li&gt;Install the KrakenD service&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Bottom line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ apt-key adv --keyserver keyserver.ubuntu.com --recv AB39BEA1
+$ echo &amp;quot;deb http://repo.krakend.io/apt stable main&amp;quot; | tee /etc/apt/sources.list.d/krakend.list
+$ apt-get update
+$ apt-get install -y krakend
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The process has been tested on debian 8 and ubuntu 16.x&lt;/p&gt;
+
+&lt;h1 id=&#34;manual-installation&#34;&gt;Manual installation&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Download the binary for your architecture. Check the &lt;a href=&#34;http://krakend.io/download&#34;&gt;Download&lt;/a&gt; section for the url.&lt;/li&gt;
+&lt;li&gt;Create your &lt;code&gt;/etc/krakend/service.yml&lt;/code&gt; config file&lt;/li&gt;
+&lt;li&gt;Create your &lt;code&gt;/etc/krakend/krakend.json&lt;/code&gt; config file&lt;/li&gt;
+&lt;li&gt;Start the KrakenD: &lt;code&gt;./krakend run&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;provision-with-puppet&#34;&gt;Provision with Puppet&lt;/h1&gt;
+
+&lt;p&gt;TBD&lt;/p&gt;
+
+&lt;h1 id=&#34;provision-with-ansible&#34;&gt;Provision with Ansible&lt;/h1&gt;
+
+&lt;p&gt;TBD&lt;/p&gt;
+
+&lt;h1 id=&#34;docker&#34;&gt;Docker&lt;/h1&gt;
+
+&lt;p&gt;TBD&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using KrakenD</title>
+      <link>http://krakend.io/overview/usage/</link>
+      <pubDate>Tue, 25 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/overview/usage/</guid>
+      <description>
+
+&lt;p&gt;Make sure KrakenD is in your &lt;code&gt;PATH&lt;/code&gt; (or provide a path to it). Test this by:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ krakend
+krakend 0.3.8
+
+Usage:
+  krakend [command]
+
+Available Commands:
+  check       Validates that the configuration file is valid.
+  run         Run the API Gateway server
+
+Flags:
+      --config string   Path to the configuration filename
+  -d, --debug           Enable the debug
+
+Use &amp;quot;krakend [command] --help&amp;quot; for more information about a command.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;check&#34;&gt;Check&lt;/h2&gt;
+
+&lt;p&gt;After adding some changes to your endpoint configuration file, you can validate it with the &lt;code&gt;krakend check&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;Check the &lt;a href=&#34;http://krakend.io/commands/check&#34;&gt;check command&lt;/a&gt; section for more details.&lt;/p&gt;
+
+&lt;h2 id=&#34;run&#34;&gt;Run&lt;/h2&gt;
+
+&lt;p&gt;Unleash the krakend with the &lt;code&gt;krakend run&lt;/code&gt; command!&lt;/p&gt;
+
+&lt;p&gt;Check the &lt;a href=&#34;http://krakend.io/commands/run&#34;&gt;run command&lt;/a&gt; section for more details.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Configuring KrakenD</title>
+      <link>http://krakend.io/overview/configuration/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/overview/configuration/</guid>
+      <description>&lt;p&gt;The KrakenD has the following system-related configuration properties:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;port&lt;/code&gt;: The http port. Default &lt;code&gt;8080&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stats_port&lt;/code&gt;: The stats port. Default &lt;code&gt;8082&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ssl_port&lt;/code&gt;: The https port. Default &lt;code&gt;8081&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ssl_certificate&lt;/code&gt;: The path to the ssl certificate for the https service.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ssl_private_key&lt;/code&gt;: The path to the private key for the https service.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;global_max_rate&lt;/code&gt;: Max rate for the entire service, aggregating over all the exposed endpoints (in request per second)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;max_rate_per_endpoint&lt;/code&gt;: Max rate by for every exposed endpoints (in request per second)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;log&lt;/code&gt;: Log level. Posible values: &lt;code&gt;ERROR&lt;/code&gt;, &lt;code&gt;WARNING&lt;/code&gt;, &lt;code&gt;INFO&lt;/code&gt;, &lt;code&gt;DEBUG&lt;/code&gt;. Default: &lt;code&gt;ERROR&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;syslog&lt;/code&gt;: Send logs to the &lt;code&gt;syslog&lt;/code&gt;. Default value &lt;code&gt;false&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stdout&lt;/code&gt;: Send logs to the &lt;code&gt;stdout&lt;/code&gt;. Default value &lt;code&gt;true&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;config_file&lt;/code&gt;: Path to the endpoint configuration file (usually a json). Default: &lt;code&gt;/etc/krakend/krakend.json&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;max_idle_conns_per_host&lt;/code&gt;: Number of idle connections to keep alive per host. Default: &lt;code&gt;250&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;read_timeout&lt;/code&gt;: http read timeout. Check this picture for a quick understanding: &lt;a href=&#34;https://blog.cloudflare.com/content/images/2016/06/Timeouts-001.png&#34;&gt;https://blog.cloudflare.com/content/images/2016/06/Timeouts-001.png&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;write_timeout&lt;/code&gt;: http write timeout. Check this picture for a quick understanding: &lt;a href=&#34;https://blog.cloudflare.com/content/images/2016/06/Timeouts-001.png&#34;&gt;https://blog.cloudflare.com/content/images/2016/06/Timeouts-001.png&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These configuration values can be defined in the &lt;code&gt;service.yml&lt;/code&gt; file and some of them, also as flags to the CLI (check the &lt;em&gt;Using KrakenD&lt;/em&gt; section). KrakenD will look for the YAML config file at &lt;code&gt;/etc/krakend/service.yml&lt;/code&gt; and update all the service config parameters present in the file.&lt;/p&gt;
+
+&lt;p&gt;Sample &lt;code&gt;service.yml&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# port : 8080
+# stats_port : 8082
+# ssl_port : 8081
+
+# ssl_certificate : &amp;quot;/etc/krakend/.ssh/server.rsa.crt&amp;quot;
+# ssl_private_key : &amp;quot;/etc/krakend/.ssh/server.rsa.key&amp;quot;
+
+# global_max_rate : 500 # req/s
+# max_rate_per_endpoint : 10 # req/s
+
+# log : ERROR
+# syslog : false
+# stdout : true
+
+# config_file : &amp;quot;/etc/krakend/krakend.json&amp;quot;
+
+max_idle_conns_per_host : 250
+read_timeout : 3s
+write_timeout : 3s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Sample config overwrite:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ krakend run --config $HOME/krakend.json --stats_port 8090 --ssl_certificate $HOME/server.rsa.crt --ssl_private_key $HOME/server.rsa.key --log WARNING --global_max_rate 150
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

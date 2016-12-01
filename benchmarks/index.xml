@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Benchmarks-rsses on Devops.faith KrakenD</title>
+    <link>http://krakend.io/benchmarks/index.xml</link>
+    <description>Recent content in Benchmarks-rsses on Devops.faith KrakenD</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Oct 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://krakend.io/benchmarks/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Overview</title>
+      <link>http://krakend.io/benchmarks/overview/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/benchmarks/overview/</guid>
+      <description>
+
+&lt;h1 id=&#34;krakend-the-ultra-performer-api-gateway&#34;&gt;KrakenD, the &lt;strong&gt;ultra performer&lt;/strong&gt; API Gateway&lt;/h1&gt;
+
+&lt;p&gt;An API Gateway is a component that needs to deliver really fast, as it is an added layer in the infrastructure. KrakenD
+was built with performance in mind. In this page and inner pages you&amp;rsquo;ll find several tests we did to measure the performance.
+Of course we invite you to do them for yourself!&lt;/p&gt;
+
+&lt;h1 id=&#34;tl-dr-benchmark-results&#34;&gt;TL;DR: &lt;strong&gt;Benchmark results&lt;/strong&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;~18,000 requests/second&lt;/strong&gt; on an ordinary laptop.&lt;/p&gt;
+
+&lt;p&gt;The following table summarizes different performance tests using Amazon EC2 virtual instances and an example with a laptop.&lt;/p&gt;
+
+&lt;p&gt;&lt;table class=&#34;table table-striped&#34;&gt;
+    &lt;tbody&gt;&lt;tr&gt;
+        &lt;th style=&#34;width: 10px&#34;&gt;#&lt;/th&gt;
+        &lt;th&gt;Hardware specs&lt;/th&gt;
+        &lt;th&gt;Requests second&lt;/th&gt;
+        &lt;th&gt;Average response&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;1.&lt;/td&gt;
+        &lt;td&gt;Amazon EC2 (c4.2xlarge)&lt;/td&gt;
+        &lt;td&gt;10126.1613 reqs/s&lt;/td&gt;
+        &lt;td&gt;9.8ms&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;2.&lt;/td&gt;
+        &lt;td&gt;Amazon EC2 (c4.xlarge)&lt;/td&gt;
+        &lt;td&gt;8465.4012 reqs/s&lt;/td&gt;
+        &lt;td&gt;11.7ms&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;3.&lt;/td&gt;
+        &lt;td&gt;Amazon EC2 (m4.large)&lt;/td&gt;
+        &lt;td&gt;3634.1247 reqs/s&lt;/td&gt;
+        &lt;td&gt;27.3ms&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;4.&lt;/td&gt;
+        &lt;td&gt;Amazon EC2 (t2.medium)&lt;/td&gt;
+        &lt;td&gt;2781.8611 reqs/s&lt;/td&gt;
+        &lt;td&gt;351.3ms&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;5.&lt;/td&gt;
+        &lt;td&gt;Amazon EC2 (t2.micro)&lt;/td&gt;
+        &lt;td&gt;2757.6407 reqs/s&lt;/td&gt;
+        &lt;td&gt;35.8ms&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;6.&lt;/td&gt;
+        &lt;td&gt;MacBook Pro (Aug 2015) 2,2 GHz Intel Core i7&lt;/td&gt;
+        &lt;td&gt;18157.4274 reqs/s&lt;/td&gt;
+        &lt;td&gt;5.5ms&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/tbody&gt;
+ &lt;/table&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;benchmark-in-a-macbook-pro&#34;&gt;Benchmark in a Macbook Pro&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://krakend.io/benchmarks/local&#34;&gt;Here you will find the results of the benchmarks&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;benchmark-in-amazon-aws-ec2-instances&#34;&gt;Benchmark in Amazon AWS EC2 Instances&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://krakend.io/benchmarks/aws&#34;&gt;Here you will find the results of the benchmarks&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;api-gateway-benchmark&#34;&gt;Api Gateway Benchmark&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://krakend.io/benchmarks/api-gateway-benchmark&#34;&gt;Here you will find the results of the comparations&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;tooling&#34;&gt;Tooling&lt;/h1&gt;
+
+&lt;h2 id=&#34;hey&#34;&gt;hey&lt;/h2&gt;
+
+&lt;p&gt;Some local benchmarks used the &lt;a href=&#34;https://github.com/rakyll/hey&#34;&gt;hey&lt;/a&gt; tool, which is an Apache Benchmark (ab) replacement tool.&lt;/p&gt;
+
+&lt;h2 id=&#34;api-gateway-benchmark-1&#34;&gt;api-gateway-benchmark&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This project aims to provide a complete set of tools needed to do simple performance comparisons in the API manager/gateway space. It is inspired by the great Framework Benchmarks project by TechEmpower.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Check the &lt;a href=&#34;https://github.com/varnish/api-gateway-benchmarks&#34;&gt;varnish/api-gateway-benchmarks&lt;/a&gt; project for more info.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Comparison of KrakenD vs other products in the market (Benchmark)</title>
+      <link>http://krakend.io/benchmarks/api-gateway-benchmark/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/benchmarks/api-gateway-benchmark/</guid>
+      <description>
+
+&lt;p&gt;We wanted to compare our own product with other similar products in the market. In order to do so we used the same
+environment and conditions and tested the following products:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Kong&lt;/li&gt;
+&lt;li&gt;Vulcand&lt;/li&gt;
+&lt;li&gt;Tyk&lt;/li&gt;
+&lt;li&gt;KrakenD&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For the benchmarks we based the tests on the benchmarking project &lt;a href=&#34;https://github.com/varnish/api-gateway-benchmarks&#34;&gt;varnish/api-gateway-benchmarks&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;At the time of writing, KrakenD does not support auth features, so we just benchmarked it with &lt;em&gt;test01&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;tldr&#34;&gt;TLDR;&lt;/h1&gt;
+
+&lt;p&gt;Check out the generated graphs (&lt;a href=&#34;http://www.charted.co/c/1db8eb2&#34;&gt;throughput&lt;/a&gt; and &lt;a href=&#34;http://www.charted.co/c/2940d33&#34;&gt;responses&lt;/a&gt;) or the &lt;a href=&#34;#summary&#34;&gt;summary&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;hardware&#34;&gt;Hardware&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;Model MacBook Pro (MacBookPro11,4) - August 2015
+Processor:    Intel Core i7 2,2 GHz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;setup&#34;&gt;Setup&lt;/h1&gt;
+
+&lt;p&gt;For this test, we stored this configuration at &lt;code&gt;krakend.json&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;version&amp;quot;: 1,
+  &amp;quot;host&amp;quot;: [
+    &amp;quot;http://webserver:8888&amp;quot;
+  ],
+  &amp;quot;endpoints&amp;quot;: [
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/test01&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;concurrent_calls&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/test01&amp;quot;
+        }
+      ]
+    },
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/test03&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/test03&amp;quot;
+        }
+      ],
+      &amp;quot;max_rate&amp;quot;: &amp;quot;1000000&amp;quot;
+    },
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/test04&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;max_rate&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/test04&amp;quot;
+        }
+      ]
+    }
+  ],
+  &amp;quot;oauth&amp;quot;: {
+    &amp;quot;disable&amp;quot;: true
+  },
+  &amp;quot;cache_ttl&amp;quot;: &amp;quot;5m&amp;quot;,
+  &amp;quot;timeout&amp;quot;: &amp;quot;5s&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And we started the environment as described in the &lt;a href=&#34;https://github.com/varnish/api-gateway-benchmarks/blob/master/README.md#deployment-example&#34;&gt;README&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd deployment/vagrant
+$ vagrant up
+
+$ vagrant ssh webserver
+[vagrant@webserver ~]$ cd /opt/benchmarks/webservers/dummy-api
+[vagrant@webserver dummy-api]$ sudo ./deploy
+[vagrant@webserver dummy-api]$ exit
+
+$ vagrant ssh gateway
+[vagrant@gateway ~]$ cd /opt/benchmarks/gateways/krakend
+[vagrant@gateway krakend]$ sudo ./deploy
+[vagrant@gateway krakend]$ exit
+
+$ vagrant ssh consumer
+[vagrant@consumer ~]$ cd /opt/benchmarks/consumers/boom
+[vagrant@consumer boom]$ sudo ./deploy
+[vagrant@consumer boom]$ /usr/local/bin/test00
+[vagrant@consumer boom]$ /usr/local/bin/test01
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;results&#34;&gt;Results&lt;/h1&gt;
+
+&lt;h2 id=&#34;test-00&#34;&gt;Test 00&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;[vagrant@consumer ~]$ /usr/local/bin/test00
+100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
+
+Summary:
+  Total:  13.2722 secs.
+  Slowest:  0.1720 secs.
+  Fastest:  0.0002 secs.
+  Average:  0.0132 secs.
+  Requests/sec: 7534.5524
+  Total Data Received:  10800000 bytes.
+  Response Size per Request:  108 bytes.
+
+Status code distribution:
+  [200] 100000 responses
+
+Response time histogram:
+  0.000 [1]     |
+  0.017 [72298] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.035 [26760] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.052 [522]   |
+  0.069 [227]   |
+  0.086 [93]    |
+  0.103 [28]    |
+  0.120 [4]     |
+  0.138 [10]    |
+  0.155 [24]    |
+  0.172 [33]    |
+
+Latency distribution:
+  10% in 0.0039 secs.
+  25% in 0.0076 secs.
+  50% in 0.0129 secs.
+  75% in 0.0180 secs.
+  90% in 0.0218 secs.
+  95% in 0.0233 secs.
+  99% in 0.0333 secs.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;test-01&#34;&gt;Test 01&lt;/h2&gt;
+
+&lt;h3 id=&#34;krakend&#34;&gt;KrakenD&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[vagrant@consumer ~]$ /usr/local/bin/test01
+100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
+
+Summary:
+  Total:  28.7424 secs.
+  Slowest:  0.2781 secs.
+  Fastest:  0.0009 secs.
+  Average:  0.0287 secs.
+  Requests/sec: 3479.1863
+  Total Data Received:  10900000 bytes.
+  Response Size per Request:  109 bytes.
+
+Status code distribution:
+  [200] 100000 responses
+
+Response time histogram:
+  0.001 [1]     |
+  0.029 [71546] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.056 [26536] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.084 [1061]  |
+  0.112 [392]   |
+  0.140 [248]   |
+  0.167 [93]    |
+  0.195 [51]    |
+  0.223 [12]    |
+  0.250 [27]    |
+  0.278 [33]    |
+
+Latency distribution:
+  10% in 0.0213 secs.
+  25% in 0.0231 secs.
+  50% in 0.0245 secs.
+  75% in 0.0295 secs.
+  90% in 0.0432 secs.
+  95% in 0.0469 secs.
+  99% in 0.0771 secs.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;vulcand&#34;&gt;Vulcand&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[vagrant@consumer ~]$ /usr/local/bin/test01
+100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
+
+Summary:
+  Total:  50.5294 secs.
+  Slowest:  0.3426 secs.
+  Fastest:  0.0010 secs.
+  Average:  0.0505 secs.
+  Requests/sec: 1979.0451
+  Total Data Received:  10800000 bytes.
+  Response Size per Request:  108 bytes.
+
+Status code distribution:
+  [200] 100000 responses
+
+Response time histogram:
+  0.001 [1] |
+  0.035 [21120] |∎∎∎∎∎∎∎∎∎∎∎
+  0.069 [71365] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.103 [5946]  |∎∎∎
+  0.138 [168] |
+  0.172 [74]  |
+  0.206 [329] |
+  0.240 [496] |
+  0.274 [388] |
+  0.308 [88]  |
+  0.343 [25]  |
+
+Latency distribution:
+  10% in 0.0290 secs.
+  25% in 0.0378 secs.
+  50% in 0.0490 secs.
+  75% in 0.0571 secs.
+  90% in 0.0665 secs.
+  95% in 0.0733 secs.
+  99% in 0.2057 secs.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;kong&#34;&gt;Kong&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[vagrant@consumer ~]$ /usr/local/bin/test01
+100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
+
+Summary:
+  Total:  57.0194 secs.
+  Slowest:  1.5978 secs.
+  Fastest:  0.0076 secs.
+  Average:  0.0569 secs.
+  Requests/sec: 1753.7883
+  Total Data Received:  13600000 bytes.
+  Response Size per Request:  136 bytes.
+
+Status code distribution:
+  [200] 100000 responses
+
+Response time histogram:
+  0.008 [1]     |
+  0.167 [97506] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.326 [2290]  |
+  0.485 [103]   |
+  0.644 [0]     |
+  0.803 [0]     |
+  0.962 [0]     |
+  1.121 [0]     |
+  1.280 [0]     |
+  1.439 [17]    |
+  1.598 [83]    |
+
+Latency distribution:
+  10% in 0.0407 secs.
+  25% in 0.0435 secs.
+  50% in 0.0461 secs.
+  75% in 0.0497 secs.
+  90% in 0.0816 secs.
+  95% in 0.1076 secs.
+  99% in 0.2355 secs.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;tyk&#34;&gt;Tyk&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[vagrant@consumer ~]$ /usr/local/bin/test01
+100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
+
+Summary:
+  Total:  221.5803 secs.
+  Slowest:  5.6482 secs.
+  Fastest:  0.0012 secs.
+  Average:  0.2215 secs.
+  Requests/sec: 451.3037
+  Total Data Received:  10800000 bytes.
+  Response Size per Request:  108 bytes.
+
+Status code distribution:
+  [200] 100000 responses
+
+Response time histogram:
+  0.001 [1]     |
+  0.566 [90838] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  1.131 [4890]  |∎∎
+  1.695 [2208]  |
+  2.260 [1380]  |
+  2.825 [383]   |
+  3.389 [161]   |
+  3.954 [86]    |
+  4.519 [40]    |
+  5.084 [6]     |
+  5.648 [7]     |
+
+Latency distribution:
+  10% in 0.0355 secs.
+  25% in 0.0521 secs.
+  50% in 0.0823 secs.
+  75% in 0.1785 secs.
+  90% in 0.5263 secs.
+  95% in 0.9231 secs.
+  99% in 2.1054 secs.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+
+&lt;h2 id=&#34;requests-per-second&#34;&gt;Requests per second&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=api-gateway-benchmark_test01_rps.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;response-time-distribution&#34;&gt;Response time distribution&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Time in milliseconds&lt;/em&gt;&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=api-gateway-benchmark_test01_resp_time.csv&#34;&gt;&lt;/script&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>KrakenD Benchmarks on AWS</title>
+      <link>http://krakend.io/benchmarks/aws/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/benchmarks/aws/</guid>
+      <description>
+
+&lt;h1 id=&#34;tl-dr&#34;&gt;TL;DR&lt;/h1&gt;
+
+&lt;p&gt;Check out the generated &lt;a href=&#34;http://www.charted.co/c/227df90&#34;&gt;graphs&lt;/a&gt; or the &lt;a href=&#34;#conclusions&#34;&gt;conclusions&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The following numbers show the execution results for the KrakenD benchmarks on &lt;a href=&#34;https://aws.amazon.com/ec2/&#34;&gt;Amazon EC2&lt;/a&gt; machines.&lt;/p&gt;
+
+&lt;h1 id=&#34;benchmark-setup&#34;&gt;Benchmark setup&lt;/h1&gt;
+
+&lt;p&gt;This set of benchmarks have been running on different AWS EC2 instances. Each individual test consists in spinning up 3 different machines, being:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A web server&lt;/strong&gt;: A &lt;a href=&#34;https://lwan.ws/&#34;&gt;LWAN&lt;/a&gt; web server using an instance &lt;code&gt;c4.xlarge&lt;/code&gt;. This is the &amp;ldquo;fake api&amp;rdquo; where KrakenD will take the data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The HTTP load generator&lt;/strong&gt;: The machine actually running the load test. Uses &lt;strong&gt;&lt;a href=&#34;https://github.com/rakyll/hey&#34;&gt;hey&lt;/a&gt;&lt;/strong&gt;, and runs in a &lt;code&gt;t2.medium&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;KrakenD&lt;/strong&gt;: Each different test uses a different instance type in amazon:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The test consists in running &lt;code&gt;hey&lt;/code&gt; against a KrakenD endpoint. The KrakenD endpoint uses as the backend an URL in (&lt;code&gt;LWAN&lt;/code&gt;).
+After runnint the test, the &lt;code&gt;hey&lt;/code&gt; output is &lt;a href=&#34;https://github.com/devopsfaith/hey-to-csv&#34;&gt;parsed and converted to CSV&lt;/a&gt; in order to generate the graphs.&lt;/p&gt;
+
+&lt;p&gt;For each instance type there are 2 different tests:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Proxy&lt;/strong&gt;: We called proxy test when the KrakenD is just used as gateway and calls to a single endpoint to the web server (&lt;code&gt;/foo&lt;/code&gt; endpoint in the configuration).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agreggate&lt;/strong&gt;: We called agreggate test when the KrakenD calls to a 3 different endpoints in the web server and agreggates the results (&lt;code&gt;/social&lt;/code&gt; endpoint in the configuration).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The instance types we tested are:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Instance Type&lt;/th&gt;
+&lt;th&gt;Number of vCPU&lt;/th&gt;
+&lt;th&gt;Memory&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;t2.micro&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1 GB&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;t2.medium&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;4 GB&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;m4.large&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;8 GB&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;c4.xlarge&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;7.5 GB&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;c4.2xlarge&lt;/td&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;15 GB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&#34;krakend-configuration-for-all-tests&#34;&gt;KrakenD Configuration for all tests&lt;/h1&gt;
+
+&lt;p&gt;The configuration for the load test was stored in the &lt;code&gt;krakend.json&lt;/code&gt; file, as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;version&amp;quot;: 1,
+  &amp;quot;host&amp;quot;: [
+    &amp;quot;http://lwan:8080&amp;quot;
+  ],
+  &amp;quot;endpoints&amp;quot;: [
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/foo&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/bar&amp;quot;
+        }
+      ],
+      &amp;quot;concurrent_calls&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;max_rate&amp;quot;: 100000
+    },
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/social&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/fb&amp;quot;,
+          &amp;quot;group&amp;quot;: &amp;quot;fb&amp;quot;
+        },
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/youtube&amp;quot;,
+          &amp;quot;target&amp;quot;: &amp;quot;data&amp;quot;,
+          &amp;quot;group&amp;quot;: &amp;quot;youtube&amp;quot;
+        },
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/twitter&amp;quot;,
+          &amp;quot;group&amp;quot;: &amp;quot;twitter&amp;quot;
+        }
+      ],
+      &amp;quot;concurrent_calls&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;timeout&amp;quot;: &amp;quot;500ms&amp;quot;,
+      &amp;quot;cache_ttl&amp;quot;: &amp;quot;12h&amp;quot;
+    }
+  ],
+  &amp;quot;oauth&amp;quot;: {
+    &amp;quot;disable&amp;quot;: true
+  },
+  &amp;quot;cache_ttl&amp;quot;: &amp;quot;5m&amp;quot;,
+  &amp;quot;timeout&amp;quot;: &amp;quot;5s&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Notice that &lt;code&gt;Lwan&lt;/code&gt; is the backend running at &lt;code&gt;lwan:8080&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;And we started the KrakenD with this cmd (debug mode):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./krakend run --config krakend.json -d &amp;gt; /dev/null
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;results&#34;&gt;Results&lt;/h1&gt;
+
+&lt;h2 id=&#34;proxy-test-on-t2-micro&#34;&gt;Proxy test on &lt;code&gt;t2.micro&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_micro_test01.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;agreggate-test-on-t2-micro&#34;&gt;Agreggate test on &lt;code&gt;t2.micro&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_micro_aggregate.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;proxy-test-on-t2-medium&#34;&gt;Proxy test on &lt;code&gt;t2.medium&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_medium_test01.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;agreggate-test-on-t2-medium&#34;&gt;Agreggate test on &lt;code&gt;t2.medium&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_medium_aggregate.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;proxy-test-on-m4-large&#34;&gt;Proxy test on &lt;code&gt;m4.large&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=m4_large_test01.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;agreggate-test-on-m4-large&#34;&gt;Agreggate test on &lt;code&gt;m4.large&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=m4_large_aggregate.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;proxy-test-on-c4-xlarge&#34;&gt;Proxy test on &lt;code&gt;c4.xlarge&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_xlarge_test01.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;agreggate-test-on-c4-xlarge&#34;&gt;Agreggate test on &lt;code&gt;c4.xlarge&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_xlarge_aggregate.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;proxy-test-on-c4-2xlarge&#34;&gt;Proxy test on &lt;code&gt;c4.2xlarge&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_2xlarge_test01.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;agreggate-test-on-c4-2xlarge&#34;&gt;Agreggate test on &lt;code&gt;c4.2xlarge&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_2xlarge_aggregate.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h2&gt;
+
+&lt;p&gt;During all the tests we did, the instances of type &lt;code&gt;c4&lt;/code&gt; always showed a stable behaviour while the &lt;code&gt;m4&lt;/code&gt; types didn&amp;rsquo;t offer
+a proportional increase in the performance and the variance of the responses is too high.&lt;/p&gt;
+
+&lt;p&gt;The instances &lt;code&gt;micro&lt;/code&gt; provide nice figures of rps and latency for a good money. It looks like they suffer a little bit
+more in the aggregated tests but in general it is a good choice.&lt;/p&gt;
+
+&lt;p&gt;To be taken into account that this type of service is CPU intensive so when using &lt;code&gt;t2&lt;/code&gt; instances once you spend your CPU
+credit the instance will perform worst.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;In general terms&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use &lt;code&gt;micro&lt;/code&gt; instances by default.&lt;/li&gt;
+&lt;li&gt;If you expect high and continued load with complex use cases (intesive agreggation and manipulation) &lt;code&gt;c4.2xlarge&lt;/code&gt; is worth it&lt;/li&gt;
+&lt;li&gt;If you want to maintain quality of service with high load but a relative simple app, &lt;code&gt;c4.xlarge&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;For low to moderate loads use &lt;code&gt;micro&lt;/code&gt; or a cluster of micros.&lt;/li&gt;
+&lt;li&gt;We wouldn&amp;rsquo;t choose &lt;code&gt;m4&lt;/code&gt; in any scenario for the money/performance.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Look at the numbers and the use case you&amp;rsquo;ll have in order to choose the right solution for you. And more importantly, do the tests
+using your own data. This is a reference to contrast your own tests.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Local Benchmarks</title>
+      <link>http://krakend.io/benchmarks/local/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/benchmarks/local/</guid>
+      <description>
+
+&lt;h1 id=&#34;tl-dr&#34;&gt;TL;DR&lt;/h1&gt;
+
+&lt;p&gt;Check out the generated &lt;a href=&#34;http://www.charted.co/c/301c7e8&#34;&gt;graphs&lt;/a&gt; or the &lt;a href=&#34;#summary&#34;&gt;summary&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;hardware&#34;&gt;Hardware&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;Model MacBook Pro (MacBookPro11,4) - August 2015
+Processor:    Intel Core i7 2,2 GHz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;setup&#34;&gt;Setup&lt;/h1&gt;
+
+&lt;p&gt;For this test, we stored this configuration at &lt;code&gt;krakend.json&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;version&amp;quot;: 1,
+  &amp;quot;endpoints&amp;quot;: [
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/foo&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/__debug/bar&amp;quot;,
+          &amp;quot;host&amp;quot;: [
+            &amp;quot;http://127.0.0.1:8080&amp;quot;
+          ]
+        }
+      ],
+      &amp;quot;concurrent_calls&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;max_rate&amp;quot;: 100000
+    }
+  ],
+  &amp;quot;oauth&amp;quot;: {
+    &amp;quot;disable&amp;quot;: true
+  },
+  &amp;quot;cache_ttl&amp;quot;: &amp;quot;5m&amp;quot;,
+  &amp;quot;timeout&amp;quot;: &amp;quot;5s&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And we started the KrakenD with this cmd:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./krakend run --config krakend.json -d &amp;gt; /dev/null
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Response from the &amp;lsquo;debug backend&amp;rsquo;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ curl -i http://127.0.0.1:8080/__debug/bar
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Mon, 28 Nov 2016 15:42:16 GMT
+Content-Length: 19
+
+{&amp;quot;message&amp;quot;:&amp;quot;pong&amp;quot;}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Response from the KrakenD:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ curl -i http://127.0.0.1:8080/foo
+HTTP/1.1 200 OK
+Cache-Control: public, max-age=300
+Content-Type: application/json; charset=utf-8
+X-Krakend: Version 0.3.8
+Date: Mon, 28 Nov 2016 15:42:20 GMT
+Content-Length: 19
+
+{&amp;quot;message&amp;quot;:&amp;quot;pong&amp;quot;}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;results&#34;&gt;Results&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;$ hey -c 200 -n 100000 http://127.0.0.1:8080/foo
+8217 requests done.
+17379 requests done.
+25928 requests done.
+34664 requests done.
+43290 requests done.
+52069 requests done.
+61057 requests done.
+69954 requests done.
+78815 requests done.
+87565 requests done.
+96615 requests done.
+All requests done.
+
+Summary:
+  Total:  5.6980 secs
+  Slowest:  0.0494 secs
+  Fastest:  0.0003 secs
+  Average:  0.0113 secs
+  Requests/sec: 17549.8782
+  Total data: 1900000 bytes
+  Size/request: 19 bytes
+
+Status code distribution:
+  [200] 100000 responses
+
+Response time histogram:
+  0.000 [1]     |
+  0.005 [974]   |∎
+  0.010 [42346] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.015 [44698] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.020 [10393] |∎∎∎∎∎∎∎∎∎
+  0.025 [1242]  |∎
+  0.030 [180]   |
+  0.035 [121]   |
+  0.040 [22]    |
+  0.045 [15]    |
+  0.049 [8]     |
+
+Latency distribution:
+  10% in 0.0082 secs
+  25% in 0.0091 secs
+  50% in 0.0106 secs
+  75% in 0.0130 secs
+  90% in 0.0155 secs
+  95% in 0.0173 secs
+  99% in 0.0212 secs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=local_100_500_concurrency.csv&#34;&gt;&lt;/script&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

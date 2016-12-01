@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Commands-rsses on Devops.faith KrakenD</title>
+    <link>http://krakend.io/commands/index.xml</link>
+    <description>Recent content in Commands-rsses on Devops.faith KrakenD</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Oct 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://krakend.io/commands/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Run</title>
+      <link>http://krakend.io/commands/run/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/commands/run/</guid>
+      <description>
+
+&lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+
+&lt;p&gt;The &lt;code&gt;krakend run&lt;/code&gt; starts the KrakenD with the passed flags.&lt;/p&gt;
+
+&lt;h1 id=&#34;usage&#34;&gt;Usage&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;$ krakend run -h
+krakend 0.3.8
+
+Usage:
+  krakend run [flags]
+
+Flags:
+      --fasthttp                    Use the fasthttp router (experimental)
+      --global_max_rate int         Max req/s for the entire service
+      --log string                  Log level (ERROR, WARNING, INFO, DEBUG)
+      --max_rate_per_endpoint int   Max req/s per endpoint
+      --port int                    Listening port for the http service
+      --ssl_certificate string      Path to the SSL Certificate
+      --ssl_port int                Listening port for the https service
+      --ssl_private_key string      Path to the SSL Private Key
+      --stats_port int              Listening port for the stats service
+      --stdout                      Log to the stdout (default true)
+      --syslog                      Log to syslog
+
+Global Flags:
+      --config string   Path to the configuration filename
+  -d, --debug           Enable the debug
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;
+
+&lt;p&gt;The &lt;code&gt;krakend run&lt;/code&gt; command can overwrite some configuration params defined at the service configuration file (&lt;code&gt;/etc/krakend/service.yml&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;TBD&lt;/p&gt;
+
+&lt;h1 id=&#34;example&#34;&gt;Example&lt;/h1&gt;
+
+&lt;p&gt;TBD&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Check</title>
+      <link>http://krakend.io/commands/check/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/commands/check/</guid>
+      <description>
+
+&lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+
+&lt;p&gt;The &lt;code&gt;krakend check&lt;/code&gt; command validates the passed configuration. Since KrakenD doesn&amp;rsquo;t implement a strict parsing, typos in the config file could be shadowed. In order to validate your config completely, it is recommended to use the &lt;code&gt;--debug&lt;/code&gt; flag.&lt;/p&gt;
+
+&lt;h1 id=&#34;usage&#34;&gt;Usage&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./krakend check -h
+Validates that the active configuration file has a valid syntax to run the service. Change the configuration file by using the --config flag
+
+Usage:
+  krakend check [flags]
+
+Global Flags:
+      --config string   Path to the configuration filename
+  -d, --debug           Enable the debug
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Passing a path to the config file is required&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./krakend check
+Please, provide the path to your config file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;example&#34;&gt;Example&lt;/h1&gt;
+
+&lt;p&gt;We will use this configuration for the demo&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;version&amp;quot;: 1,
+  &amp;quot;oauth&amp;quot;: {
+    &amp;quot;disable&amp;quot;: true
+  },
+  &amp;quot;cache_ttl&amp;quot;: &amp;quot;5m&amp;quot;,
+  &amp;quot;timeout&amp;quot;: &amp;quot;5s&amp;quot;,
+  &amp;quot;host&amp;quot;: [ &amp;quot;webserver:8080&amp;quot; ],
+  &amp;quot;endpoints&amp;quot;: [
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/test01&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;concurrent_calls&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/test01&amp;quot;
+        }
+      ]
+    },
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/test02&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;concurrent_calls&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/test02&amp;quot;
+        }
+      ],
+      &amp;quot;querystring_params&amp;quot;: [
+        &amp;quot;apikey&amp;quot;
+      ]
+    },
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/test03&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/test03&amp;quot;
+        }
+      ],
+      &amp;quot;max_rate&amp;quot;: &amp;quot;1000000&amp;quot;,
+      &amp;quot;querystring_params&amp;quot;: [
+        &amp;quot;api_key&amp;quot;
+      ]
+    },
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/test04&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;max_rate&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;concurrent_calls&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/test04&amp;quot;
+        }
+      ]
+    },
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/fb1&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/fb&amp;quot;,
+          &amp;quot;group&amp;quot;: &amp;quot;fb&amp;quot;
+        },
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/youtube&amp;quot;,
+          &amp;quot;target&amp;quot;: &amp;quot;data&amp;quot;,
+          &amp;quot;group&amp;quot;: &amp;quot;youtube&amp;quot;
+        },
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/twitter&amp;quot;,
+          &amp;quot;group&amp;quot;: &amp;quot;twitter&amp;quot;
+        }
+      ],
+      &amp;quot;concurrent_calls&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;timeout&amp;quot;: &amp;quot;500ms&amp;quot;,
+      &amp;quot;cache_ttl&amp;quot;: &amp;quot;12h&amp;quot;
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;debug-disabled&#34;&gt;Debug disabled&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./krakend check --config krakend.json.
+Parsing configuration file: /tmp/krakend.json
+Reading the configuration from /tmp/krakend.json
+Syntax OK!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;debug-enabled&#34;&gt;Debug enabled&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./krakend check --config krakend.json -d
+Parsing configuration file: /tmp/krakend.json
+Reading the configuration from /tmp/krakend.json
+Parsed configuration: CacheTTL: 5m0s, GlobalMaxRate: 100, ClientRate: 0, ThrottlingHeader: , EndpointMaxRate: 100, Port: 8080, StatsPort: 0
+Hosts: [http://webserver:8080]
+    Endpoint: /test01, Method: GET, CacheTTL: 5m0s, MaxRate: 100, ClientRate: 0, ThrottlingHeader: , Concurrent: 1, QueryString: []
+        URL: /test01, Method: GET
+            Timeout: 5s, Target: , Mapping: map[], BL: [], WL: [], Group:
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+    Endpoint: /test02, Method: GET, CacheTTL: 5m0s, MaxRate: 100, ClientRate: 0, ThrottlingHeader: , Concurrent: 1, QueryString: [apikey]
+        URL: /test02, Method: GET
+            Timeout: 5s, Target: , Mapping: map[], BL: [], WL: [], Group:
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+    Endpoint: /test03, Method: GET, CacheTTL: 5m0s, MaxRate: 100, ClientRate: 0, ThrottlingHeader: , Concurrent: 0, QueryString: [api_key]
+        URL: /test03, Method: GET
+            Timeout: 5s, Target: , Mapping: map[], BL: [], WL: [], Group:
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+    Endpoint: /test04, Method: GET, CacheTTL: 5m0s, MaxRate: 1, ClientRate: 0, ThrottlingHeader: , Concurrent: 1, QueryString: []
+        URL: /test04, Method: GET
+            Timeout: 5s, Target: , Mapping: map[], BL: [], WL: [], Group:
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+    Endpoint: /fb1, Method: GET, CacheTTL: 12h0m0s, MaxRate: 100, ClientRate: 0, ThrottlingHeader: , Concurrent: 1, QueryString: []
+        URL: /fb, Method: GET
+            Timeout: 500ms, Target: , Mapping: map[], BL: [], WL: [], Group: fb
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+        URL: /youtube, Method: GET
+            Timeout: 500ms, Target: data, Mapping: map[], BL: [], WL: [], Group: youtube
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+        URL: /twitter, Method: GET
+            Timeout: 500ms, Target: , Mapping: map[], BL: [], WL: [], Group: twitter
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+OAuth enabled: false
+    Client ID:
+    Client Secret:
+    Scopes:
+    Token URL:
+Security present: false
+Syntax OK!
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

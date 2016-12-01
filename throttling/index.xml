@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Throttling-rsses on Devops.faith KrakenD</title>
+    <link>http://krakend.io/throttling/index.xml</link>
+    <description>Recent content in Throttling-rsses on Devops.faith KrakenD</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Jul 2013 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://krakend.io/throttling/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>KrakenD Throttling</title>
+      <link>http://krakend.io/throttling/overview/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/throttling/overview/</guid>
+      <description>&lt;p&gt;The KrakenD is a powerful tool that handles a huge amount of traffic and depending on the usage you could stress your
+own backend micro-services architecture by requesting a lot of data, compromising your backend SLA.&lt;/p&gt;
+
+&lt;p&gt;In order to prevent the KrakenD to stress your infrastructure (or even someone using it to harm you) there are several
+mechanisms to put you safe.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://krakend.io/throttling/overview&#34;&gt;The Circuit Breaker&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://krakend.io/throttling/rate-limit&#34;&gt;Rate limits&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>KrakenD - Circuit Breaker</title>
+      <link>http://krakend.io/throttling/circuit-breaker/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/throttling/circuit-breaker/</guid>
+      <description>
+
+&lt;p&gt;To keep KrakenD responsive and resilient, we added a &lt;strong&gt;Circuit Breaker&lt;/strong&gt; middleware on several points of the processing pipe. Thanks to this component, when KrakenD demands more throughput than your actual API stack is able to deliver properly, the &lt;strong&gt;Circuit Breaker&lt;/strong&gt; mechanism will detect the failures and prevent stressing your servers by not sending requests that are likely to fail. The &lt;strong&gt;Circuit Breaker&lt;/strong&gt; is also useful for dealing with network and other communication problems, by preventing too many requests to fail due timeouts, etc.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;Circuit Breaker&lt;/strong&gt; is a very simple &lt;strong&gt;state machine&lt;/strong&gt; in the middle of the request and response that monitors all
+the failures of your backend and when they reach a configured threshold the circuit breaker will prevent sending more
+traffic to the suffering backend.&lt;/p&gt;
+
+&lt;p&gt;The Circuit Breaker is a protection measure for your stack and avoids cascading failures. It is &lt;strong&gt;always enabled&lt;/strong&gt; (and is transparent to you).&lt;/p&gt;
+
+&lt;p&gt;For paid plans the rules of its behaviour can be tuned up.&lt;/p&gt;
+
+&lt;h1 id=&#34;how-it-works&#34;&gt;How it works&lt;/h1&gt;
+
+&lt;p&gt;The Circuit Breaker retains the state of the connections to your backend(s) over a series of requests
+and when it sees the configured number of &lt;strong&gt;consecutive failures&lt;/strong&gt; (&lt;code&gt;cb_max_errors&lt;/code&gt;) in a given time interval (&lt;code&gt;cb_interval&lt;/code&gt;)
+it stops all the interaction with the backend for the next N seconds (&lt;code&gt;cb_timeout&lt;/code&gt;). After waiting for this time window the system
+will allow a single connection to trial the system again: if it fails it will wait N seconds more again, and if it succeeds it will return
+to the normal state and the system is considered healthy.&lt;/p&gt;
+
+&lt;p&gt;The circuit breaker works with three different internal states, and the easiest way to imagine it is like in an electrical circuit:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Circuit Breaker&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;http://krakend.io/images/documentation/circuit-breaker.png&#34; alt=&#34;Krakend logo&#34; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;CLOSED&lt;/code&gt;: This is the normal state. When the circuit is closed the, the electricity flows uninterrupted and the connection to the backend is allowed.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;OPEN&lt;/code&gt;: No connection to the backend is allowed when the circuit is open.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;HALF-OPEN&lt;/code&gt;: When the system has seen repeated problems, only the necessary connection to test the backend is allowed.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And this is the way the states change:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Circuit Breaker transitions&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;http://krakend.io/images/documentation/circuit-breaker-states.png&#34; alt=&#34;Krakend logo&#34; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+&lt;li&gt;State is in &lt;code&gt;CLOSED&lt;/code&gt; test, everything is normal&lt;/li&gt;
+&lt;li&gt;The maximum consecutive allowed errors (&lt;code&gt;cb_max_errors&lt;/code&gt;) is reached, the system changes to &lt;code&gt;OPEN&lt;/code&gt;. No more connections to backend sent&lt;/li&gt;
+&lt;li&gt;System stays in &lt;code&gt;OPEN&lt;/code&gt; state for N seconds (&lt;code&gt;cb_timeout&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;System changes to &lt;code&gt;HALF-OPEN&lt;/code&gt; and allows 1 connection to pass.&lt;/li&gt;
+&lt;li&gt;If the connection succeeded change to &lt;code&gt;CLOSED&lt;/code&gt;, everything back to normal. If it failed switch to &lt;code&gt;OPEN&lt;/code&gt; again.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;default-values&#34;&gt;Default values&lt;/h1&gt;
+
+&lt;p&gt;The Circuit Breaker uses the following values:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Free version&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cb_interval =  60s
+cb_timeout  = 5s 
+cb_max_errors = 3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Startup plan&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cb_interval =  30s
+cb_timeout  = 1s 
+cb_max_errors = 5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Enterprise&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cb_interval =  10s
+cb_timeout  = 1s 
+cb_max_errors = 10
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>KrakenD - Rate limiting</title>
+      <link>http://krakend.io/throttling/rate-limit/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/throttling/rate-limit/</guid>
+      <description>
+
+&lt;p&gt;The rate limits allow you to restrict the traffic to any component of the stack (the KrakenD itself and the actual API backend services) and mainly cover two different purposes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Avoid flooding your system with massive requests&lt;/li&gt;
+&lt;li&gt;Establish a quota of usage for your API&lt;/li&gt;
+&lt;li&gt;Create a simple QoS strategy for you API&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This measures are complementary to the &lt;a href=&#34;http://krakend.io/throttling/circuit-breaker&#34;&gt;Circuit Breaker&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;rate-limits-levels&#34;&gt;Rate limits levels&lt;/h1&gt;
+
+&lt;p&gt;There are three different levels where you can apply throttling limits, if the same limit is defined in several levels
+the most specific takes place. The levels are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Service level (Global)&lt;/li&gt;
+&lt;li&gt;Endpoint level
+
+&lt;ul&gt;
+&lt;li&gt;Client level&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Backend&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Service and Endpoint levels are always defined at service configuration level (file &lt;code&gt;/etc/krakend/service.yml&lt;/code&gt;), while
+the Client level is defined at Application configuration (&lt;code&gt;krakend.json&lt;/code&gt; or &lt;a href=&#34;http://krakend.io/designer/&#34;&gt;UI&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h2 id=&#34;global-level&#34;&gt;Global level&lt;/h2&gt;
+
+&lt;p&gt;The &lt;code&gt;global_max_rate&lt;/code&gt; is the &lt;strong&gt;hard limit of the KrakenD service&lt;/strong&gt; (defaults to 0). This is similar to what you would do
+at a firewall level to limit/burst the traffic you send to your backend. Leaving this value set to &lt;code&gt;0&lt;/code&gt; makes KrakenD go
+as fast as possible. If you want to set a limit a good reference is to chose the 95% of your backend throughput.&lt;/p&gt;
+
+&lt;p&gt;When set, the rate counts against all endpoints.&lt;/p&gt;
+
+&lt;p&gt;You can find this parameter in the &lt;code&gt;service.yml&lt;/code&gt; configuration file, e.g:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;global_max_rate: 1500 # req/s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;default-max-rate-per-endpoint&#34;&gt;Default max rate per endpoint&lt;/h2&gt;
+
+&lt;p&gt;HARD LIMIT
+At a service level you can define a &lt;strong&gt;default maximum rate limit per endpoint&lt;/strong&gt;. Unless the application configuration
+overwrites this limit this limit will be set for all the endpoints.&lt;/p&gt;
+
+&lt;p&gt;Limits the request per second the KrakenD service will process for a single endpoint.&lt;/p&gt;
+
+&lt;p&gt;This parameter is defined at the &lt;code&gt;service.yml&lt;/code&gt; configuration file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;max_rate_per_endpoint: 1000 # req/s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;client&#34;&gt;Client&lt;/h2&gt;
+
+&lt;p&gt;Limits the request per second the KrakenD service will process for a single endpoint and a given client. There are two client identification strategies: by token set in a request header and by client IP.&lt;/p&gt;
+
+&lt;p&gt;This level is defined at the &lt;code&gt;krakend.json&lt;/code&gt; configuration file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+{
+  &amp;quot;endpoint&amp;quot;: &amp;quot;/account&amp;quot;,
+  &amp;quot;backend&amp;quot;: [
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/user&amp;quot;
+    }
+  ],
+  &amp;quot;client_max_rate&amp;quot;: &amp;quot;1&amp;quot;
+},
+{
+  &amp;quot;endpoint&amp;quot;: &amp;quot;/products&amp;quot;,
+  &amp;quot;backend&amp;quot;: [
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/items/list&amp;quot;
+    }
+  ],
+  &amp;quot;client_max_rate&amp;quot;: &amp;quot;1&amp;quot;,
+  &amp;quot;throttling_header&amp;quot;: &amp;quot;X-Token&amp;quot;
+},
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Client rate limiting could have an impact on the global performance, so use it with caution.&lt;/p&gt;
+
+&lt;h2 id=&#34;backend&#34;&gt;Backend&lt;/h2&gt;
+
+&lt;p&gt;Limits the request per second the KrakenD service will send to a given backend for a given endpoint.&lt;/p&gt;
+
+&lt;p&gt;This parameter is defined at the &lt;code&gt;krakend.json&lt;/code&gt; configuration file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+{
+  &amp;quot;endpoint&amp;quot;: &amp;quot;/github&amp;quot;,
+  &amp;quot;backend&amp;quot;: [
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/&amp;quot;
+    }
+  ],
+  &amp;quot;endpoint_max_rate&amp;quot;: &amp;quot;1&amp;quot;
+},
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;implementation-details&#34;&gt;Implementation details&lt;/h1&gt;
+
+&lt;p&gt;Our rate limiting middlewares are using a &lt;a href=&#34;https://en.wikipedia.org/wiki/Token_bucket&#34;&gt;token bucket algorithm&lt;/a&gt; with a &lt;code&gt;bucket capacity == tokens added per second&lt;/code&gt; so KrakenD is able to allow some bursting on the request rates.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www-scf.usc.edu/~trigunay/token_filter.png&#34; alt=&#34;token bucket&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;limiting-the-amount-of-connections-per-client-client-max-rate&#34;&gt;Limiting the amount of connections per client (&lt;code&gt;client_max_rate&lt;/code&gt;)&lt;/h2&gt;
+
+&lt;p&gt;On the other hand, the &lt;code&gt;client_max_rate&lt;/code&gt; limits the maximum requests allowed to every client within a second. The value should
+be significantly lower than you would use for &lt;code&gt;max_rate&lt;/code&gt;, as this limit will be multiplied by the number of active clients in that moment.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;client_max_rate : 10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If 200 different customers (with different IPs) hit the KrakenD, they will be allowed to generate a total traffic of&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;200 ips x 10 req/s = 2000req/s  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;comparison-of-max-rate-vs-client-max-rate&#34;&gt;Comparison of &lt;code&gt;max_rate&lt;/code&gt; vs &lt;code&gt;client_max_rate&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;The &lt;code&gt;max_rate&lt;/code&gt; is an absolute number and you have the exact control on how much traffic you are allowing to hit the backend. In
+an eventual DDoS the &lt;code&gt;max_rate&lt;/code&gt; can help in a way since it won&amp;rsquo;t accept more traffic than allowed. But on the other hand
+a single host could abuse the system taking a big percentage of that quota.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;client_max_rate&lt;/code&gt; is a limit per client. It won&amp;rsquo;t help you if you just want to control the total traffic, as
+the total traffic supported by the backend depends on the number of different requesting clients. A DDoS will then happily pass
+through, but on the other hand you can keep any particular abuser limited to its quota.&lt;/p&gt;
+
+&lt;p&gt;Depending on your use case you will need to decide if you use one, the other, the two, or none of them (fastest):&lt;/p&gt;
+
+&lt;div class=&#34;alert note&#34;&gt;
+    &lt;h4&gt;&lt;i class=&#34;icon fa fa-sticky-note-o&#34;&gt;&lt;/i&gt; Note&lt;/h4&gt;
+    &lt;p&gt;From a &lt;strong&gt;performance point of view&lt;/strong&gt; the `client_max_rate` drops the performance as every incoming client 
+    needs to be monitored.&lt;/p&gt;
+ &lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

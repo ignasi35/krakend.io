@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Configuration-rsses on Devops.faith KrakenD</title>
+    <link>http://krakend.io/configuration/index.xml</link>
+    <description>Recent content in Configuration-rsses on Devops.faith KrakenD</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 14 Nov 2016 18:23:05 +0200</lastBuildDate>
+    <atom:link href="http://krakend.io/configuration/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>KrakenD Configuration File</title>
+      <link>http://krakend.io/configuration/</link>
+      <pubDate>Mon, 14 Nov 2016 18:23:05 +0200</pubDate>
+      
+      <guid>http://krakend.io/configuration/</guid>
+      <description>
+
+&lt;p&gt;From the functional point of view, KrakenD only needs a single configuration file to build the gateway you want. That file could be defined using the &lt;code&gt;--config&lt;/code&gt; path and in the &lt;code&gt;service.yml&lt;/code&gt; configuration file. If no value is defined, KrakenD will try to load the configuration file from the &lt;strong&gt;default path&lt;/strong&gt;, &lt;code&gt;/etc/krakend/krakend.json&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;supported-formats&#34;&gt;Supported formats&lt;/h1&gt;
+
+&lt;p&gt;The following formats are supported to write the configuration file:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;YAML&lt;/li&gt;
+&lt;li&gt;TOML&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JSON&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Nevertheless, the KrakenDesigner (javascript app) only supports &lt;code&gt;JSON&lt;/code&gt; at the moment, and this is why &lt;strong&gt;we recommend using JSON&lt;/strong&gt; at least in the experimenting phase.&lt;/p&gt;
+
+&lt;h2 id=&#34;validating-the-syntax-of-the-configuration-file&#34;&gt;Validating the syntax of the configuration file&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say you are modifying by hand the file &lt;code&gt;~/my-krakend.json&lt;/code&gt;. When you are set, you can check the syntax of the file by running:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;krakend --config ~/my-krakend.json check
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By adding the flag &lt;code&gt;--debug&lt;/code&gt; you will be able to see the full output with the interpretation of the file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;krakend --config ~/my-krakend.json --debug
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Of course you can try to start the service directly as this will be done anyway. When the syntax is correct you&amp;rsquo;ll see the message&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Syntax OK!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The configuration file contains a lot of different options that are explained here. Let&amp;rsquo;s dip a toe in the water first by reviewing the skeleton of the configuration file.&lt;/p&gt;
+
+&lt;h2 id=&#34;configuration-sample&#34;&gt;Configuration sample&lt;/h2&gt;
+
+&lt;p&gt;TBD&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

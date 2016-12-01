@@ -1,0 +1,42 @@
+<div class="box box-success">
+    <div class="box-header with-border">
+        <h3 class="box-title">Available backend servers</h3>
+        <div class="pull-right">
+        <span ng-if="service.host.length === 0 || !service.host" class="pull-right-container" data-toggle="tooltip"
+              data-original-title="The service needs at least 1 backend to work">
+                    <i class="fa fa-warning pull-right icon-warning"></i>
+            </span>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <p>The backends are the APIs you will use to feed the content. You need to declare here all the base URLs of
+            the
+            ones you want to use</p>
+        <p><code>protocol://hostname[:port]</code></p>
+        <ul class="list-unstyled">
+            <li ng-repeat="(index,host) in service.host">
+                <a class="badge badge-remove" ng-click="deleteIndexFromArray(index, '$scope.service.host')"
+                   title="Click to delete backend"><i class="fa fa-times"></i> {% host %}</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+        <form name="addBackend">
+            <div class="input-group">
+                <input class="form-control"
+                       placeholder="http://api.your.server:8080"
+                       type="url"
+                       id="backendAddContent"
+                       required="">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-success" ng-click="addGlobalBackend()"><i
+                            class="fa fa-plus"></i> Add
+                        backend
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

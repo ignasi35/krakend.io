@@ -1,0 +1,130 @@
+<div class="col-md-12">
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Service Name</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="form-group form-group-lg">
+                <input class="form-control" id="service.name" name="service.name"
+                       placeholder="My Service" ng-model="service.name" type="text">
+                <span class="help-block">
+                    A friendly name, title or shot description that will help you identify this service configuration.
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-6">
+    <div ng-include src="'form_backends.html'"></div>
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Throttling. Default rate limits</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <p>Write here the default limits that will be used across all your endpoints. You can override this values
+                per endpoint if needed. <strong>Read more on <a href="/throttling/rate-limit">rate limiting</a></strong></p>
+            <div class="form-group" ng-class="isInteger(service.default_max_rate) ? '' : 'has-error'">
+                <label class="control-label">Default rate limit towards backend</label>
+                <div class="input-group">
+                    <input class="form-control"
+                           ng-model="service.default_max_rate"
+                           id="service.default_max_rate"
+                           name="service.default_max_rate"
+                           type="text"
+                           ng-init="service.default_max_rate=0">
+                    <div class="input-group-addon">reqs/sec</div>
+                </div>
+                <span class="help-block">Maximum requests per second you want to send to your backends. This value will
+                    be used as default for all the endpoints unless overridden in each of them. Use <code>0</code>
+                    for no limit
+                </span>
+            </div>
+            <div class="form-group" ng-class="isInteger(service.client_max_rate) ? '' : 'has-error'">
+                <label class="control-label">Default user quota</label>
+                <div class="input-group">
+                    <input class="form-control"
+                           ng-model="service.client_max_rate"
+                           id="service.client_max_rate"
+                           name="service.client_max_rate"
+                           type="text"
+                           ng-init="service.client_max_rate=0">
+                    <div class="input-group-addon">reqs/sec</div>
+                </div>
+                <span class="help-block">Maximum requests per second you want to allow to each different API user. This
+                    value will be used as default for all the endpoints unless overridden in each of them. Use <code>0</code>
+                    for no limitation.
+                </span>
+                <div ng-show="0 != service.client_max_rate">
+                    <p><strong>A unique user is identified by...</strong></p>
+                    <div class="input-group" class="form-control">
+                        <input type="radio" name="throttling_decorator" value="A"
+                               ng-checked="service.throttling_header==''"
+                               ng-click="service.throttling_header=''">
+                        Its originating IP
+                    </div>
+                    <div class="input-group" class="form-control">
+                        <input type="radio" name="throttling_decorator" value="B"
+                               ng-checked="service.throttling_header!=''">
+                        A custom header:
+                        <input type="text" ng-model="service.throttling_header" ng-init="service.throttling_header=''"
+                               placeholder="X-TOKEN">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Timeouts</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <p>All settings below are used across all backends unless specifically overridden in each endpoint</p>
+
+            <p ng-include src="'time_units.html'"></p>
+
+            <div class="form-group" ng-class="isValidTimeUnit(service.timeout) ? '' : 'has-error'">
+                <label class="control-label" for="service.timeout">Backend Timeout</label>
+                <input class="form-control"
+                       id="service.timeout"
+                       name="service.timeout"
+                       ng-model="service.timeout"
+                       placeholder="3000ms"
+                       ng-init="service.timeout='3000ms'"
+                       type="text">
+                <div class="help-block">
+                    <p ng-hide="isValidTimeUnit(service.timeout)" ng-include src="'time_units.html'"></p>
+                    <p>This is the <strong>default timeout</strong> for all the outgoing connections against your
+                        backends.
+                        This value can be overridden later on specific endpoints.</p>
+                </div>
+            </div>
+            <div class="form-group" ng-class="isValidTimeUnit(service.cache_ttl) ? '' : 'has-error'">
+                <label class="control-label" for="service.cache_ttl">Default Cache TTL</label>
+                <input class="form-control"
+                       id="service.cache_ttl"
+                       ng-model="service.cache_ttl"
+                       name="service.cache_ttl"
+                       placeholder="300s"
+                       ng-init="service.cache_ttl='300s'"
+                       type="text">
+                <div class="help-block">
+                    <p ng-hide="isValidTimeUnit(service.cache_ttl)" ng-include src="'time_units.html'"></p>
+                    </p>
+                    <p>Time the service considers the origin is still valid. Applies
+                        to GET requests only. The service does not cache anything but facilitates
+                        the headers for proxies to do the caching (e.g: Varnish server).</p></div>
+
+            </div>
+        </div>
+    </div>
+</div>

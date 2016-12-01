@@ -1,0 +1,1563 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Devops.faith KrakenD</title>
+    <link>http://krakend.io/index.xml</link>
+    <description>Recent content on Devops.faith KrakenD</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 14 Nov 2016 18:23:05 +0200</lastBuildDate>
+    <atom:link href="http://krakend.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>KrakenD Configuration File</title>
+      <link>http://krakend.io/configuration/</link>
+      <pubDate>Mon, 14 Nov 2016 18:23:05 +0200</pubDate>
+      
+      <guid>http://krakend.io/configuration/</guid>
+      <description>
+
+&lt;p&gt;From the functional point of view, KrakenD only needs a single configuration file to build the gateway you want. That file could be defined using the &lt;code&gt;--config&lt;/code&gt; path and in the &lt;code&gt;service.yml&lt;/code&gt; configuration file. If no value is defined, KrakenD will try to load the configuration file from the &lt;strong&gt;default path&lt;/strong&gt;, &lt;code&gt;/etc/krakend/krakend.json&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;supported-formats&#34;&gt;Supported formats&lt;/h1&gt;
+
+&lt;p&gt;The following formats are supported to write the configuration file:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;YAML&lt;/li&gt;
+&lt;li&gt;TOML&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JSON&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Nevertheless, the KrakenDesigner (javascript app) only supports &lt;code&gt;JSON&lt;/code&gt; at the moment, and this is why &lt;strong&gt;we recommend using JSON&lt;/strong&gt; at least in the experimenting phase.&lt;/p&gt;
+
+&lt;h2 id=&#34;validating-the-syntax-of-the-configuration-file&#34;&gt;Validating the syntax of the configuration file&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say you are modifying by hand the file &lt;code&gt;~/my-krakend.json&lt;/code&gt;. When you are set, you can check the syntax of the file by running:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;krakend --config ~/my-krakend.json check
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By adding the flag &lt;code&gt;--debug&lt;/code&gt; you will be able to see the full output with the interpretation of the file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;krakend --config ~/my-krakend.json --debug
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Of course you can try to start the service directly as this will be done anyway. When the syntax is correct you&amp;rsquo;ll see the message&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Syntax OK!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The configuration file contains a lot of different options that are explained here. Let&amp;rsquo;s dip a toe in the water first by reviewing the skeleton of the configuration file.&lt;/p&gt;
+
+&lt;h2 id=&#34;configuration-sample&#34;&gt;Configuration sample&lt;/h2&gt;
+
+&lt;p&gt;TBD&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Download KrakenD</title>
+      <link>http://krakend.io/download/</link>
+      <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
+      
+      <guid>http://krakend.io/download/</guid>
+      <description>
+
+&lt;h1 id=&#34;krakend-free&#34;&gt;KrakenD Free&lt;/h1&gt;
+
+&lt;p&gt;Download the KrakenD version for the free plan:&lt;/p&gt;
+
+&lt;h2 id=&#34;krakend-for-linux&#34;&gt;KrakenD for Linux&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.8_amd64.tar.gz&#34;&gt;Download&lt;/a&gt; Linux 64 bits &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.8_amd64.tar.gz.asc&#34;&gt;PGP&lt;/a&gt; &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.8_amd64.tar.gz.md5&#34;&gt;MD5&lt;/a&gt; &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.8_amd64.tar.gz.sha1&#34;&gt;SHA1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;package-verification&#34;&gt;Package verification&lt;/h3&gt;
+
+&lt;h4 id=&#34;pgp&#34;&gt;PGP&lt;/h4&gt;
+
+&lt;p&gt;We will check the deatched signature &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.8_amd64.tar.gz.asc&#34;&gt;PGP&lt;/a&gt; against our package &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.8_amd64.tar.gz&#34;&gt;KrakenD&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gpg --verify krakend_0.3.8_amd64.tar.gz.asc krakend_0.3.8_amd64.tar.gz
+gpg: Signature made jue 01 dic 2016 14:00:38 CET using RSA key ID AB39BEA1
+gpg: Can&#39;t check signature: public key not found
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We don&amp;rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gpg --keyserver keyserver.ubuntu.com --recv-key AB39BEA1
+gpg: requesting key AB39BEA1 from hkp server keyserver.ubuntu.com
+gpg: trustdb created
+gpg: key AB39BEA1: public key &amp;quot;Daniel Ortiz &amp;lt;dortiz@devops.faith&amp;gt;&amp;quot; imported
+gpg: Total number processed: 1
+gpg:                             imported: 1    (RSA: 1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you can verify the signature of the package:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gpg --verify krakend_0.3.8_amd64.tar.gz.asc krakend_0.3.8_amd64.tar.gz
+gpg: Signature made jue 01 dic 2016 14:00:38 CET using RSA key ID AB39BEA1
+gpg: Good signature from &amp;quot;Daniel Ortiz &amp;lt;dortiz@devops.faith&amp;gt;&amp;quot;
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:                    There is no indication that the signature belongs to the owner.
+Primary key fingerprint: EF9B 4CED 47D0 ECC9 69F8  3B4A 7377 C22B AB39 BEA1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;md5&#34;&gt;MD5&lt;/h4&gt;
+
+&lt;p&gt;Compare the result of executing the next command with the content of the &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.8_amd64.tar.gz.md5&#34;&gt;MD5&lt;/a&gt; file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ md5sum -b krakend_0.3.8_amd64.tar.gz
+950b747fa0eed12160de23a7eb3823fd *krakend_0.3.8_amd64.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;sha1&#34;&gt;SHA1&lt;/h4&gt;
+
+&lt;p&gt;Compare the result of executing the next command with the content of the &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.8_amd64.tar.gz.sha1&#34;&gt;SHA1&lt;/a&gt; file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sha1sum -b krakend_0.3.8_amd64.tar.gz
+4e523fc9a21b1be7cd0b5a8f0e887577796ebdc1 *krakend_0.3.8_amd64.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;krakend-source&#34;&gt;KrakenD Source&lt;/h2&gt;
+
+&lt;p&gt;If you want to build your own binaries use the open source framework:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://github.com/devopsfaith/krakend&#34;&gt;Github reposistory&lt;/a&gt; (source code)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;package-installation&#34;&gt;Package installation&lt;/h2&gt;
+
+&lt;h3 id=&#34;debian-based&#34;&gt;Debian based&lt;/h3&gt;
+
+&lt;p&gt;Download and installation via package using APT, for Debian and Ubuntu, is documented at the &lt;a href=&#34;http://krakend.io/overview/installing&#34;&gt;installing&lt;/a&gt; page.&lt;/p&gt;
+
+&lt;h3 id=&#34;rpm-based&#34;&gt;RPM based&lt;/h3&gt;
+
+&lt;p&gt;Download and installation via package using YUM (or any alternative rpm manager), for RHEL, CentOS, etc is documented at the &lt;a href=&#34;http://krakend.io/overview/installing&#34;&gt;installing&lt;/a&gt; page.&lt;/p&gt;
+
+&lt;p&gt;Here you have the &lt;a href=&#34;http://repo.krakend.io/rpm/krakend-repo-0.1-0.noarch.rpm&#34;&gt;repo rpm&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>KrakenD - Pricing and Plans</title>
+      <link>http://krakend.io/features/</link>
+      <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
+      
+      <guid>http://krakend.io/features/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>KrakenD F.A.Q</title>
+      <link>http://krakend.io/faq/</link>
+      <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
+      
+      <guid>http://krakend.io/faq/</guid>
+      <description>
+
+&lt;h1 id=&#34;understanding-the-behaviour&#34;&gt;Understanding the behaviour&lt;/h1&gt;
+
+&lt;h2 id=&#34;i-am-seeing-frequent-503-errors-in-the-logs&#34;&gt;I am seeing frequent &lt;code&gt;503&lt;/code&gt; errors in the logs&lt;/h2&gt;
+
+&lt;p&gt;E.g:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2016/11/13 - 18:01:18 | 200 |    5.352143ms | ::1 |   GET     /frontpage
+2016/11/13 - 18:01:18 | 503 |       5.662µs | ::1 |   GET     /frontpage
+2016/11/13 - 18:01:18 | 503 |       5.662µs | ::1 |   GET     /frontpage
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;max_rate&lt;/code&gt; setting defines the maximum number of requests allowed in a single second to an endpoint. When this
+number is reached, subsequent connections are rejected with a &lt;code&gt;503&lt;/code&gt; error. This limitation is optional and is usually
+set to avoid hammering your own backends and compromising their stability.&lt;/p&gt;
+
+&lt;h3 id=&#34;solution&#34;&gt;Solution&lt;/h3&gt;
+
+&lt;p&gt;Increase the &lt;code&gt;max_rate&lt;/code&gt; number or disable it (&lt;code&gt;max_rate = 0&lt;/code&gt;). This setting can be set globaly for all the endpoints,
+or overridden individually per endpoint.&lt;/p&gt;
+
+&lt;p&gt;Remember: failling fast is always better than overloading your infrastructure and degrading the quality of your entire services.&lt;/p&gt;
+
+&lt;h2 id=&#34;i-am-having-empty-responses&#34;&gt;I am having empty responses&lt;/h2&gt;
+
+&lt;p&gt;The KrakenD service will cut the connection and will return and empty response if the backend does not respond in the
+time set by the &lt;code&gt;timeout&lt;/code&gt; variable. This variable is usually written in magnitude of &lt;strong&gt;milliseconds&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;solution-1&#34;&gt;Solution&lt;/h3&gt;
+
+&lt;p&gt;Whenever possible add caching layers in your backends, scale the infrastructure, etc. so that can answer requests in a
+decent time. Increasing the &lt;code&gt;timeout&lt;/code&gt; variable is an option but but should be always &lt;strong&gt;your last option&lt;/strong&gt;. If your
+backends are not able to respond in a short time think that when you increment the timeout what you really do is
+to block connections waiting for the backend. The memory consumption will increase and the number of connections you can
+open are finite. In a gateway your focus should be freeing the connections as soon as possible.&lt;/p&gt;
+
+&lt;p&gt;Values above &lt;code&gt;2000ms&lt;/code&gt; are not recommended.&lt;/p&gt;
+
+&lt;h2 id=&#34;reserved-endpoints&#34;&gt;Reserved endpoints&lt;/h2&gt;
+
+&lt;p&gt;The following names cannot be used as endpoint names as they are reserved:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/__debug/
+/favicon.ico
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>KrakenDesigner</title>
+      <link>http://krakend.io/designer/</link>
+      <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
+      
+      <guid>http://krakend.io/designer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://krakend.io/overview/ssl/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/overview/ssl/</guid>
+      <description>&lt;p&gt;Example of generation &lt;code&gt;$ openssl req -x509 -nodes -newkey rsa:2048 -keyout server.rsa.key -out server.rsa.crt -days 3650&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>http://krakend.io/benchmarks/overview/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/benchmarks/overview/</guid>
+      <description>
+
+&lt;h1 id=&#34;krakend-the-ultra-performer-api-gateway&#34;&gt;KrakenD, the &lt;strong&gt;ultra performer&lt;/strong&gt; API Gateway&lt;/h1&gt;
+
+&lt;p&gt;An API Gateway is a component that needs to deliver really fast, as it is an added layer in the infrastructure. KrakenD
+was built with performance in mind. In this page and inner pages you&amp;rsquo;ll find several tests we did to measure the performance.
+Of course we invite you to do them for yourself!&lt;/p&gt;
+
+&lt;h1 id=&#34;tl-dr-benchmark-results&#34;&gt;TL;DR: &lt;strong&gt;Benchmark results&lt;/strong&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;~18,000 requests/second&lt;/strong&gt; on an ordinary laptop.&lt;/p&gt;
+
+&lt;p&gt;The following table summarizes different performance tests using Amazon EC2 virtual instances and an example with a laptop.&lt;/p&gt;
+
+&lt;p&gt;&lt;table class=&#34;table table-striped&#34;&gt;
+    &lt;tbody&gt;&lt;tr&gt;
+        &lt;th style=&#34;width: 10px&#34;&gt;#&lt;/th&gt;
+        &lt;th&gt;Hardware specs&lt;/th&gt;
+        &lt;th&gt;Requests second&lt;/th&gt;
+        &lt;th&gt;Average response&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;1.&lt;/td&gt;
+        &lt;td&gt;Amazon EC2 (c4.2xlarge)&lt;/td&gt;
+        &lt;td&gt;10126.1613 reqs/s&lt;/td&gt;
+        &lt;td&gt;9.8ms&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;2.&lt;/td&gt;
+        &lt;td&gt;Amazon EC2 (c4.xlarge)&lt;/td&gt;
+        &lt;td&gt;8465.4012 reqs/s&lt;/td&gt;
+        &lt;td&gt;11.7ms&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;3.&lt;/td&gt;
+        &lt;td&gt;Amazon EC2 (m4.large)&lt;/td&gt;
+        &lt;td&gt;3634.1247 reqs/s&lt;/td&gt;
+        &lt;td&gt;27.3ms&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;4.&lt;/td&gt;
+        &lt;td&gt;Amazon EC2 (t2.medium)&lt;/td&gt;
+        &lt;td&gt;2781.8611 reqs/s&lt;/td&gt;
+        &lt;td&gt;351.3ms&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;5.&lt;/td&gt;
+        &lt;td&gt;Amazon EC2 (t2.micro)&lt;/td&gt;
+        &lt;td&gt;2757.6407 reqs/s&lt;/td&gt;
+        &lt;td&gt;35.8ms&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;6.&lt;/td&gt;
+        &lt;td&gt;MacBook Pro (Aug 2015) 2,2 GHz Intel Core i7&lt;/td&gt;
+        &lt;td&gt;18157.4274 reqs/s&lt;/td&gt;
+        &lt;td&gt;5.5ms&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/tbody&gt;
+ &lt;/table&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;benchmark-in-a-macbook-pro&#34;&gt;Benchmark in a Macbook Pro&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://krakend.io/benchmarks/local&#34;&gt;Here you will find the results of the benchmarks&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;benchmark-in-amazon-aws-ec2-instances&#34;&gt;Benchmark in Amazon AWS EC2 Instances&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://krakend.io/benchmarks/aws&#34;&gt;Here you will find the results of the benchmarks&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;api-gateway-benchmark&#34;&gt;Api Gateway Benchmark&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://krakend.io/benchmarks/api-gateway-benchmark&#34;&gt;Here you will find the results of the comparations&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;tooling&#34;&gt;Tooling&lt;/h1&gt;
+
+&lt;h2 id=&#34;hey&#34;&gt;hey&lt;/h2&gt;
+
+&lt;p&gt;Some local benchmarks used the &lt;a href=&#34;https://github.com/rakyll/hey&#34;&gt;hey&lt;/a&gt; tool, which is an Apache Benchmark (ab) replacement tool.&lt;/p&gt;
+
+&lt;h2 id=&#34;api-gateway-benchmark-1&#34;&gt;api-gateway-benchmark&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This project aims to provide a complete set of tools needed to do simple performance comparisons in the API manager/gateway space. It is inspired by the great Framework Benchmarks project by TechEmpower.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Check the &lt;a href=&#34;https://github.com/varnish/api-gateway-benchmarks&#34;&gt;varnish/api-gateway-benchmarks&lt;/a&gt; project for more info.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Run</title>
+      <link>http://krakend.io/commands/run/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/commands/run/</guid>
+      <description>
+
+&lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+
+&lt;p&gt;The &lt;code&gt;krakend run&lt;/code&gt; starts the KrakenD with the passed flags.&lt;/p&gt;
+
+&lt;h1 id=&#34;usage&#34;&gt;Usage&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;$ krakend run -h
+krakend 0.3.8
+
+Usage:
+  krakend run [flags]
+
+Flags:
+      --fasthttp                    Use the fasthttp router (experimental)
+      --global_max_rate int         Max req/s for the entire service
+      --log string                  Log level (ERROR, WARNING, INFO, DEBUG)
+      --max_rate_per_endpoint int   Max req/s per endpoint
+      --port int                    Listening port for the http service
+      --ssl_certificate string      Path to the SSL Certificate
+      --ssl_port int                Listening port for the https service
+      --ssl_private_key string      Path to the SSL Private Key
+      --stats_port int              Listening port for the stats service
+      --stdout                      Log to the stdout (default true)
+      --syslog                      Log to syslog
+
+Global Flags:
+      --config string   Path to the configuration filename
+  -d, --debug           Enable the debug
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;
+
+&lt;p&gt;The &lt;code&gt;krakend run&lt;/code&gt; command can overwrite some configuration params defined at the service configuration file (&lt;code&gt;/etc/krakend/service.yml&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;TBD&lt;/p&gt;
+
+&lt;h1 id=&#34;example&#34;&gt;Example&lt;/h1&gt;
+
+&lt;p&gt;TBD&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>KrakenD Throttling</title>
+      <link>http://krakend.io/throttling/overview/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/throttling/overview/</guid>
+      <description>&lt;p&gt;The KrakenD is a powerful tool that handles a huge amount of traffic and depending on the usage you could stress your
+own backend micro-services architecture by requesting a lot of data, compromising your backend SLA.&lt;/p&gt;
+
+&lt;p&gt;In order to prevent the KrakenD to stress your infrastructure (or even someone using it to harm you) there are several
+mechanisms to put you safe.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://krakend.io/throttling/overview&#34;&gt;The Circuit Breaker&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://krakend.io/throttling/rate-limit&#34;&gt;Rate limits&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Introduction to KrakenD</title>
+      <link>http://krakend.io/overview/introduction/</link>
+      <pubDate>Tue, 25 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/overview/introduction/</guid>
+      <description>
+
+&lt;p&gt;Consumers of REST API content (specially in microservices) often query backend services that weren&amp;rsquo;t coded for the UI implementation. This is of course a good practice, but the UI consumers need to do implementations that suffer a lot of complexity and burden with the sizes of their microservices responses.&lt;/p&gt;
+
+&lt;p&gt;KrakenD is an &lt;strong&gt;API Gateway&lt;/strong&gt; and proxy generator that sits between the client and all the source servers, adding a new layer that removes all the complexity to the clients, providing them only the information that the UI needs. KrakenD acts as an &lt;strong&gt;aggregator&lt;/strong&gt; of many sources into single endpoints and allows you to group, wrap, transform and shrink responses. Additionally it supports a myriad of middelwares and plugins that allow you to extend the functionality, such as adding Oauth authorization or security layers (SSL, certificates, HTTP Strict Transport Security, Clickjacking protection, HTTP Public Key Pinning, MIME-sniffing prevention, XSS protection).&lt;/p&gt;
+
+&lt;p&gt;KrakenD not only supports HTTP(S), but because it is a set of generic libraries you can build all type of API Gateways and proxies, including for instance, a RPC gateway.&lt;/p&gt;
+
+&lt;p&gt;KrakenD is written in &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt; with support for multiple platforms.&lt;/p&gt;
+
+&lt;h1 id=&#34;practical-example&#34;&gt;Practical Example&lt;/h1&gt;
+
+&lt;p&gt;Fred Calamari is a mobile developer that needs to construct a single front page that requires data from several calls to their backend services, e.g:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1) api.store.server/products
+2) api.store.server/marketing-promos
+3) api.users.server/users/{id_user}
+4) api.users.server/shopping-cart/{id_user}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The screen is very simple and &lt;em&gt;only&lt;/em&gt; needs to retrieve data from 4 different sources, wait for the round trip and then pick only a few fields of the response. Instead of thing these calls, the mobile could call a single endpoint to KrakenD:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1) krakend.server/frontpage/{id_user}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And this is how it would look like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://krakend.io/docs/images/krakend-gateway.png&#34; alt=&#34;Gateway&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The difference in size in this example would be because KrakenD server would have removed unneeded attributes from the responses.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Check</title>
+      <link>http://krakend.io/commands/check/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/commands/check/</guid>
+      <description>
+
+&lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+
+&lt;p&gt;The &lt;code&gt;krakend check&lt;/code&gt; command validates the passed configuration. Since KrakenD doesn&amp;rsquo;t implement a strict parsing, typos in the config file could be shadowed. In order to validate your config completely, it is recommended to use the &lt;code&gt;--debug&lt;/code&gt; flag.&lt;/p&gt;
+
+&lt;h1 id=&#34;usage&#34;&gt;Usage&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./krakend check -h
+Validates that the active configuration file has a valid syntax to run the service. Change the configuration file by using the --config flag
+
+Usage:
+  krakend check [flags]
+
+Global Flags:
+      --config string   Path to the configuration filename
+  -d, --debug           Enable the debug
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Passing a path to the config file is required&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./krakend check
+Please, provide the path to your config file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;example&#34;&gt;Example&lt;/h1&gt;
+
+&lt;p&gt;We will use this configuration for the demo&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;version&amp;quot;: 1,
+  &amp;quot;oauth&amp;quot;: {
+    &amp;quot;disable&amp;quot;: true
+  },
+  &amp;quot;cache_ttl&amp;quot;: &amp;quot;5m&amp;quot;,
+  &amp;quot;timeout&amp;quot;: &amp;quot;5s&amp;quot;,
+  &amp;quot;host&amp;quot;: [ &amp;quot;webserver:8080&amp;quot; ],
+  &amp;quot;endpoints&amp;quot;: [
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/test01&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;concurrent_calls&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/test01&amp;quot;
+        }
+      ]
+    },
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/test02&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;concurrent_calls&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/test02&amp;quot;
+        }
+      ],
+      &amp;quot;querystring_params&amp;quot;: [
+        &amp;quot;apikey&amp;quot;
+      ]
+    },
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/test03&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/test03&amp;quot;
+        }
+      ],
+      &amp;quot;max_rate&amp;quot;: &amp;quot;1000000&amp;quot;,
+      &amp;quot;querystring_params&amp;quot;: [
+        &amp;quot;api_key&amp;quot;
+      ]
+    },
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/test04&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;max_rate&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;concurrent_calls&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/test04&amp;quot;
+        }
+      ]
+    },
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/fb1&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/fb&amp;quot;,
+          &amp;quot;group&amp;quot;: &amp;quot;fb&amp;quot;
+        },
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/youtube&amp;quot;,
+          &amp;quot;target&amp;quot;: &amp;quot;data&amp;quot;,
+          &amp;quot;group&amp;quot;: &amp;quot;youtube&amp;quot;
+        },
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/twitter&amp;quot;,
+          &amp;quot;group&amp;quot;: &amp;quot;twitter&amp;quot;
+        }
+      ],
+      &amp;quot;concurrent_calls&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;timeout&amp;quot;: &amp;quot;500ms&amp;quot;,
+      &amp;quot;cache_ttl&amp;quot;: &amp;quot;12h&amp;quot;
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;debug-disabled&#34;&gt;Debug disabled&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./krakend check --config krakend.json.
+Parsing configuration file: /tmp/krakend.json
+Reading the configuration from /tmp/krakend.json
+Syntax OK!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;debug-enabled&#34;&gt;Debug enabled&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./krakend check --config krakend.json -d
+Parsing configuration file: /tmp/krakend.json
+Reading the configuration from /tmp/krakend.json
+Parsed configuration: CacheTTL: 5m0s, GlobalMaxRate: 100, ClientRate: 0, ThrottlingHeader: , EndpointMaxRate: 100, Port: 8080, StatsPort: 0
+Hosts: [http://webserver:8080]
+    Endpoint: /test01, Method: GET, CacheTTL: 5m0s, MaxRate: 100, ClientRate: 0, ThrottlingHeader: , Concurrent: 1, QueryString: []
+        URL: /test01, Method: GET
+            Timeout: 5s, Target: , Mapping: map[], BL: [], WL: [], Group:
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+    Endpoint: /test02, Method: GET, CacheTTL: 5m0s, MaxRate: 100, ClientRate: 0, ThrottlingHeader: , Concurrent: 1, QueryString: [apikey]
+        URL: /test02, Method: GET
+            Timeout: 5s, Target: , Mapping: map[], BL: [], WL: [], Group:
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+    Endpoint: /test03, Method: GET, CacheTTL: 5m0s, MaxRate: 100, ClientRate: 0, ThrottlingHeader: , Concurrent: 0, QueryString: [api_key]
+        URL: /test03, Method: GET
+            Timeout: 5s, Target: , Mapping: map[], BL: [], WL: [], Group:
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+    Endpoint: /test04, Method: GET, CacheTTL: 5m0s, MaxRate: 1, ClientRate: 0, ThrottlingHeader: , Concurrent: 1, QueryString: []
+        URL: /test04, Method: GET
+            Timeout: 5s, Target: , Mapping: map[], BL: [], WL: [], Group:
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+    Endpoint: /fb1, Method: GET, CacheTTL: 12h0m0s, MaxRate: 100, ClientRate: 0, ThrottlingHeader: , Concurrent: 1, QueryString: []
+        URL: /fb, Method: GET
+            Timeout: 500ms, Target: , Mapping: map[], BL: [], WL: [], Group: fb
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+        URL: /youtube, Method: GET
+            Timeout: 500ms, Target: data, Mapping: map[], BL: [], WL: [], Group: youtube
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+        URL: /twitter, Method: GET
+            Timeout: 500ms, Target: , Mapping: map[], BL: [], WL: [], Group: twitter
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+OAuth enabled: false
+    Client ID:
+    Client Secret:
+    Scopes:
+    Token URL:
+Security present: false
+Syntax OK!
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Comparison of KrakenD vs other products in the market (Benchmark)</title>
+      <link>http://krakend.io/benchmarks/api-gateway-benchmark/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/benchmarks/api-gateway-benchmark/</guid>
+      <description>
+
+&lt;p&gt;We wanted to compare our own product with other similar products in the market. In order to do so we used the same
+environment and conditions and tested the following products:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Kong&lt;/li&gt;
+&lt;li&gt;Vulcand&lt;/li&gt;
+&lt;li&gt;Tyk&lt;/li&gt;
+&lt;li&gt;KrakenD&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For the benchmarks we based the tests on the benchmarking project &lt;a href=&#34;https://github.com/varnish/api-gateway-benchmarks&#34;&gt;varnish/api-gateway-benchmarks&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;At the time of writing, KrakenD does not support auth features, so we just benchmarked it with &lt;em&gt;test01&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;tldr&#34;&gt;TLDR;&lt;/h1&gt;
+
+&lt;p&gt;Check out the generated graphs (&lt;a href=&#34;http://www.charted.co/c/1db8eb2&#34;&gt;throughput&lt;/a&gt; and &lt;a href=&#34;http://www.charted.co/c/2940d33&#34;&gt;responses&lt;/a&gt;) or the &lt;a href=&#34;#summary&#34;&gt;summary&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;hardware&#34;&gt;Hardware&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;Model MacBook Pro (MacBookPro11,4) - August 2015
+Processor:    Intel Core i7 2,2 GHz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;setup&#34;&gt;Setup&lt;/h1&gt;
+
+&lt;p&gt;For this test, we stored this configuration at &lt;code&gt;krakend.json&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;version&amp;quot;: 1,
+  &amp;quot;host&amp;quot;: [
+    &amp;quot;http://webserver:8888&amp;quot;
+  ],
+  &amp;quot;endpoints&amp;quot;: [
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/test01&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;concurrent_calls&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/test01&amp;quot;
+        }
+      ]
+    },
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/test03&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/test03&amp;quot;
+        }
+      ],
+      &amp;quot;max_rate&amp;quot;: &amp;quot;1000000&amp;quot;
+    },
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/test04&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;max_rate&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/test04&amp;quot;
+        }
+      ]
+    }
+  ],
+  &amp;quot;oauth&amp;quot;: {
+    &amp;quot;disable&amp;quot;: true
+  },
+  &amp;quot;cache_ttl&amp;quot;: &amp;quot;5m&amp;quot;,
+  &amp;quot;timeout&amp;quot;: &amp;quot;5s&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And we started the environment as described in the &lt;a href=&#34;https://github.com/varnish/api-gateway-benchmarks/blob/master/README.md#deployment-example&#34;&gt;README&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd deployment/vagrant
+$ vagrant up
+
+$ vagrant ssh webserver
+[vagrant@webserver ~]$ cd /opt/benchmarks/webservers/dummy-api
+[vagrant@webserver dummy-api]$ sudo ./deploy
+[vagrant@webserver dummy-api]$ exit
+
+$ vagrant ssh gateway
+[vagrant@gateway ~]$ cd /opt/benchmarks/gateways/krakend
+[vagrant@gateway krakend]$ sudo ./deploy
+[vagrant@gateway krakend]$ exit
+
+$ vagrant ssh consumer
+[vagrant@consumer ~]$ cd /opt/benchmarks/consumers/boom
+[vagrant@consumer boom]$ sudo ./deploy
+[vagrant@consumer boom]$ /usr/local/bin/test00
+[vagrant@consumer boom]$ /usr/local/bin/test01
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;results&#34;&gt;Results&lt;/h1&gt;
+
+&lt;h2 id=&#34;test-00&#34;&gt;Test 00&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;[vagrant@consumer ~]$ /usr/local/bin/test00
+100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
+
+Summary:
+  Total:  13.2722 secs.
+  Slowest:  0.1720 secs.
+  Fastest:  0.0002 secs.
+  Average:  0.0132 secs.
+  Requests/sec: 7534.5524
+  Total Data Received:  10800000 bytes.
+  Response Size per Request:  108 bytes.
+
+Status code distribution:
+  [200] 100000 responses
+
+Response time histogram:
+  0.000 [1]     |
+  0.017 [72298] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.035 [26760] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.052 [522]   |
+  0.069 [227]   |
+  0.086 [93]    |
+  0.103 [28]    |
+  0.120 [4]     |
+  0.138 [10]    |
+  0.155 [24]    |
+  0.172 [33]    |
+
+Latency distribution:
+  10% in 0.0039 secs.
+  25% in 0.0076 secs.
+  50% in 0.0129 secs.
+  75% in 0.0180 secs.
+  90% in 0.0218 secs.
+  95% in 0.0233 secs.
+  99% in 0.0333 secs.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;test-01&#34;&gt;Test 01&lt;/h2&gt;
+
+&lt;h3 id=&#34;krakend&#34;&gt;KrakenD&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[vagrant@consumer ~]$ /usr/local/bin/test01
+100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
+
+Summary:
+  Total:  28.7424 secs.
+  Slowest:  0.2781 secs.
+  Fastest:  0.0009 secs.
+  Average:  0.0287 secs.
+  Requests/sec: 3479.1863
+  Total Data Received:  10900000 bytes.
+  Response Size per Request:  109 bytes.
+
+Status code distribution:
+  [200] 100000 responses
+
+Response time histogram:
+  0.001 [1]     |
+  0.029 [71546] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.056 [26536] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.084 [1061]  |
+  0.112 [392]   |
+  0.140 [248]   |
+  0.167 [93]    |
+  0.195 [51]    |
+  0.223 [12]    |
+  0.250 [27]    |
+  0.278 [33]    |
+
+Latency distribution:
+  10% in 0.0213 secs.
+  25% in 0.0231 secs.
+  50% in 0.0245 secs.
+  75% in 0.0295 secs.
+  90% in 0.0432 secs.
+  95% in 0.0469 secs.
+  99% in 0.0771 secs.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;vulcand&#34;&gt;Vulcand&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[vagrant@consumer ~]$ /usr/local/bin/test01
+100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
+
+Summary:
+  Total:  50.5294 secs.
+  Slowest:  0.3426 secs.
+  Fastest:  0.0010 secs.
+  Average:  0.0505 secs.
+  Requests/sec: 1979.0451
+  Total Data Received:  10800000 bytes.
+  Response Size per Request:  108 bytes.
+
+Status code distribution:
+  [200] 100000 responses
+
+Response time histogram:
+  0.001 [1] |
+  0.035 [21120] |∎∎∎∎∎∎∎∎∎∎∎
+  0.069 [71365] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.103 [5946]  |∎∎∎
+  0.138 [168] |
+  0.172 [74]  |
+  0.206 [329] |
+  0.240 [496] |
+  0.274 [388] |
+  0.308 [88]  |
+  0.343 [25]  |
+
+Latency distribution:
+  10% in 0.0290 secs.
+  25% in 0.0378 secs.
+  50% in 0.0490 secs.
+  75% in 0.0571 secs.
+  90% in 0.0665 secs.
+  95% in 0.0733 secs.
+  99% in 0.2057 secs.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;kong&#34;&gt;Kong&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[vagrant@consumer ~]$ /usr/local/bin/test01
+100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
+
+Summary:
+  Total:  57.0194 secs.
+  Slowest:  1.5978 secs.
+  Fastest:  0.0076 secs.
+  Average:  0.0569 secs.
+  Requests/sec: 1753.7883
+  Total Data Received:  13600000 bytes.
+  Response Size per Request:  136 bytes.
+
+Status code distribution:
+  [200] 100000 responses
+
+Response time histogram:
+  0.008 [1]     |
+  0.167 [97506] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  0.326 [2290]  |
+  0.485 [103]   |
+  0.644 [0]     |
+  0.803 [0]     |
+  0.962 [0]     |
+  1.121 [0]     |
+  1.280 [0]     |
+  1.439 [17]    |
+  1.598 [83]    |
+
+Latency distribution:
+  10% in 0.0407 secs.
+  25% in 0.0435 secs.
+  50% in 0.0461 secs.
+  75% in 0.0497 secs.
+  90% in 0.0816 secs.
+  95% in 0.1076 secs.
+  99% in 0.2355 secs.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;tyk&#34;&gt;Tyk&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[vagrant@consumer ~]$ /usr/local/bin/test01
+100000 / 100000 Booooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00 %
+
+Summary:
+  Total:  221.5803 secs.
+  Slowest:  5.6482 secs.
+  Fastest:  0.0012 secs.
+  Average:  0.2215 secs.
+  Requests/sec: 451.3037
+  Total Data Received:  10800000 bytes.
+  Response Size per Request:  108 bytes.
+
+Status code distribution:
+  [200] 100000 responses
+
+Response time histogram:
+  0.001 [1]     |
+  0.566 [90838] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+  1.131 [4890]  |∎∎
+  1.695 [2208]  |
+  2.260 [1380]  |
+  2.825 [383]   |
+  3.389 [161]   |
+  3.954 [86]    |
+  4.519 [40]    |
+  5.084 [6]     |
+  5.648 [7]     |
+
+Latency distribution:
+  10% in 0.0355 secs.
+  25% in 0.0521 secs.
+  50% in 0.0823 secs.
+  75% in 0.1785 secs.
+  90% in 0.5263 secs.
+  95% in 0.9231 secs.
+  99% in 2.1054 secs.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
+
+&lt;h2 id=&#34;requests-per-second&#34;&gt;Requests per second&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=api-gateway-benchmark_test01_rps.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;response-time-distribution&#34;&gt;Response time distribution&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Time in milliseconds&lt;/em&gt;&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=api-gateway-benchmark_test01_resp_time.csv&#34;&gt;&lt;/script&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>KrakenD Benchmarks on AWS</title>
+      <link>http://krakend.io/benchmarks/aws/</link>
+      <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/benchmarks/aws/</guid>
+      <description>
+
+&lt;h1 id=&#34;tl-dr&#34;&gt;TL;DR&lt;/h1&gt;
+
+&lt;p&gt;Check out the generated &lt;a href=&#34;http://www.charted.co/c/227df90&#34;&gt;graphs&lt;/a&gt; or the &lt;a href=&#34;#conclusions&#34;&gt;conclusions&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The following numbers show the execution results for the KrakenD benchmarks on &lt;a href=&#34;https://aws.amazon.com/ec2/&#34;&gt;Amazon EC2&lt;/a&gt; machines.&lt;/p&gt;
+
+&lt;h1 id=&#34;benchmark-setup&#34;&gt;Benchmark setup&lt;/h1&gt;
+
+&lt;p&gt;This set of benchmarks have been running on different AWS EC2 instances. Each individual test consists in spinning up 3 different machines, being:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A web server&lt;/strong&gt;: A &lt;a href=&#34;https://lwan.ws/&#34;&gt;LWAN&lt;/a&gt; web server using an instance &lt;code&gt;c4.xlarge&lt;/code&gt;. This is the &amp;ldquo;fake api&amp;rdquo; where KrakenD will take the data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The HTTP load generator&lt;/strong&gt;: The machine actually running the load test. Uses &lt;strong&gt;&lt;a href=&#34;https://github.com/rakyll/hey&#34;&gt;hey&lt;/a&gt;&lt;/strong&gt;, and runs in a &lt;code&gt;t2.medium&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;KrakenD&lt;/strong&gt;: Each different test uses a different instance type in amazon:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The test consists in running &lt;code&gt;hey&lt;/code&gt; against a KrakenD endpoint. The KrakenD endpoint uses as the backend an URL in (&lt;code&gt;LWAN&lt;/code&gt;).
+After runnint the test, the &lt;code&gt;hey&lt;/code&gt; output is &lt;a href=&#34;https://github.com/devopsfaith/hey-to-csv&#34;&gt;parsed and converted to CSV&lt;/a&gt; in order to generate the graphs.&lt;/p&gt;
+
+&lt;p&gt;For each instance type there are 2 different tests:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Proxy&lt;/strong&gt;: We called proxy test when the KrakenD is just used as gateway and calls to a single endpoint to the web server (&lt;code&gt;/foo&lt;/code&gt; endpoint in the configuration).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Agreggate&lt;/strong&gt;: We called agreggate test when the KrakenD calls to a 3 different endpoints in the web server and agreggates the results (&lt;code&gt;/social&lt;/code&gt; endpoint in the configuration).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The instance types we tested are:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Instance Type&lt;/th&gt;
+&lt;th&gt;Number of vCPU&lt;/th&gt;
+&lt;th&gt;Memory&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;t2.micro&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1 GB&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;t2.medium&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;4 GB&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;m4.large&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;8 GB&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;c4.xlarge&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;7.5 GB&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;c4.2xlarge&lt;/td&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;15 GB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&#34;krakend-configuration-for-all-tests&#34;&gt;KrakenD Configuration for all tests&lt;/h1&gt;
+
+&lt;p&gt;The configuration for the load test was stored in the &lt;code&gt;krakend.json&lt;/code&gt; file, as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;version&amp;quot;: 1,
+  &amp;quot;host&amp;quot;: [
+    &amp;quot;http://lwan:8080&amp;quot;
+  ],
+  &amp;quot;endpoints&amp;quot;: [
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/foo&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/bar&amp;quot;
+        }
+      ],
+      &amp;quot;concurrent_calls&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;max_rate&amp;quot;: 100000
+    },
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/social&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/fb&amp;quot;,
+          &amp;quot;group&amp;quot;: &amp;quot;fb&amp;quot;
+        },
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/youtube&amp;quot;,
+          &amp;quot;target&amp;quot;: &amp;quot;data&amp;quot;,
+          &amp;quot;group&amp;quot;: &amp;quot;youtube&amp;quot;
+        },
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/twitter&amp;quot;,
+          &amp;quot;group&amp;quot;: &amp;quot;twitter&amp;quot;
+        }
+      ],
+      &amp;quot;concurrent_calls&amp;quot;: &amp;quot;1&amp;quot;,
+      &amp;quot;timeout&amp;quot;: &amp;quot;500ms&amp;quot;,
+      &amp;quot;cache_ttl&amp;quot;: &amp;quot;12h&amp;quot;
+    }
+  ],
+  &amp;quot;oauth&amp;quot;: {
+    &amp;quot;disable&amp;quot;: true
+  },
+  &amp;quot;cache_ttl&amp;quot;: &amp;quot;5m&amp;quot;,
+  &amp;quot;timeout&amp;quot;: &amp;quot;5s&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Notice that &lt;code&gt;Lwan&lt;/code&gt; is the backend running at &lt;code&gt;lwan:8080&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;And we started the KrakenD with this cmd (debug mode):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./krakend run --config krakend.json -d &amp;gt; /dev/null
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;results&#34;&gt;Results&lt;/h1&gt;
+
+&lt;h2 id=&#34;proxy-test-on-t2-micro&#34;&gt;Proxy test on &lt;code&gt;t2.micro&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_micro_test01.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;agreggate-test-on-t2-micro&#34;&gt;Agreggate test on &lt;code&gt;t2.micro&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_micro_aggregate.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;proxy-test-on-t2-medium&#34;&gt;Proxy test on &lt;code&gt;t2.medium&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_medium_test01.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;agreggate-test-on-t2-medium&#34;&gt;Agreggate test on &lt;code&gt;t2.medium&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_medium_aggregate.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;proxy-test-on-m4-large&#34;&gt;Proxy test on &lt;code&gt;m4.large&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=m4_large_test01.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;agreggate-test-on-m4-large&#34;&gt;Agreggate test on &lt;code&gt;m4.large&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=m4_large_aggregate.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;proxy-test-on-c4-xlarge&#34;&gt;Proxy test on &lt;code&gt;c4.xlarge&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_xlarge_test01.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;agreggate-test-on-c4-xlarge&#34;&gt;Agreggate test on &lt;code&gt;c4.xlarge&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_xlarge_aggregate.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;proxy-test-on-c4-2xlarge&#34;&gt;Proxy test on &lt;code&gt;c4.2xlarge&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_2xlarge_test01.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;agreggate-test-on-c4-2xlarge&#34;&gt;Agreggate test on &lt;code&gt;c4.2xlarge&lt;/code&gt;&lt;/h2&gt;
+
+&lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_2xlarge_aggregate.csv&#34;&gt;&lt;/script&gt;
+
+&lt;h2 id=&#34;conclusions&#34;&gt;Conclusions&lt;/h2&gt;
+
+&lt;p&gt;During all the tests we did, the instances of type &lt;code&gt;c4&lt;/code&gt; always showed a stable behaviour while the &lt;code&gt;m4&lt;/code&gt; types didn&amp;rsquo;t offer
+a proportional increase in the performance and the variance of the responses is too high.&lt;/p&gt;
+
+&lt;p&gt;The instances &lt;code&gt;micro&lt;/code&gt; provide nice figures of rps and latency for a good money. It looks like they suffer a little bit
+more in the aggregated tests but in general it is a good choice.&lt;/p&gt;
+
+&lt;p&gt;To be taken into account that this type of service is CPU intensive so when using &lt;code&gt;t2&lt;/code&gt; instances once you spend your CPU
+credit the instance will perform worst.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;In general terms&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use &lt;code&gt;micro&lt;/code&gt; instances by default.&lt;/li&gt;
+&lt;li&gt;If you expect high and continued load with complex use cases (intesive agreggation and manipulation) &lt;code&gt;c4.2xlarge&lt;/code&gt; is worth it&lt;/li&gt;
+&lt;li&gt;If you want to maintain quality of service with high load but a relative simple app, &lt;code&gt;c4.xlarge&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;For low to moderate loads use &lt;code&gt;micro&lt;/code&gt; or a cluster of micros.&lt;/li&gt;
+&lt;li&gt;We wouldn&amp;rsquo;t choose &lt;code&gt;m4&lt;/code&gt; in any scenario for the money/performance.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Look at the numbers and the use case you&amp;rsquo;ll have in order to choose the right solution for you. And more importantly, do the tests
+using your own data. This is a reference to contrast your own tests.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Response manipulation</title>
+      <link>http://krakend.io/features/response-manipulation/</link>
+      <pubDate>Mon, 30 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/features/response-manipulation/</guid>
+      <description>
+
+&lt;h1 id=&#34;merging&#34;&gt;Merging&lt;/h1&gt;
+
+&lt;p&gt;KrakenD is able to merge responses from several backend APIs and return them in a single response to the client. The merge operation is implemented in a responsive way, so it will do its &amp;lsquo;best effort&amp;rsquo; trying to get all the required parts from the backends and returning the composed object as soon as possible. In order to avoid a degradated user experience during hight load peaks or network errors, the merge layer uses a timeout.&lt;/p&gt;
+
+&lt;p&gt;When the timeout is exceded, the merging component will return an incomplete response with all the parts it already collected before the timeout.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;p&gt;Imagine an endpoint with the following configuration:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;endpoint&amp;quot;: &amp;quot;/users/{user}&amp;quot;,
+  &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+  &amp;quot;backend&amp;quot;: [
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/users/{user}&amp;quot;,
+      &amp;quot;host&amp;quot;: [
+        &amp;quot;https://jsonplaceholder.typicode.com&amp;quot;
+      ]
+    },
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/posts/{user}&amp;quot;,
+      &amp;quot;host&amp;quot;: [
+        &amp;quot;https://jsonplaceholder.typicode.com&amp;quot;
+      ]
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When a user calls the endpoint &lt;code&gt;/users/1&lt;/code&gt;, KrakenD will send two requests and, in the happy scenario, it will receive these responses:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;id&amp;quot;: 1,
+  &amp;quot;name&amp;quot;: &amp;quot;Leanne Graham&amp;quot;,
+  &amp;quot;username&amp;quot;: &amp;quot;Bret&amp;quot;,
+  &amp;quot;email&amp;quot;: &amp;quot;Sincere@april.biz&amp;quot;,
+  &amp;quot;address&amp;quot;: {
+    &amp;quot;street&amp;quot;: &amp;quot;Kulas Light&amp;quot;,
+    &amp;quot;suite&amp;quot;: &amp;quot;Apt. 556&amp;quot;,
+    &amp;quot;city&amp;quot;: &amp;quot;Gwenborough&amp;quot;,
+    &amp;quot;zipcode&amp;quot;: &amp;quot;92998-3874&amp;quot;,
+    &amp;quot;geo&amp;quot;: {
+      &amp;quot;lat&amp;quot;: &amp;quot;-37.3159&amp;quot;,
+      &amp;quot;lng&amp;quot;: &amp;quot;81.1496&amp;quot;
+    }
+  },
+  &amp;quot;phone&amp;quot;: &amp;quot;1-770-736-8031 x56442&amp;quot;,
+  &amp;quot;website&amp;quot;: &amp;quot;hildegard.org&amp;quot;,
+  &amp;quot;company&amp;quot;: {
+    &amp;quot;name&amp;quot;: &amp;quot;Romaguera-Crona&amp;quot;,
+    &amp;quot;catchPhrase&amp;quot;: &amp;quot;Multi-layered client-server neural-net&amp;quot;,
+    &amp;quot;bs&amp;quot;: &amp;quot;harness real-time e-markets&amp;quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;userId&amp;quot;: 1,
+  &amp;quot;id&amp;quot;: 1,
+  &amp;quot;title&amp;quot;: &amp;quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&amp;quot;,
+  &amp;quot;body&amp;quot;: &amp;quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With these &amp;lsquo;partial responses&amp;rsquo; and the given configuration, KrakenD will return the following response:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;id&amp;quot;: 1,
+  &amp;quot;name&amp;quot;: &amp;quot;Leanne Graham&amp;quot;,
+  &amp;quot;username&amp;quot;: &amp;quot;Bret&amp;quot;,
+  &amp;quot;email&amp;quot;: &amp;quot;Sincere@april.biz&amp;quot;,
+  &amp;quot;address&amp;quot;: {
+    &amp;quot;street&amp;quot;: &amp;quot;Kulas Light&amp;quot;,
+    &amp;quot;suite&amp;quot;: &amp;quot;Apt. 556&amp;quot;,
+    &amp;quot;city&amp;quot;: &amp;quot;Gwenborough&amp;quot;,
+    &amp;quot;zipcode&amp;quot;: &amp;quot;92998-3874&amp;quot;,
+    &amp;quot;geo&amp;quot;: {
+      &amp;quot;lat&amp;quot;: &amp;quot;-37.3159&amp;quot;,
+      &amp;quot;lng&amp;quot;: &amp;quot;81.1496&amp;quot;
+    }
+  },
+  &amp;quot;phone&amp;quot;: &amp;quot;1-770-736-8031 x56442&amp;quot;,
+  &amp;quot;website&amp;quot;: &amp;quot;hildegard.org&amp;quot;,
+  &amp;quot;company&amp;quot;: {
+    &amp;quot;name&amp;quot;: &amp;quot;Romaguera-Crona&amp;quot;,
+    &amp;quot;catchPhrase&amp;quot;: &amp;quot;Multi-layered client-server neural-net&amp;quot;,
+    &amp;quot;bs&amp;quot;: &amp;quot;harness real-time e-markets&amp;quot;
+  },
+  &amp;quot;userId&amp;quot;: 1,
+  &amp;quot;title&amp;quot;: &amp;quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&amp;quot;,
+  &amp;quot;body&amp;quot;: &amp;quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;filtering&#34;&gt;Filtering&lt;/h1&gt;
+
+&lt;p&gt;Responses from the backends can be filtered with two different strategies&lt;/p&gt;
+
+&lt;h2 id=&#34;blacklisting&#34;&gt;Blacklisting&lt;/h2&gt;
+
+&lt;p&gt;The blacklist filter will remove all the fields present in the blacklist, keeping the others untouched.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;endpoint&amp;quot;: &amp;quot;/posts/{user}&amp;quot;,
+  &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+  &amp;quot;backend&amp;quot;: [
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/posts/{user}&amp;quot;,
+      &amp;quot;host&amp;quot;: [
+        &amp;quot;https://jsonplaceholder.typicode.com&amp;quot;
+      ],
+      &amp;quot;blacklist&amp;quot;: [
+        &amp;quot;userId&amp;quot;
+      ]
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;will generate responses like this one:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;id&amp;quot;: 1,
+  &amp;quot;title&amp;quot;: &amp;quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&amp;quot;,
+  &amp;quot;body&amp;quot;: &amp;quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;whitelisting&#34;&gt;Whitelisting&lt;/h2&gt;
+
+&lt;p&gt;The whitelist filter will pass just the fields present in the whitelist, ignoring the rest.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;endpoint&amp;quot;: &amp;quot;/github&amp;quot;,
+  &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+  &amp;quot;backend&amp;quot;: [
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/&amp;quot;,
+      &amp;quot;host&amp;quot;: [
+        &amp;quot;https://api.github.com&amp;quot;
+      ],
+      &amp;quot;whitelist&amp;quot;: [
+        &amp;quot;authorizations_url&amp;quot;,
+        &amp;quot;code_search_url&amp;quot;
+      ]
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;will generate responses like this one:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+    &amp;quot;authorizations_url&amp;quot;:&amp;quot;https://api.github.com/authorizations&amp;quot;,
+    &amp;quot;code_search_url&amp;quot;:&amp;quot;https://api.github.com/search/code?q={query}{\u0026page,per_page,sort,order}&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;grouping&#34;&gt;Grouping&lt;/h1&gt;
+
+&lt;p&gt;KrakenD is able to group partial responses under a user-defined parameter.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;endpoint&amp;quot;: &amp;quot;/users/{user}&amp;quot;,
+  &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+  &amp;quot;backend&amp;quot;: [
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/users/{user}&amp;quot;,
+      &amp;quot;host&amp;quot;: [
+        &amp;quot;https://jsonplaceholder.typicode.com&amp;quot;
+      ]
+    },
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/posts/{user}&amp;quot;,
+      &amp;quot;host&amp;quot;: [
+        &amp;quot;https://jsonplaceholder.typicode.com&amp;quot;
+      ],
+      &amp;quot;group&amp;quot;: &amp;quot;last_post&amp;quot;
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;will generate responses like this one:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;id&amp;quot;: 1,
+  &amp;quot;name&amp;quot;: &amp;quot;Leanne Graham&amp;quot;,
+  &amp;quot;username&amp;quot;: &amp;quot;Bret&amp;quot;,
+  &amp;quot;email&amp;quot;: &amp;quot;Sincere@april.biz&amp;quot;,
+  &amp;quot;address&amp;quot;: {
+    &amp;quot;street&amp;quot;: &amp;quot;Kulas Light&amp;quot;,
+    &amp;quot;suite&amp;quot;: &amp;quot;Apt. 556&amp;quot;,
+    &amp;quot;city&amp;quot;: &amp;quot;Gwenborough&amp;quot;,
+    &amp;quot;zipcode&amp;quot;: &amp;quot;92998-3874&amp;quot;,
+    &amp;quot;geo&amp;quot;: {
+      &amp;quot;lat&amp;quot;: &amp;quot;-37.3159&amp;quot;,
+      &amp;quot;lng&amp;quot;: &amp;quot;81.1496&amp;quot;
+    }
+  },
+  &amp;quot;phone&amp;quot;: &amp;quot;1-770-736-8031 x56442&amp;quot;,
+  &amp;quot;website&amp;quot;: &amp;quot;hildegard.org&amp;quot;,
+  &amp;quot;company&amp;quot;: {
+    &amp;quot;name&amp;quot;: &amp;quot;Romaguera-Crona&amp;quot;,
+    &amp;quot;catchPhrase&amp;quot;: &amp;quot;Multi-layered client-server neural-net&amp;quot;,
+    &amp;quot;bs&amp;quot;: &amp;quot;harness real-time e-markets&amp;quot;
+  },
+  &amp;quot;last_post&amp;quot;: {
+    &amp;quot;id&amp;quot;: 1,
+    &amp;quot;userId&amp;quot;: 1,
+    &amp;quot;title&amp;quot;: &amp;quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&amp;quot;,
+    &amp;quot;body&amp;quot;: &amp;quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&amp;quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;mapping&#34;&gt;Mapping&lt;/h1&gt;
+
+&lt;p&gt;KrakenD is also able to manipulate the name of the fields of the generated responses, so your composed response would be as close to your use case as possible without changing a line on any backend.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;endpoint&amp;quot;: &amp;quot;/users/{user}&amp;quot;,
+  &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+  &amp;quot;backend&amp;quot;: [
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/users/{user}&amp;quot;,
+      &amp;quot;host&amp;quot;: [
+        &amp;quot;https://jsonplaceholder.typicode.com&amp;quot;
+      ],
+      &amp;quot;mapping&amp;quot;: {
+        &amp;quot;email&amp;quot;: &amp;quot;personal_email&amp;quot;
+      }
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;will generate responses like this one:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;id&amp;quot;: 1,
+  &amp;quot;name&amp;quot;: &amp;quot;Leanne Graham&amp;quot;,
+  &amp;quot;username&amp;quot;: &amp;quot;Bret&amp;quot;,
+  &amp;quot;personal_email&amp;quot;: &amp;quot;Sincere@april.biz&amp;quot;,
+  &amp;quot;address&amp;quot;: {
+    &amp;quot;street&amp;quot;: &amp;quot;Kulas Light&amp;quot;,
+    &amp;quot;suite&amp;quot;: &amp;quot;Apt. 556&amp;quot;,
+    &amp;quot;city&amp;quot;: &amp;quot;Gwenborough&amp;quot;,
+    &amp;quot;zipcode&amp;quot;: &amp;quot;92998-3874&amp;quot;,
+    &amp;quot;geo&amp;quot;: {
+      &amp;quot;lat&amp;quot;: &amp;quot;-37.3159&amp;quot;,
+      &amp;quot;lng&amp;quot;: &amp;quot;81.1496&amp;quot;
+    }
+  },
+  &amp;quot;phone&amp;quot;: &amp;quot;1-770-736-8031 x56442&amp;quot;,
+  &amp;quot;website&amp;quot;: &amp;quot;hildegard.org&amp;quot;,
+  &amp;quot;company&amp;quot;: {
+    &amp;quot;name&amp;quot;: &amp;quot;Romaguera-Crona&amp;quot;,
+    &amp;quot;catchPhrase&amp;quot;: &amp;quot;Multi-layered client-server neural-net&amp;quot;,
+    &amp;quot;bs&amp;quot;: &amp;quot;harness real-time e-markets&amp;quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;capturing&#34;&gt;Capturing&lt;/h1&gt;
+
+&lt;p&gt;KrakenD can extract properties from a received response and use them to generate the final response object.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;p&gt;Given a backend endpoint with this kind of responses&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;apiVersion&amp;quot;:&amp;quot;2.0&amp;quot;,
+  &amp;quot;data&amp;quot;: {
+    &amp;quot;updated&amp;quot;:&amp;quot;2010-01-07T19:58:42.949Z&amp;quot;,
+    &amp;quot;totalItems&amp;quot;:800,
+    &amp;quot;startIndex&amp;quot;:1,
+    &amp;quot;itemsPerPage&amp;quot;:1,
+    &amp;quot;items&amp;quot;:[]
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;with this KrakenD configuration&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;endpoint&amp;quot;: &amp;quot;/foo&amp;quot;,
+  &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+  &amp;quot;backend&amp;quot;: [
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/bar&amp;quot;,
+      &amp;quot;target&amp;quot;: &amp;quot;data&amp;quot;
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the gateway will generate responses like this one:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;updated&amp;quot;:&amp;quot;2010-01-07T19:58:42.949Z&amp;quot;,
+    &amp;quot;totalItems&amp;quot;:800,
+    &amp;quot;startIndex&amp;quot;:1,
+    &amp;quot;itemsPerPage&amp;quot;:1,
+    &amp;quot;items&amp;quot;:[]
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>KrakenD - Circuit Breaker</title>
+      <link>http://krakend.io/throttling/circuit-breaker/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/throttling/circuit-breaker/</guid>
+      <description>
+
+&lt;p&gt;To keep KrakenD responsive and resilient, we added a &lt;strong&gt;Circuit Breaker&lt;/strong&gt; middleware on several points of the processing pipe. Thanks to this component, when KrakenD demands more throughput than your actual API stack is able to deliver properly, the &lt;strong&gt;Circuit Breaker&lt;/strong&gt; mechanism will detect the failures and prevent stressing your servers by not sending requests that are likely to fail. The &lt;strong&gt;Circuit Breaker&lt;/strong&gt; is also useful for dealing with network and other communication problems, by preventing too many requests to fail due timeouts, etc.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;Circuit Breaker&lt;/strong&gt; is a very simple &lt;strong&gt;state machine&lt;/strong&gt; in the middle of the request and response that monitors all
+the failures of your backend and when they reach a configured threshold the circuit breaker will prevent sending more
+traffic to the suffering backend.&lt;/p&gt;
+
+&lt;p&gt;The Circuit Breaker is a protection measure for your stack and avoids cascading failures. It is &lt;strong&gt;always enabled&lt;/strong&gt; (and is transparent to you).&lt;/p&gt;
+
+&lt;p&gt;For paid plans the rules of its behaviour can be tuned up.&lt;/p&gt;
+
+&lt;h1 id=&#34;how-it-works&#34;&gt;How it works&lt;/h1&gt;
+
+&lt;p&gt;The Circuit Breaker retains the state of the connections to your backend(s) over a series of requests
+and when it sees the configured number of &lt;strong&gt;consecutive failures&lt;/strong&gt; (&lt;code&gt;cb_max_errors&lt;/code&gt;) in a given time interval (&lt;code&gt;cb_interval&lt;/code&gt;)
+it stops all the interaction with the backend for the next N seconds (&lt;code&gt;cb_timeout&lt;/code&gt;). After waiting for this time window the system
+will allow a single connection to trial the system again: if it fails it will wait N seconds more again, and if it succeeds it will return
+to the normal state and the system is considered healthy.&lt;/p&gt;
+
+&lt;p&gt;The circuit breaker works with three different internal states, and the easiest way to imagine it is like in an electrical circuit:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Circuit Breaker&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;http://krakend.io/images/documentation/circuit-breaker.png&#34; alt=&#34;Krakend logo&#34; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;CLOSED&lt;/code&gt;: This is the normal state. When the circuit is closed the, the electricity flows uninterrupted and the connection to the backend is allowed.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;OPEN&lt;/code&gt;: No connection to the backend is allowed when the circuit is open.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;HALF-OPEN&lt;/code&gt;: When the system has seen repeated problems, only the necessary connection to test the backend is allowed.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And this is the way the states change:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Circuit Breaker transitions&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;http://krakend.io/images/documentation/circuit-breaker-states.png&#34; alt=&#34;Krakend logo&#34; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+&lt;li&gt;State is in &lt;code&gt;CLOSED&lt;/code&gt; test, everything is normal&lt;/li&gt;
+&lt;li&gt;The maximum consecutive allowed errors (&lt;code&gt;cb_max_errors&lt;/code&gt;) is reached, the system changes to &lt;code&gt;OPEN&lt;/code&gt;. No more connections to backend sent&lt;/li&gt;
+&lt;li&gt;System stays in &lt;code&gt;OPEN&lt;/code&gt; state for N seconds (&lt;code&gt;cb_timeout&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;System changes to &lt;code&gt;HALF-OPEN&lt;/code&gt; and allows 1 connection to pass.&lt;/li&gt;
+&lt;li&gt;If the connection succeeded change to &lt;code&gt;CLOSED&lt;/code&gt;, everything back to normal. If it failed switch to &lt;code&gt;OPEN&lt;/code&gt; again.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;default-values&#34;&gt;Default values&lt;/h1&gt;
+
+&lt;p&gt;The Circuit Breaker uses the following values:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Free version&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cb_interval =  60s
+cb_timeout  = 5s 
+cb_max_errors = 3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Startup plan&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cb_interval =  30s
+cb_timeout  = 1s 
+cb_max_errors = 5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Enterprise&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cb_interval =  10s
+cb_timeout  = 1s 
+cb_max_errors = 10
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

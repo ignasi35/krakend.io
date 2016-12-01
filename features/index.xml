@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Features-rsses on Devops.faith KrakenD</title>
+    <link>http://krakend.io/features/index.xml</link>
+    <description>Recent content in Features-rsses on Devops.faith KrakenD</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 30 Sep 2013 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://krakend.io/features/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Response manipulation</title>
+      <link>http://krakend.io/features/response-manipulation/</link>
+      <pubDate>Mon, 30 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/features/response-manipulation/</guid>
+      <description>
+
+&lt;h1 id=&#34;merging&#34;&gt;Merging&lt;/h1&gt;
+
+&lt;p&gt;KrakenD is able to merge responses from several backend APIs and return them in a single response to the client. The merge operation is implemented in a responsive way, so it will do its &amp;lsquo;best effort&amp;rsquo; trying to get all the required parts from the backends and returning the composed object as soon as possible. In order to avoid a degradated user experience during hight load peaks or network errors, the merge layer uses a timeout.&lt;/p&gt;
+
+&lt;p&gt;When the timeout is exceded, the merging component will return an incomplete response with all the parts it already collected before the timeout.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;p&gt;Imagine an endpoint with the following configuration:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;endpoint&amp;quot;: &amp;quot;/users/{user}&amp;quot;,
+  &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+  &amp;quot;backend&amp;quot;: [
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/users/{user}&amp;quot;,
+      &amp;quot;host&amp;quot;: [
+        &amp;quot;https://jsonplaceholder.typicode.com&amp;quot;
+      ]
+    },
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/posts/{user}&amp;quot;,
+      &amp;quot;host&amp;quot;: [
+        &amp;quot;https://jsonplaceholder.typicode.com&amp;quot;
+      ]
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When a user calls the endpoint &lt;code&gt;/users/1&lt;/code&gt;, KrakenD will send two requests and, in the happy scenario, it will receive these responses:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;id&amp;quot;: 1,
+  &amp;quot;name&amp;quot;: &amp;quot;Leanne Graham&amp;quot;,
+  &amp;quot;username&amp;quot;: &amp;quot;Bret&amp;quot;,
+  &amp;quot;email&amp;quot;: &amp;quot;Sincere@april.biz&amp;quot;,
+  &amp;quot;address&amp;quot;: {
+    &amp;quot;street&amp;quot;: &amp;quot;Kulas Light&amp;quot;,
+    &amp;quot;suite&amp;quot;: &amp;quot;Apt. 556&amp;quot;,
+    &amp;quot;city&amp;quot;: &amp;quot;Gwenborough&amp;quot;,
+    &amp;quot;zipcode&amp;quot;: &amp;quot;92998-3874&amp;quot;,
+    &amp;quot;geo&amp;quot;: {
+      &amp;quot;lat&amp;quot;: &amp;quot;-37.3159&amp;quot;,
+      &amp;quot;lng&amp;quot;: &amp;quot;81.1496&amp;quot;
+    }
+  },
+  &amp;quot;phone&amp;quot;: &amp;quot;1-770-736-8031 x56442&amp;quot;,
+  &amp;quot;website&amp;quot;: &amp;quot;hildegard.org&amp;quot;,
+  &amp;quot;company&amp;quot;: {
+    &amp;quot;name&amp;quot;: &amp;quot;Romaguera-Crona&amp;quot;,
+    &amp;quot;catchPhrase&amp;quot;: &amp;quot;Multi-layered client-server neural-net&amp;quot;,
+    &amp;quot;bs&amp;quot;: &amp;quot;harness real-time e-markets&amp;quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;userId&amp;quot;: 1,
+  &amp;quot;id&amp;quot;: 1,
+  &amp;quot;title&amp;quot;: &amp;quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&amp;quot;,
+  &amp;quot;body&amp;quot;: &amp;quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With these &amp;lsquo;partial responses&amp;rsquo; and the given configuration, KrakenD will return the following response:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;id&amp;quot;: 1,
+  &amp;quot;name&amp;quot;: &amp;quot;Leanne Graham&amp;quot;,
+  &amp;quot;username&amp;quot;: &amp;quot;Bret&amp;quot;,
+  &amp;quot;email&amp;quot;: &amp;quot;Sincere@april.biz&amp;quot;,
+  &amp;quot;address&amp;quot;: {
+    &amp;quot;street&amp;quot;: &amp;quot;Kulas Light&amp;quot;,
+    &amp;quot;suite&amp;quot;: &amp;quot;Apt. 556&amp;quot;,
+    &amp;quot;city&amp;quot;: &amp;quot;Gwenborough&amp;quot;,
+    &amp;quot;zipcode&amp;quot;: &amp;quot;92998-3874&amp;quot;,
+    &amp;quot;geo&amp;quot;: {
+      &amp;quot;lat&amp;quot;: &amp;quot;-37.3159&amp;quot;,
+      &amp;quot;lng&amp;quot;: &amp;quot;81.1496&amp;quot;
+    }
+  },
+  &amp;quot;phone&amp;quot;: &amp;quot;1-770-736-8031 x56442&amp;quot;,
+  &amp;quot;website&amp;quot;: &amp;quot;hildegard.org&amp;quot;,
+  &amp;quot;company&amp;quot;: {
+    &amp;quot;name&amp;quot;: &amp;quot;Romaguera-Crona&amp;quot;,
+    &amp;quot;catchPhrase&amp;quot;: &amp;quot;Multi-layered client-server neural-net&amp;quot;,
+    &amp;quot;bs&amp;quot;: &amp;quot;harness real-time e-markets&amp;quot;
+  },
+  &amp;quot;userId&amp;quot;: 1,
+  &amp;quot;title&amp;quot;: &amp;quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&amp;quot;,
+  &amp;quot;body&amp;quot;: &amp;quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;filtering&#34;&gt;Filtering&lt;/h1&gt;
+
+&lt;p&gt;Responses from the backends can be filtered with two different strategies&lt;/p&gt;
+
+&lt;h2 id=&#34;blacklisting&#34;&gt;Blacklisting&lt;/h2&gt;
+
+&lt;p&gt;The blacklist filter will remove all the fields present in the blacklist, keeping the others untouched.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;endpoint&amp;quot;: &amp;quot;/posts/{user}&amp;quot;,
+  &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+  &amp;quot;backend&amp;quot;: [
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/posts/{user}&amp;quot;,
+      &amp;quot;host&amp;quot;: [
+        &amp;quot;https://jsonplaceholder.typicode.com&amp;quot;
+      ],
+      &amp;quot;blacklist&amp;quot;: [
+        &amp;quot;userId&amp;quot;
+      ]
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;will generate responses like this one:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;id&amp;quot;: 1,
+  &amp;quot;title&amp;quot;: &amp;quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&amp;quot;,
+  &amp;quot;body&amp;quot;: &amp;quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;whitelisting&#34;&gt;Whitelisting&lt;/h2&gt;
+
+&lt;p&gt;The whitelist filter will pass just the fields present in the whitelist, ignoring the rest.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;endpoint&amp;quot;: &amp;quot;/github&amp;quot;,
+  &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+  &amp;quot;backend&amp;quot;: [
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/&amp;quot;,
+      &amp;quot;host&amp;quot;: [
+        &amp;quot;https://api.github.com&amp;quot;
+      ],
+      &amp;quot;whitelist&amp;quot;: [
+        &amp;quot;authorizations_url&amp;quot;,
+        &amp;quot;code_search_url&amp;quot;
+      ]
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;will generate responses like this one:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+    &amp;quot;authorizations_url&amp;quot;:&amp;quot;https://api.github.com/authorizations&amp;quot;,
+    &amp;quot;code_search_url&amp;quot;:&amp;quot;https://api.github.com/search/code?q={query}{\u0026page,per_page,sort,order}&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;grouping&#34;&gt;Grouping&lt;/h1&gt;
+
+&lt;p&gt;KrakenD is able to group partial responses under a user-defined parameter.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;endpoint&amp;quot;: &amp;quot;/users/{user}&amp;quot;,
+  &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+  &amp;quot;backend&amp;quot;: [
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/users/{user}&amp;quot;,
+      &amp;quot;host&amp;quot;: [
+        &amp;quot;https://jsonplaceholder.typicode.com&amp;quot;
+      ]
+    },
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/posts/{user}&amp;quot;,
+      &amp;quot;host&amp;quot;: [
+        &amp;quot;https://jsonplaceholder.typicode.com&amp;quot;
+      ],
+      &amp;quot;group&amp;quot;: &amp;quot;last_post&amp;quot;
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;will generate responses like this one:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;id&amp;quot;: 1,
+  &amp;quot;name&amp;quot;: &amp;quot;Leanne Graham&amp;quot;,
+  &amp;quot;username&amp;quot;: &amp;quot;Bret&amp;quot;,
+  &amp;quot;email&amp;quot;: &amp;quot;Sincere@april.biz&amp;quot;,
+  &amp;quot;address&amp;quot;: {
+    &amp;quot;street&amp;quot;: &amp;quot;Kulas Light&amp;quot;,
+    &amp;quot;suite&amp;quot;: &amp;quot;Apt. 556&amp;quot;,
+    &amp;quot;city&amp;quot;: &amp;quot;Gwenborough&amp;quot;,
+    &amp;quot;zipcode&amp;quot;: &amp;quot;92998-3874&amp;quot;,
+    &amp;quot;geo&amp;quot;: {
+      &amp;quot;lat&amp;quot;: &amp;quot;-37.3159&amp;quot;,
+      &amp;quot;lng&amp;quot;: &amp;quot;81.1496&amp;quot;
+    }
+  },
+  &amp;quot;phone&amp;quot;: &amp;quot;1-770-736-8031 x56442&amp;quot;,
+  &amp;quot;website&amp;quot;: &amp;quot;hildegard.org&amp;quot;,
+  &amp;quot;company&amp;quot;: {
+    &amp;quot;name&amp;quot;: &amp;quot;Romaguera-Crona&amp;quot;,
+    &amp;quot;catchPhrase&amp;quot;: &amp;quot;Multi-layered client-server neural-net&amp;quot;,
+    &amp;quot;bs&amp;quot;: &amp;quot;harness real-time e-markets&amp;quot;
+  },
+  &amp;quot;last_post&amp;quot;: {
+    &amp;quot;id&amp;quot;: 1,
+    &amp;quot;userId&amp;quot;: 1,
+    &amp;quot;title&amp;quot;: &amp;quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&amp;quot;,
+    &amp;quot;body&amp;quot;: &amp;quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&amp;quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;mapping&#34;&gt;Mapping&lt;/h1&gt;
+
+&lt;p&gt;KrakenD is also able to manipulate the name of the fields of the generated responses, so your composed response would be as close to your use case as possible without changing a line on any backend.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;endpoint&amp;quot;: &amp;quot;/users/{user}&amp;quot;,
+  &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+  &amp;quot;backend&amp;quot;: [
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/users/{user}&amp;quot;,
+      &amp;quot;host&amp;quot;: [
+        &amp;quot;https://jsonplaceholder.typicode.com&amp;quot;
+      ],
+      &amp;quot;mapping&amp;quot;: {
+        &amp;quot;email&amp;quot;: &amp;quot;personal_email&amp;quot;
+      }
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;will generate responses like this one:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;id&amp;quot;: 1,
+  &amp;quot;name&amp;quot;: &amp;quot;Leanne Graham&amp;quot;,
+  &amp;quot;username&amp;quot;: &amp;quot;Bret&amp;quot;,
+  &amp;quot;personal_email&amp;quot;: &amp;quot;Sincere@april.biz&amp;quot;,
+  &amp;quot;address&amp;quot;: {
+    &amp;quot;street&amp;quot;: &amp;quot;Kulas Light&amp;quot;,
+    &amp;quot;suite&amp;quot;: &amp;quot;Apt. 556&amp;quot;,
+    &amp;quot;city&amp;quot;: &amp;quot;Gwenborough&amp;quot;,
+    &amp;quot;zipcode&amp;quot;: &amp;quot;92998-3874&amp;quot;,
+    &amp;quot;geo&amp;quot;: {
+      &amp;quot;lat&amp;quot;: &amp;quot;-37.3159&amp;quot;,
+      &amp;quot;lng&amp;quot;: &amp;quot;81.1496&amp;quot;
+    }
+  },
+  &amp;quot;phone&amp;quot;: &amp;quot;1-770-736-8031 x56442&amp;quot;,
+  &amp;quot;website&amp;quot;: &amp;quot;hildegard.org&amp;quot;,
+  &amp;quot;company&amp;quot;: {
+    &amp;quot;name&amp;quot;: &amp;quot;Romaguera-Crona&amp;quot;,
+    &amp;quot;catchPhrase&amp;quot;: &amp;quot;Multi-layered client-server neural-net&amp;quot;,
+    &amp;quot;bs&amp;quot;: &amp;quot;harness real-time e-markets&amp;quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;capturing&#34;&gt;Capturing&lt;/h1&gt;
+
+&lt;p&gt;KrakenD can extract properties from a received response and use them to generate the final response object.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;p&gt;Given a backend endpoint with this kind of responses&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;apiVersion&amp;quot;:&amp;quot;2.0&amp;quot;,
+  &amp;quot;data&amp;quot;: {
+    &amp;quot;updated&amp;quot;:&amp;quot;2010-01-07T19:58:42.949Z&amp;quot;,
+    &amp;quot;totalItems&amp;quot;:800,
+    &amp;quot;startIndex&amp;quot;:1,
+    &amp;quot;itemsPerPage&amp;quot;:1,
+    &amp;quot;items&amp;quot;:[]
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;with this KrakenD configuration&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;endpoint&amp;quot;: &amp;quot;/foo&amp;quot;,
+  &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+  &amp;quot;backend&amp;quot;: [
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/bar&amp;quot;,
+      &amp;quot;target&amp;quot;: &amp;quot;data&amp;quot;
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the gateway will generate responses like this one:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;updated&amp;quot;:&amp;quot;2010-01-07T19:58:42.949Z&amp;quot;,
+    &amp;quot;totalItems&amp;quot;:800,
+    &amp;quot;startIndex&amp;quot;:1,
+    &amp;quot;itemsPerPage&amp;quot;:1,
+    &amp;quot;items&amp;quot;:[]
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Concurrent Requests</title>
+      <link>http://krakend.io/features/concurrent-requests/</link>
+      <pubDate>Mon, 30 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/features/concurrent-requests/</guid>
+      <description>&lt;p&gt;If your backend services are running on several instances, you could use a &lt;code&gt;concurrency_level&lt;/code&gt; bigger than 1 with all your idempotent requests, in order to improve the error rate and response time distribution of the exposed endpoint. KrakenD will send up to &lt;code&gt;concurrency_level&lt;/code&gt; concurrent requests to the backends, ignoring the possible failures until it gets a succesful response or all the requests fail. Krakend will use the fastest succesful response and cancell the pending ones.&lt;/p&gt;
+
+&lt;p&gt;The tradeoff of this strategy is an increment of the loads the backend services will recive, so make sure your infrastructure is ready for it. But your users will love it!&lt;/p&gt;
+
+&lt;p&gt;In order to demonstrate the impact of this component, let&amp;rsquo;s imagine two different scenarios: the happy one and the sad one. Here you have the cumulative distribution and the probability distribution of these two cases (the time range is just a &amp;lsquo;placeholder&amp;rsquo; for whatever your actual response time values are, just replace the &lt;code&gt;100&lt;/code&gt; with you &lt;code&gt;max_response_time&lt;/code&gt;):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://docs.google.com/spreadsheets/d/e/2PACX-1vQZEwr430hAJn7K8VeBi6ie4STDylM1BXztdT_3-S4K3nP4tEb7gFks7Rh_MGSy3Gvbjr-MBO3sviNn/pubchart?oid=1037931453&amp;amp;format=image&#34; alt=&#34;CDF happy vs sad&#34; /&gt;
+&lt;img src=&#34;https://docs.google.com/spreadsheets/d/e/2PACX-1vQZEwr430hAJn7K8VeBi6ie4STDylM1BXztdT_3-S4K3nP4tEb7gFks7Rh_MGSy3Gvbjr-MBO3sviNn/pubchart?oid=102602606&amp;amp;format=image&#34; alt=&#34;PDF happy vs sad&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Just as a reminder: for the CDF graphs, the more to the left the line is, the better. For the PDF graphs, the more to the left and the narrow the peak is, the better.&lt;/p&gt;
+
+&lt;p&gt;This is the effect of using different concurrency levels for the happy case (notice how the response times are concentrated arround 20% of the &lt;code&gt;max_response_time&lt;/code&gt;):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://docs.google.com/spreadsheets/d/e/2PACX-1vQZEwr430hAJn7K8VeBi6ie4STDylM1BXztdT_3-S4K3nP4tEb7gFks7Rh_MGSy3Gvbjr-MBO3sviNn/pubchart?oid=1765475588&amp;amp;format=image&#34; alt=&#34;CDF concurrency happy&#34; /&gt;
+&lt;img src=&#34;https://docs.google.com/spreadsheets/d/e/2PACX-1vQZEwr430hAJn7K8VeBi6ie4STDylM1BXztdT_3-S4K3nP4tEb7gFks7Rh_MGSy3Gvbjr-MBO3sviNn/pubchart?oid=2114484604&amp;amp;format=image&#34; alt=&#34;PDF concurrency happy&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here, you have the effects for the sad case:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://docs.google.com/spreadsheets/d/e/2PACX-1vQZEwr430hAJn7K8VeBi6ie4STDylM1BXztdT_3-S4K3nP4tEb7gFks7Rh_MGSy3Gvbjr-MBO3sviNn/pubchart?oid=157615107&amp;amp;format=image&#34; alt=&#34;CDF concurrency sad&#34; /&gt;
+&lt;img src=&#34;https://docs.google.com/spreadsheets/d/e/2PACX-1vQZEwr430hAJn7K8VeBi6ie4STDylM1BXztdT_3-S4K3nP4tEb7gFks7Rh_MGSy3Gvbjr-MBO3sviNn/pubchart?oid=554459729&amp;amp;format=image&#34; alt=&#34;PDF concurrency sad&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The concurrent request component also reduces the error rate of the exposed endpoint by &lt;strong&gt;orders of magnitude&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://docs.google.com/spreadsheets/d/e/2PACX-1vQZEwr430hAJn7K8VeBi6ie4STDylM1BXztdT_3-S4K3nP4tEb7gFks7Rh_MGSy3Gvbjr-MBO3sviNn/pubchart?oid=707642902&amp;amp;format=image&#34; alt=&#34;Error concurrency up to 2&#34; /&gt;
+&lt;img src=&#34;https://docs.google.com/spreadsheets/d/e/2PACX-1vQZEwr430hAJn7K8VeBi6ie4STDylM1BXztdT_3-S4K3nP4tEb7gFks7Rh_MGSy3Gvbjr-MBO3sviNn/pubchart?oid=1242783640&amp;amp;format=image&#34; alt=&#34;Error concurrency bigger than 2&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Since the scale of the previous graphs is hidding the huge impact, let&amp;rsquo;s use a logaritmic scale:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://docs.google.com/spreadsheets/d/e/2PACX-1vQZEwr430hAJn7K8VeBi6ie4STDylM1BXztdT_3-S4K3nP4tEb7gFks7Rh_MGSy3Gvbjr-MBO3sviNn/pubchart?oid=359184017&amp;amp;format=image&#34; alt=&#34;error concurrent calls&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Security</title>
+      <link>http://krakend.io/features/security/</link>
+      <pubDate>Mon, 30 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/features/security/</guid>
+      <description>
+
+&lt;p&gt;KrakenD has implemented some security strategies&lt;/p&gt;
+
+&lt;h1 id=&#34;general&#34;&gt;General&lt;/h1&gt;
+
+&lt;h2 id=&#34;restrict-connections-by-host&#34;&gt;Restrict connections by host&lt;/h2&gt;
+
+&lt;p&gt;Define a whitelist of hosts the KrakenD should accept requests to.&lt;/p&gt;
+
+&lt;p&gt;When a request hits KrakenD, it will confirm if the value of the &lt;code&gt;Host&lt;/code&gt; HTTP header is in the whitelist. If so, it will further process the request. If the host is not in the whitelist, KrakenD will simply reject the request.&lt;/p&gt;
+
+&lt;h2 id=&#34;clickjacking-protection&#34;&gt;Clickjacking protection&lt;/h2&gt;
+
+&lt;p&gt;KrakenD follow the OWASP&amp;rsquo;s recommendations by adding a frame-breaking strategy.&lt;/p&gt;
+
+&lt;p&gt;You can add a &lt;code&gt;X-Frame-Options&lt;/code&gt; header with the value of &lt;code&gt;DENY&lt;/code&gt; (default behaviour) or even set your custom value.&lt;/p&gt;
+
+&lt;p&gt;Check the &lt;a href=&#34;https://www.owasp.org/index.php/Clickjacking_Defense_Cheat_Sheet#X-Frame-Options_Header_Types&#34;&gt;OWASP Clickjaking cheat sheet&lt;/a&gt; for more details about the header and its recommended values.&lt;/p&gt;
+
+&lt;h2 id=&#34;mime-sniffing-prevention&#34;&gt;MIME-Sniffing prevention&lt;/h2&gt;
+
+&lt;p&gt;Enabling this feature will prevent the user&amp;rsquo;s browser from interpreting files as something else than declared by the content type in the HTTP headers.&lt;/p&gt;
+
+&lt;h2 id=&#34;cross-site-scripting-xss-protection&#34;&gt;Cross-site scripting (XSS) protection&lt;/h2&gt;
+
+&lt;p&gt;This feature enables the &lt;a href=&#34;https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)&#34;&gt;Cross-site scripting (XSS)&lt;/a&gt; filter in the user&amp;rsquo;s browser.&lt;/p&gt;
+
+&lt;h1 id=&#34;https&#34;&gt;HTTPS&lt;/h1&gt;
+
+&lt;h2 id=&#34;http-strict-transport-security-hsts&#34;&gt;HTTP Strict Transport Security (HSTS)&lt;/h2&gt;
+
+&lt;p&gt;OWASP defines the HSTS as&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;HTTP Strict Transport Security (HSTS) is a web security policy mechanism which helps to protect websites against protocol downgrade attacks and cookie hijacking. It allows web servers to declare that web browsers (or other complying user agents) should only interact with it using secure HTTPS connections, and never via the insecure HTTP protocol. HSTS is an IETF standards track protocol and is specified in RFC 6797. A server implements an HSTS policy by supplying a header (Strict-Transport-Security) over an HTTPS connection (HSTS headers over HTTP are ignored).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;http-public-key-pinning-hpkp&#34;&gt;HTTP Public Key Pinning (HPKP)&lt;/h2&gt;
+
+&lt;p&gt;OWASP defines the HPKP as&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;HTTP Public Key Pinning (HPKP) is a security mechanism which allows HTTPS websites to resist impersonation by attackers using mis-issued or otherwise fraudulent certificates. (For example, sometimes attackers can compromise certificate authorities, and then can mis-issue certificates for a web origin.).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;This feature must be used with caution, because there is a risk that hosts may make themselves unavailable by pinning to a set of public key hashes that becomes invalid.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;oauth2&#34;&gt;OAuth2&lt;/h1&gt;
+
+&lt;p&gt;At the time of writing, KrakenD only supports the client credentials grant. Use this feature if you need to authorize the KrakenD to access your backend services.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Other</title>
+      <link>http://krakend.io/features/other/</link>
+      <pubDate>Mon, 30 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://krakend.io/features/other/</guid>
+      <description>
+
+&lt;h1 id=&#34;load-balancing&#34;&gt;Load balancing&lt;/h1&gt;
+
+&lt;p&gt;KrakenD has a load balancing component for a proper load distribution against the registered backends. This component is totaly transparent for the user.&lt;/p&gt;
+
+&lt;h1 id=&#34;rate-limit&#34;&gt;Rate limit&lt;/h1&gt;
+
+&lt;p&gt;The rate limits allow you to restrict the traffic to any component of the stack (the KrakenD itself and the actual API backend services) and mainly cover two different purposes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Avoid flooding your system with massive requests&lt;/li&gt;
+&lt;li&gt;Establish a quota of usage for your API&lt;/li&gt;
+&lt;li&gt;Create a simple QoS strategy for you API&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This measures are complementary to the &lt;a href=&#34;http://krakend.io/throttling/circuit-breaker&#34;&gt;Circuit Breaker&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Check out the &lt;a href=&#34;http://krakend.io/throttling/rate-limit&#34;&gt;Rate limit&lt;/a&gt; section for more info about this component.&lt;/p&gt;
+
+&lt;h1 id=&#34;circuit-breaker&#34;&gt;Circuit breaker&lt;/h1&gt;
+
+&lt;p&gt;To keep KrakenD responsive and resilient, we added a &lt;strong&gt;Circuit Breaker&lt;/strong&gt; middleware on several points of the processing pipe. Thanks to this component, when KrakenD demands more throughput than your actual API stack is able to deliver properly, the &lt;strong&gt;Circuit Breaker&lt;/strong&gt; mechanism will detect the failures and prevent stressing your servers by not sending requests that are likely to fail. The &lt;strong&gt;Circuit Breaker&lt;/strong&gt; is also useful for dealing with network and other communication problems, by preventing too many requests to fail due timeouts, etc.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;Circuit Breaker&lt;/strong&gt; is a very simple &lt;strong&gt;state machine&lt;/strong&gt; in the middle of the request and response that monitors all
+the failures of your backend and when they reach a configured threshold the circuit breaker will prevent sending more
+traffic to the suffering backend.&lt;/p&gt;
+
+&lt;p&gt;The Circuit Breaker is a protection measure for your stack and avoids cascading failures. It is &lt;strong&gt;always enabled&lt;/strong&gt; (and is transparent to you).&lt;/p&gt;
+
+&lt;p&gt;Check out the &lt;a href=&#34;http://krakend.io/throttling/circuit-breaker&#34;&gt;Circuit Breaker&lt;/a&gt; section for more info about this component.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

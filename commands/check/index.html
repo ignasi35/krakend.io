@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.17" />
+
+
+    <title>Check - Devops.faith KrakenD</title>
+    <meta property="og:title" content="Check - Devops.faith KrakenD">
+    
+    <meta property="description" content="KrakenD Check Command">
+    
+
+
+
+
+
+
+
+
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+<link rel="stylesheet" href="http://krakend.io/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+<link rel="stylesheet" href="http://krakend.io/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="http://krakend.io/dist/css/skins/skin-black-light.min.css">
+<link rel="stylesheet" href="http://krakend.io/dist/css/custom.css">
+
+
+
+
+
+
+</head>
+<body class="hold-transition sidebar-mini skin-black-light">
+<div class="wrapper">
+
+    
+    <header class="main-header">
+
+        
+        <a href="http://krakend.io/" class="logo">
+            
+      <span class="logo-mini">
+        <img src="http://krakend.io/images/logo-mini.png" alt="">
+      </span>
+            
+            <img src="http://krakend.io/images/logo.png" alt="">
+        </a>
+
+        
+        <nav class="navbar navbar-static-top" role="navigation">
+            
+            
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            
+
+            <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="http://krakend.io//#features">Features</a>
+                    </li>
+                    <li>
+                        <a href="http://krakend.io/download/">Download</a>
+                    </li>
+                    <li><a href="http://krakend.io/overview/introduction">Documentation</a></li>
+                    
+                </ul>
+            </div>
+
+            
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="http://krakend.io/designer/">Go to KrakenDesigner</a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="control-sidebar" title="Help"><i class="fa fa-question"></i> </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+<div >
+    
+    <aside class="main-sidebar">
+
+        
+
+        <section class="sidebar">
+            
+
+
+            
+            
+<ul class="sidebar-menu">
+    <li class="header">Documentation</li>
+    
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-road'></i>  <span>Getting Started</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+            </a>
+            <ul class="treeview-menu">
+                
+                <li class="">
+                    <a href="/overview/introduction/"><i class="fa fa-circle-o %}"></i> Introduction</a>
+                </li>
+                
+                <li class="">
+                    <a href="/overview/installing/"><i class="fa fa-circle-o %}"></i> Installing KrakenD</a>
+                </li>
+                
+                <li class="">
+                    <a href="/overview/usage/"><i class="fa fa-circle-o %}"></i> Using KrakenD</a>
+                </li>
+                
+                <li class="">
+                    <a href="/overview/configuration/"><i class="fa fa-circle-o %}"></i> Configuration</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="/configuration/">
+                <i class='fa fa-file-text-o'></i>  <span>Configuration Options</span>
+            </a>
+        <li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-check'></i>  <span>Features</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+            </a>
+            <ul class="treeview-menu">
+                
+                <li class="">
+                    <a href="/features/response-manipulation/"><i class="fa fa-circle-o %}"></i> Response manipulation</a>
+                </li>
+                
+                <li class="">
+                    <a href="/features/concurrent-requests/"><i class="fa fa-circle-o %}"></i> Concurrent Requests</a>
+                </li>
+                
+                <li class="">
+                    <a href="/features/security/"><i class="fa fa-circle-o %}"></i> Security</a>
+                </li>
+                
+                <li class="">
+                    <a href="/features/other/"><i class="fa fa-circle-o %}"></i> Other</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-heartbeat'></i>  <span>Throttling and Limits</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+            </a>
+            <ul class="treeview-menu">
+                
+                <li class="">
+                    <a href="/throttling/overview/"><i class="fa fa-circle-o %}"></i> Throttling Overview</a>
+                </li>
+                
+                <li class="">
+                    <a href="/throttling/circuit-breaker/"><i class="fa fa-circle-o %}"></i> Circuit Breaker</a>
+                </li>
+                
+                <li class="">
+                    <a href="/throttling/rate-limit/"><i class="fa fa-circle-o %}"></i> Rate Limits</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview active">
+            <a href="javascript:;">
+                <i class='fa fa-space-shuttle'></i>  <span>Command line commands</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+            </a>
+            <ul class="treeview-menu menu-open">
+                
+                <li class="">
+                    <a href="/commands/run/"><i class="fa fa-circle-o %}"></i> Run</a>
+                </li>
+                
+                <li class="active">
+                    <a href="/commands/check/"><i class="fa fa-circle-o %}"></i> Check</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="/download/">
+                <i class='fa fa-download'></i>  <span>Download KrakenD</span>
+            </a>
+        <li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-bar-chart'></i>  <span>Benchmarks</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+            </a>
+            <ul class="treeview-menu">
+                
+                <li class="">
+                    <a href="/benchmarks/overview/"><i class="fa fa-circle-o %}"></i> Overview</a>
+                </li>
+                
+                <li class="">
+                    <a href="/benchmarks/api-gateway-benchmark/"><i class="fa fa-circle-o %}"></i> KrakenD vs others</a>
+                </li>
+                
+                <li class="">
+                    <a href="/benchmarks/aws/"><i class="fa fa-circle-o %}"></i> On Amazon Web Services</a>
+                </li>
+                
+                <li class="">
+                    <a href="/benchmarks/local/"><i class="fa fa-circle-o %}"></i> Local machine</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="/faq">
+                <i class='fa fa-wrench'></i>  <span>Troubleshooting</span>
+            </a>
+        <li>
+        
+    
+        
+        <li class="treeview">
+            <a href="http://github.com/devopsfaith/krakend/issues">
+                <i class='fa fa-github'></i>  <span>Issues</span>
+            </a>
+        <li>
+        
+    
+</ul>
+
+            
+        </section>
+        
+    </aside>
+
+    
+    <div class="content-wrapper">
+        <section class="content-header">
+            
+<h1>
+    Check
+    <small> Documentation </small>
+</h1>
+
+        </section>
+
+        <section class="content">
+            
+<div class="row">
+    <section class="col-md-12 docs">
+
+        <div class="box box-primary">
+            <div class="box-body">
+                
+                
+                <div class="pull-right col-md-4 TOC">
+                    <div class="box">
+                    <div class="box-header with-border">
+                        <h5 class="box-title"><i class="fa fa-book"></i> Table of Contents</h5>
+                        <div class="pull-right">
+                            <a data-widget="collapse"><i class="fa fa-minus"></i></a>
+                        </div>
+                    </div>
+
+                        <div class="box-body">
+                            <nav id="TableOfContents">
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#example">Example</a>
+<ul>
+<li><a href="#debug-disabled">Debug disabled</a></li>
+<li><a href="#debug-enabled">Debug enabled</a></li>
+</ul></li>
+</ul>
+</nav>
+                        </div>
+                    </div>
+                </div>
+                
+
+                
+
+<h1 id="overview">Overview</h1>
+
+<p>The <code>krakend check</code> command validates the passed configuration. Since KrakenD doesn&rsquo;t implement a strict parsing, typos in the config file could be shadowed. In order to validate your config completely, it is recommended to use the <code>--debug</code> flag.</p>
+
+<h1 id="usage">Usage</h1>
+
+<pre><code>$ ./krakend check -h
+Validates that the active configuration file has a valid syntax to run the service. Change the configuration file by using the --config flag
+
+Usage:
+  krakend check [flags]
+
+Global Flags:
+      --config string   Path to the configuration filename
+  -d, --debug           Enable the debug
+</code></pre>
+
+<p>Passing a path to the config file is required</p>
+
+<pre><code>$ ./krakend check
+Please, provide the path to your config file
+</code></pre>
+
+<h1 id="example">Example</h1>
+
+<p>We will use this configuration for the demo</p>
+
+<pre><code>{
+  &quot;version&quot;: 1,
+  &quot;oauth&quot;: {
+    &quot;disable&quot;: true
+  },
+  &quot;cache_ttl&quot;: &quot;5m&quot;,
+  &quot;timeout&quot;: &quot;5s&quot;,
+  &quot;host&quot;: [ &quot;webserver:8080&quot; ],
+  &quot;endpoints&quot;: [
+    {
+      &quot;endpoint&quot;: &quot;/test01&quot;,
+      &quot;method&quot;: &quot;GET&quot;,
+      &quot;concurrent_calls&quot;: &quot;1&quot;,
+      &quot;backend&quot;: [
+        {
+          &quot;url_pattern&quot;: &quot;/test01&quot;
+        }
+      ]
+    },
+    {
+      &quot;endpoint&quot;: &quot;/test02&quot;,
+      &quot;method&quot;: &quot;GET&quot;,
+      &quot;concurrent_calls&quot;: &quot;1&quot;,
+      &quot;backend&quot;: [
+        {
+          &quot;url_pattern&quot;: &quot;/test02&quot;
+        }
+      ],
+      &quot;querystring_params&quot;: [
+        &quot;apikey&quot;
+      ]
+    },
+    {
+      &quot;endpoint&quot;: &quot;/test03&quot;,
+      &quot;method&quot;: &quot;GET&quot;,
+      &quot;backend&quot;: [
+        {
+          &quot;url_pattern&quot;: &quot;/test03&quot;
+        }
+      ],
+      &quot;max_rate&quot;: &quot;1000000&quot;,
+      &quot;querystring_params&quot;: [
+        &quot;api_key&quot;
+      ]
+    },
+    {
+      &quot;endpoint&quot;: &quot;/test04&quot;,
+      &quot;method&quot;: &quot;GET&quot;,
+      &quot;max_rate&quot;: &quot;1&quot;,
+      &quot;concurrent_calls&quot;: &quot;1&quot;,
+      &quot;backend&quot;: [
+        {
+          &quot;url_pattern&quot;: &quot;/test04&quot;
+        }
+      ]
+    },
+    {
+      &quot;endpoint&quot;: &quot;/fb1&quot;,
+      &quot;method&quot;: &quot;GET&quot;,
+      &quot;backend&quot;: [
+        {
+          &quot;url_pattern&quot;: &quot;/fb&quot;,
+          &quot;group&quot;: &quot;fb&quot;
+        },
+        {
+          &quot;url_pattern&quot;: &quot;/youtube&quot;,
+          &quot;target&quot;: &quot;data&quot;,
+          &quot;group&quot;: &quot;youtube&quot;
+        },
+        {
+          &quot;url_pattern&quot;: &quot;/twitter&quot;,
+          &quot;group&quot;: &quot;twitter&quot;
+        }
+      ],
+      &quot;concurrent_calls&quot;: &quot;1&quot;,
+      &quot;timeout&quot;: &quot;500ms&quot;,
+      &quot;cache_ttl&quot;: &quot;12h&quot;
+    }
+  ]
+}
+</code></pre>
+
+<h2 id="debug-disabled">Debug disabled</h2>
+
+<pre><code>$ ./krakend check --config krakend.json.
+Parsing configuration file: /tmp/krakend.json
+Reading the configuration from /tmp/krakend.json
+Syntax OK!
+</code></pre>
+
+<h2 id="debug-enabled">Debug enabled</h2>
+
+<pre><code>$ ./krakend check --config krakend.json -d
+Parsing configuration file: /tmp/krakend.json
+Reading the configuration from /tmp/krakend.json
+Parsed configuration: CacheTTL: 5m0s, GlobalMaxRate: 100, ClientRate: 0, ThrottlingHeader: , EndpointMaxRate: 100, Port: 8080, StatsPort: 0
+Hosts: [http://webserver:8080]
+    Endpoint: /test01, Method: GET, CacheTTL: 5m0s, MaxRate: 100, ClientRate: 0, ThrottlingHeader: , Concurrent: 1, QueryString: []
+        URL: /test01, Method: GET
+            Timeout: 5s, Target: , Mapping: map[], BL: [], WL: [], Group:
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+    Endpoint: /test02, Method: GET, CacheTTL: 5m0s, MaxRate: 100, ClientRate: 0, ThrottlingHeader: , Concurrent: 1, QueryString: [apikey]
+        URL: /test02, Method: GET
+            Timeout: 5s, Target: , Mapping: map[], BL: [], WL: [], Group:
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+    Endpoint: /test03, Method: GET, CacheTTL: 5m0s, MaxRate: 100, ClientRate: 0, ThrottlingHeader: , Concurrent: 0, QueryString: [api_key]
+        URL: /test03, Method: GET
+            Timeout: 5s, Target: , Mapping: map[], BL: [], WL: [], Group:
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+    Endpoint: /test04, Method: GET, CacheTTL: 5m0s, MaxRate: 1, ClientRate: 0, ThrottlingHeader: , Concurrent: 1, QueryString: []
+        URL: /test04, Method: GET
+            Timeout: 5s, Target: , Mapping: map[], BL: [], WL: [], Group:
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+    Endpoint: /fb1, Method: GET, CacheTTL: 12h0m0s, MaxRate: 100, ClientRate: 0, ThrottlingHeader: , Concurrent: 1, QueryString: []
+        URL: /fb, Method: GET
+            Timeout: 500ms, Target: , Mapping: map[], BL: [], WL: [], Group: fb
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+        URL: /youtube, Method: GET
+            Timeout: 500ms, Target: data, Mapping: map[], BL: [], WL: [], Group: youtube
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+        URL: /twitter, Method: GET
+            Timeout: 500ms, Target: , Mapping: map[], BL: [], WL: [], Group: twitter
+            Hosts: [http://webserver:8080]
+            Requires OAuth: false
+OAuth enabled: false
+    Client ID:
+    Client Secret:
+    Scopes:
+    Token URL:
+Security present: false
+Syntax OK!
+</code></pre>
+
+
+            </div>
+    </section>
+</div>
+
+        </section>
+    </div>
+</div>
+
+</div>
+
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="/images/logo-inverse.png" >
+                <p class="lead">The <strong>ultra performer</strong> API Gateway.</p>
+                <span>KrakenD helps applications developers to rapidly release features by eliminating all the complexities of SOA architectures, while offering a unique performance.</span>
+                <div class="social">
+                    <a href="https://www.facebook.com/apigateway" target="_blank"  title="Facebook">
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i><span class="sr-only">Facebook</span>
+                    </a>
+                    <a href="https://twitter.com/devopsfaith" target="_blank" class="social-btn-twitter" title="Twitter">
+                        <i class="fa fa-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://github.com/devopsfaith" target="_blank" class="social-btn-github" title="GitHub">
+                        <i class="fa fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span>
+                    </a>
+                </div>
+
+            </div>
+            <nav>
+                <div class="col-md-2 col-md-offset-1">
+                    
+                </div>
+                <div class="col-md-2">
+                    <h6>Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="/#features/">Features</a></li>
+                        
+                        <li><a href="/benchmarks/overview/">Benchmarks</a></li>
+                        <li><a href="/download/">Download</a></li>
+                    </ul>
+
+                </div>
+                <div class="col-md-2">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="/overview/introduction">Documentation</a></li>
+                        <li><a href="https://github.com/devopsfaith/krakend" target="_blank">Open Source</a></li>
+                        
+                        <li><a href="mailto:hello@krakend.io">Contact Us</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-5 additional-links">
+                <strong>Copyright &copy; 2016 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+            </div>
+            <div class="pull-right hidden-xs">
+                Made with <i class="fa fa-heart-o" style="color:hotpink"></i> in Barcelona
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+   
+<aside class="control-sidebar control-sidebar-light">
+
+
+    <div class="tab-content">
+        
+            <h3 class="control-sidebar-heading">Need help?</h3>
+            <p>Contact a human. Or they say so...</p>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="mailto:hello@krakend.io">
+                        <i class="menu-icon fa fa-envelope bg-red"></i>
+
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Send us an email</h4>
+                            <p>hello@krakend.io</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/devopsfaith">
+                        <i class="menu-icon fa fa-twitter bg-blue"></i>
+
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Tweet!</h4>
+                            <p>@devopsfaith</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <h3 class="control-sidebar-heading">Access documentation</h3>
+            <p><a href="">Krakend.io documentation</a></p>
+
+    </div>
+</aside>
+
+
+<div class="control-sidebar-bg"></div>
+
+</body>
+</html>
+<script src="http://krakend.io/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="http://krakend.io/bootstrap/js/bootstrap.min.js"></script>
+<script src="http://krakend.io/dist/js/app.min.js"></script>

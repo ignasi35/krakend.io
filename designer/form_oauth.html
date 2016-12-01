@@ -1,0 +1,64 @@
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">OAuth settings</h3>
+
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <p>If your backends expect authorization from the client set here all the needed values. Otherwise disable OAuth.</p>
+
+        <div class="form-group form-group-lg">
+            <label>
+                <input type="checkbox"
+                       ng-init="service.oauth.disable=true"
+                       ng-model="service.oauth.disable" checked="checked"> Disable OAuth
+            </label>
+        </div>
+
+        <div id="oauth-options-wrapper" ng-hide="service.oauth.disable">
+            <div class="form-group ">
+                <label class="control-label" for="service.oauth.client_id">Client ID</label>
+                <input class="form-control"
+                       ng-model="service.oauth.client_id"
+                       id="service.oauth.client_id"
+                       name="service.oauth.client_id"
+                       type="text">
+                <span class="help-block">The Client ID as it will provided to the Auth server</span>
+            </div>
+            <div class="form-group ">
+                <label class="control-label" for="service.oauth.client_secret">Client Secret</label>
+                <input class="form-control"
+                       ng-model="service.oauth.client_secret"
+                       id="service.oauth.client_secret"
+                       name="service.oauth.client_secret"
+                       type="text">
+                <span class="help-block">The Client secret as it will provided to the Auth server</span>
+            </div>
+            <div class="form-group ">
+                <label class="control-label" for="service.oauth.token_url">Token URL</label>
+                <input class="form-control"
+                       ng-model="service.oauth.token_url"
+                       id="service.oauth.token_url"
+                       name="service.oauth.token_url"
+                       type="text">
+                <span class="help-block">The URL where the negotiation of the token will happen</span>
+            </div>
+            <div class="form-group ">
+                <label class="control-label" for="service.oauth.scopes">Scopes</label>
+                <input class="form-control"
+                       ng-model="service.oauth.scopes"
+                       id="service.oauth.scopes"
+                       name="service.oauth.scopes"
+                       type="text">
+                <span class="help-block">Comma separated list of scopes needed</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ./box-body -->
+
+</div>

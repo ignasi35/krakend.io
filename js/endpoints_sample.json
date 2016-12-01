@@ -1,0 +1,155 @@
+{
+    "name": "My lovely gateway",
+    "timeout": 10,
+    "cache_ttl": 3600,
+    "max_rate": 1,
+    "ip_max_rate": 0,
+    "host":[
+        "http://127.0.0.1:8080",
+        "http://127.0.0.2:8000",
+        "http://127.0.0.3:9000",
+        "http://127.0.0.4"
+    ],
+    "endpoints": [
+        {
+            "endpoint": "/users/{user}",
+            "method": "GET",
+            "backend": [
+                {
+                    "host":[
+                        "http://127.0.0.3:9000",
+                        "http://127.0.0.4"
+                    ],
+                    "url_pattern": "/registered/{user}",
+                    "whitelist": [
+                        "some",
+                        "what"
+                    ],
+                    "blacklist": [
+                        "spam",
+                        "notwanted"
+                    ],
+                  "mapping": {
+                    "email": "personal_email"
+                  }
+
+                },
+                {
+                    "host":[
+                        "http://127.0.0.1:8080"
+                    ],
+                    "url_pattern": "/users/{user}/permissions",
+                  "whitelist": [
+                    "Hi",
+                    "there"
+                  ],
+                  "blacklist": [
+                      "spam2",
+                      "notwanted2"
+                    ]
+                }
+            ],
+            "concurrent_calls": 2,
+            "timeout": 1000,
+            "cache_ttl": 3600,
+            "max_rate": 1,
+            "querystring_params": [
+                "page",
+                "limit"
+            ]
+        },
+        {
+            "endpoint": "/debug/var",
+            "method": "POST",
+            "backend": [
+                {
+                    "host":[
+                        "http://127.0.0.1:8080"
+                    ],
+                    "url_pattern": "/debug/tupu"
+                }
+            ],
+            "concurrent_calls": 1,
+            "timeout": 10000,
+            "cache_ttl": 3600,
+            "max_rate": 1
+        },
+        {
+            "endpoint": "/github",
+            "method": "GET",
+            "backend": [
+                {
+                    "host":[
+                        "https://api.github.com"
+                    ],
+                    "url_pattern": "/",
+                    "whitelist": [
+                        "authorizations_url",
+                        "code_search_url"
+                    ]
+                }
+            ],
+            "concurrent_calls": 2,
+            "timeout": 1000,
+            "cache_ttl": 3600,
+            "max_rate": 1
+        },
+        {
+            "endpoint": "/combination/{id}/{supu}",
+            "method": "GET",
+            "backend": [
+                {
+                    "group": "first_post",
+                    "host":[
+                        "https://jsonplaceholder.typicode.com"
+                    ],
+                    "url_pattern": "/posts/{id}?supu={supu}",
+                    "blacklist": [
+                        "userId"
+                    ]
+                },
+                {
+                    "host":[
+                        "https://jsonplaceholder.typicode.com"
+                    ],
+                    "url_pattern": "/users/{id}",
+                    "mapping": {
+                        "email": "personal_email"
+                    }
+                }
+            ],
+            "concurrent_calls": 3,
+            "timeout": 4000,
+            "max_rate": 5,
+            "querystring_params": [
+                "page",
+                "limit"
+            ]
+        }
+    ],
+    "security": {
+        "allowed_hosts": [
+          "localhost:8080",
+          "127.0.0.1:8080"
+        ],
+        "ssl_redirect": true,
+        "ssl_host": "your.secure.server",
+        "ssl_proxy_headers": {
+          "X-Forwarded-Proto": "https"
+        },
+        "sts_include_subdomains": true,
+        "frame_deny": true,
+        "content_type_nosniff": true,
+        "browser_xss_filter": true
+
+    },
+    "oauth": {
+        "client_id": "APIGATEWAY-X-V-1.0",
+        "client_secret": "gVFyKdLFbXC8psl1833BYv47XN",
+        "token_url": "http://url.to/token",
+        "scopes": "files:read,files:write,groups:read,ALL"
+    },
+    "ssl_private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEAvKo6wsq8GF/kI2xvrxjgIFreIL/TjeXZowcUTzr7XNxAMMfv\nHaGUanORV7ixVFRonhPWos7/YkkktC0u80sQGRaPFmhK8xNR3pRlR9wfrB9xOM0Z\nkF8gtIWWrK6ovULEEmNESgzk9N+cOXSQdLYLmm5L4y26wQb13JxTTPYUm5h32Xui\nGS6JRhyAodbS1qtAiIqtaWceei9V0YMMzTW3As1J+GmWoBAWKTs0ECozbsSziZqr\nDXtRRVbbVEAFC7WJcjqqsGc7soFzRJWohAgOiwGfavU0gN7/HCksn6gclYWE9iwf\n/S8wek3ZTgYw6nm535aEBgv60rNikmmiHDXVMQIDAQABAoIBAFHVmPVjUOFVvrRq\n1aripF0EbTNRYac8GwHvES0ozV1DIAjIwHxe2OyvwkyFjU2h61seCczG8tmkFmqc\n6q+XUJ1BPsGebVwwdiOQxLm9znMvlEHqHPuVd681/txaSlEFw9yh+D4Sh8F7uNzn\nJb2qNTBARWR+MnKF3WFa4XsRhnDSmqbhSOe1WWQqAYxtGQyzZew/qSiN0CD19RP0\nwPfe+z9BuKs1G2d52G6mYf37xn85fl5W29c5jsFqTGj8Z74zWEkq8/klto2GGFlV\nSzk2RP9Q6Yt733UBav057B79197XLi9mL3NuwFclX4HgNoC1P3mSY/2IuW71Jt/L\nZFny9k0CgYEA9/DSo1Tzzmj8KWhtgW7nZQTadfdX8dy3dCx+o8pjogQrmzIaWjDI\n354n4IPxQo9AV1Dn9CMbDJWkUEGLd2fegME+A1eZhXvv1TQijiMWHFjW8GW+7/NS\nL7QocZLu6QWQDagcsZE1MQoWo5bX/7pR8DrZmif1SZdRip/Tmz8Yok8CgYEAwswo\ngZ3om5ChPUaEgqiJqsw2rKQ4ZTnSR0y6hUPE18OS2e4EUpeOwPZzM88ZevRtjYvV\nxXoJngoTjWTYqKtLttFJn2TkTOHm7YsLhofMq5r7mqMlpzNVdlhHrprXBRsOxXVp\nPFrBlIswlbrt46kHoJbFhto8ogP3SF9/FqNpsH8CgYEA1Q5AMtJBX1GfvgVadCrU\n9F2jTFNrYw6DJnVFrYGw8/wZbJc1ReM9+cpyAd/fZY6rf1yqtYOlLr84Hy7zpXvA\nG2vy2fRgm+/QO6k9OF62FU3SBWmpFZBFQ3DQgCf+3IZHLzUS0xMwXh+JLLHmkn2N\nA53Od0V25fH9w91rfLBPfskCgYBNhLEZ450NSyDfIZDZ7ffa4Clhyngm0Du94+rV\n3YIX2tw1nWJa+7TzVR/DHkclht+R1HPdghMRsTDWs6sEdCZNOjvyElRHxB4BqbOM\ndb4dDC/T+diiEOuRjM/5y+SFQ589NNwMCJHAayOKcjj4v+spHNa+M1qtnqZpRpds\nitskQQKBgEUUQSvt5ecHMFj3fXG7X1ERhSy+P9deeSPiLtDom8D5Gy+eZqlHAWd2\nlLr+WyHnGNjDYW94CRqiuq1yhgQsARo0/F8BcHgGXRcp278Q78SjOFqtEzz9PKqD\ngXPil4GxzUj8ZOYrqFWDhorBUXSgV2FIN2mDZYPuvdIWb5MXDpf+\n-----END RSA PRIVATE KEY-----",
+    "ssl_certificate": "-----BEGIN CERTIFICATE-----\nMIIDtTCCAp2gAwIBAgIJAO9dKXKojCH4MA0GCSqGSIb3DQEBBQUAMEUxCzAJBgNV\nBAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRlMSEwHwYDVQQKExhJbnRlcm5ldCBX\naWRnaXRzIFB0eSBMdGQwHhcNMTYxMDI2MjE1NzUyWhcNMjYxMDI0MjE1NzUyWjBF\nMQswCQYDVQQGEwJBVTETMBEGA1UECBMKU29tZS1TdGF0ZTEhMB8GA1UEChMYSW50\nZXJuZXQgV2lkZ2l0cyBQdHkgTHRkMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB\nCgKCAQEAvKo6wsq8GF/kI2xvrxjgIFreIL/TjeXZowcUTzr7XNxAMMfvHaGUanOR\nV7ixVFRonhPWos7/YkkktC0u80sQGRaPFmhK8xNR3pRlR9wfrB9xOM0ZkF8gtIWW\nrK6ovULEEmNESgzk9N+cOXSQdLYLmm5L4y26wQb13JxTTPYUm5h32XuiGS6JRhyA\nodbS1qtAiIqtaWceei9V0YMMzTW3As1J+GmWoBAWKTs0ECozbsSziZqrDXtRRVbb\nVEAFC7WJcjqqsGc7soFzRJWohAgOiwGfavU0gN7/HCksn6gclYWE9iwf/S8wek3Z\nTgYw6nm535aEBgv60rNikmmiHDXVMQIDAQABo4GnMIGkMB0GA1UdDgQWBBRAMpF/\nNI3S3czL+uSfxsP6owgWnzB1BgNVHSMEbjBsgBRAMpF/NI3S3czL+uSfxsP6owgW\nn6FJpEcwRTELMAkGA1UEBhMCQVUxEzARBgNVBAgTClNvbWUtU3RhdGUxITAfBgNV\nBAoTGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZIIJAO9dKXKojCH4MAwGA1UdEwQF\nMAMBAf8wDQYJKoZIhvcNAQEFBQADggEBAKK14VVKXKF71aBhxm6w9DKSaPBvsrh0\nQk+skdSRm4MKMfE/SPdRPIduCXSXZ/QAbcmipn8cK19XrWuLTHsf6i9NvV89MDht\nDa2JvoTR8bns5u1uQ8EL0jDC8d4LcTtH7Vl0EcFxFd6JzKc8bJ99tmx0FiY4PPqf\nPGl8eNq8ejHJ2Re9wlf+euK7r+Wbs/OblmmZn1CtD+nHha6/BSZhUalU2cLWU4BG\nkl4RgTtUB6aPxktXw9X7WizGsBdSdm5hgA+/cm9YJpVvgY8nfE/iEYJFMV1/Zy4A\nY6x8meIqYVzBg2TnLcWdZOiZq61C/on5yEMMP1XQyDKWTfTbS3RaIe0=\n-----END CERTIFICATE-----"
+
+}
