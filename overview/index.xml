@@ -2,28 +2,28 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Overview-rsses on Devops.faith KrakenD</title>
-    <link>http://krakend.io/overview/index.xml</link>
+    <link>http://www.krakend.io/overview/index.xml</link>
     <description>Recent content in Overview-rsses on Devops.faith KrakenD</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://krakend.io/overview/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.krakend.io/overview/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title></title>
-      <link>http://krakend.io/overview/ssl/</link>
+      <link>http://www.krakend.io/overview/ssl/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://krakend.io/overview/ssl/</guid>
+      <guid>http://www.krakend.io/overview/ssl/</guid>
       <description>&lt;p&gt;Example of generation &lt;code&gt;$ openssl req -x509 -nodes -newkey rsa:2048 -keyout server.rsa.key -out server.rsa.crt -days 3650&lt;/code&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Introduction to KrakenD</title>
-      <link>http://krakend.io/overview/introduction/</link>
+      <link>http://www.krakend.io/overview/introduction/</link>
       <pubDate>Tue, 25 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://krakend.io/overview/introduction/</guid>
+      <guid>http://www.krakend.io/overview/introduction/</guid>
       <description>
 
 &lt;p&gt;Consumers of REST API content (specially in microservices) often query backend services that weren&amp;rsquo;t coded for the UI implementation. This is of course a good practice, but the UI consumers need to do implementations that suffer a lot of complexity and burden with the sizes of their microservices responses.&lt;/p&gt;
@@ -51,7 +51,7 @@
 
 &lt;p&gt;And this is how it would look like:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://krakend.io/docs/images/krakend-gateway.png&#34; alt=&#34;Gateway&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.krakend.io/docs/images/krakend-gateway.png&#34; alt=&#34;Gateway&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The difference in size in this example would be because KrakenD server would have removed unneeded attributes from the responses.&lt;/p&gt;
 </description>
@@ -59,10 +59,10 @@
     
     <item>
       <title>Installing KrakenD</title>
-      <link>http://krakend.io/overview/installing/</link>
+      <link>http://www.krakend.io/overview/installing/</link>
       <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://krakend.io/overview/installing/</guid>
+      <guid>http://www.krakend.io/overview/installing/</guid>
       <description>
 
 &lt;h1 id=&#34;rpm-installation&#34;&gt;RPM installation&lt;/h1&gt;
@@ -115,7 +115,7 @@ $ apt-get install -y krakend
 &lt;h1 id=&#34;manual-installation&#34;&gt;Manual installation&lt;/h1&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Download the binary for your architecture. Check the &lt;a href=&#34;http://krakend.io/download&#34;&gt;Download&lt;/a&gt; section for the url.&lt;/li&gt;
+&lt;li&gt;Download the binary for your architecture. Check the &lt;a href=&#34;http://www.krakend.io/download&#34;&gt;Download&lt;/a&gt; section for the url.&lt;/li&gt;
 &lt;li&gt;Create your &lt;code&gt;/etc/krakend/service.yml&lt;/code&gt; config file&lt;/li&gt;
 &lt;li&gt;Create your &lt;code&gt;/etc/krakend/krakend.json&lt;/code&gt; config file&lt;/li&gt;
 &lt;li&gt;Start the KrakenD: &lt;code&gt;./krakend run&lt;/code&gt;&lt;/li&gt;
@@ -137,10 +137,10 @@ $ apt-get install -y krakend
     
     <item>
       <title>Using KrakenD</title>
-      <link>http://krakend.io/overview/usage/</link>
+      <link>http://www.krakend.io/overview/usage/</link>
       <pubDate>Tue, 25 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://krakend.io/overview/usage/</guid>
+      <guid>http://www.krakend.io/overview/usage/</guid>
       <description>
 
 &lt;p&gt;Make sure KrakenD is in your &lt;code&gt;PATH&lt;/code&gt; (or provide a path to it). Test this by:&lt;/p&gt;
@@ -166,22 +166,22 @@ Use &amp;quot;krakend [command] --help&amp;quot; for more information about a co
 
 &lt;p&gt;After adding some changes to your endpoint configuration file, you can validate it with the &lt;code&gt;krakend check&lt;/code&gt; command.&lt;/p&gt;
 
-&lt;p&gt;Check the &lt;a href=&#34;http://krakend.io/commands/check&#34;&gt;check command&lt;/a&gt; section for more details.&lt;/p&gt;
+&lt;p&gt;Check the &lt;a href=&#34;http://www.krakend.io/commands/check&#34;&gt;check command&lt;/a&gt; section for more details.&lt;/p&gt;
 
 &lt;h2 id=&#34;run&#34;&gt;Run&lt;/h2&gt;
 
 &lt;p&gt;Unleash the krakend with the &lt;code&gt;krakend run&lt;/code&gt; command!&lt;/p&gt;
 
-&lt;p&gt;Check the &lt;a href=&#34;http://krakend.io/commands/run&#34;&gt;run command&lt;/a&gt; section for more details.&lt;/p&gt;
+&lt;p&gt;Check the &lt;a href=&#34;http://www.krakend.io/commands/run&#34;&gt;run command&lt;/a&gt; section for more details.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Configuring KrakenD</title>
-      <link>http://krakend.io/overview/configuration/</link>
+      <link>http://www.krakend.io/overview/configuration/</link>
       <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://krakend.io/overview/configuration/</guid>
+      <guid>http://www.krakend.io/overview/configuration/</guid>
       <description>&lt;p&gt;The KrakenD has the following system-related configuration properties:&lt;/p&gt;
 
 &lt;ul&gt;

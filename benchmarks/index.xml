@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Benchmarks-rsses on Devops.faith KrakenD</title>
-    <link>http://krakend.io/benchmarks/index.xml</link>
+    <link>http://www.krakend.io/benchmarks/index.xml</link>
     <description>Recent content in Benchmarks-rsses on Devops.faith KrakenD</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 28 Oct 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://krakend.io/benchmarks/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.krakend.io/benchmarks/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Overview</title>
-      <link>http://krakend.io/benchmarks/overview/</link>
+      <link>http://www.krakend.io/benchmarks/overview/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://krakend.io/benchmarks/overview/</guid>
+      <guid>http://www.krakend.io/benchmarks/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;krakend-the-ultra-performer-api-gateway&#34;&gt;KrakenD, the &lt;strong&gt;ultra performer&lt;/strong&gt; API Gateway&lt;/h1&gt;
@@ -77,15 +77,15 @@ Of course we invite you to do them for yourself!&lt;/p&gt;
 
 &lt;h2 id=&#34;benchmark-in-a-macbook-pro&#34;&gt;Benchmark in a Macbook Pro&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://krakend.io/benchmarks/local&#34;&gt;Here you will find the results of the benchmarks&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.krakend.io/benchmarks/local&#34;&gt;Here you will find the results of the benchmarks&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;benchmark-in-amazon-aws-ec2-instances&#34;&gt;Benchmark in Amazon AWS EC2 Instances&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://krakend.io/benchmarks/aws&#34;&gt;Here you will find the results of the benchmarks&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.krakend.io/benchmarks/aws&#34;&gt;Here you will find the results of the benchmarks&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;api-gateway-benchmark&#34;&gt;Api Gateway Benchmark&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://krakend.io/benchmarks/api-gateway-benchmark&#34;&gt;Here you will find the results of the comparations&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.krakend.io/benchmarks/api-gateway-benchmark&#34;&gt;Here you will find the results of the comparations&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;tooling&#34;&gt;Tooling&lt;/h1&gt;
 
@@ -105,10 +105,10 @@ Of course we invite you to do them for yourself!&lt;/p&gt;
     
     <item>
       <title>Comparison of KrakenD vs other products in the market (Benchmark)</title>
-      <link>http://krakend.io/benchmarks/api-gateway-benchmark/</link>
+      <link>http://www.krakend.io/benchmarks/api-gateway-benchmark/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://krakend.io/benchmarks/api-gateway-benchmark/</guid>
+      <guid>http://www.krakend.io/benchmarks/api-gateway-benchmark/</guid>
       <description>
 
 &lt;p&gt;We wanted to compare our own product with other similar products in the market. In order to do so we used the same
@@ -426,10 +426,10 @@ Latency distribution:
     
     <item>
       <title>KrakenD Benchmarks on AWS</title>
-      <link>http://krakend.io/benchmarks/aws/</link>
+      <link>http://www.krakend.io/benchmarks/aws/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://krakend.io/benchmarks/aws/</guid>
+      <guid>http://www.krakend.io/benchmarks/aws/</guid>
       <description>
 
 &lt;h1 id=&#34;tl-dr&#34;&gt;TL;DR&lt;/h1&gt;
@@ -631,10 +631,10 @@ using your own data. This is a reference to contrast your own tests.&lt;/p&gt;
     
     <item>
       <title>Local Benchmarks</title>
-      <link>http://krakend.io/benchmarks/local/</link>
+      <link>http://www.krakend.io/benchmarks/local/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://krakend.io/benchmarks/local/</guid>
+      <guid>http://www.krakend.io/benchmarks/local/</guid>
       <description>
 
 &lt;h1 id=&#34;tl-dr&#34;&gt;TL;DR&lt;/h1&gt;

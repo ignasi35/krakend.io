@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Features-rsses on Devops.faith KrakenD</title>
-    <link>http://krakend.io/features/index.xml</link>
+    <link>http://www.krakend.io/features/index.xml</link>
     <description>Recent content in Features-rsses on Devops.faith KrakenD</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 30 Sep 2013 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://krakend.io/features/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.krakend.io/features/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Response manipulation</title>
-      <link>http://krakend.io/features/response-manipulation/</link>
+      <link>http://www.krakend.io/features/response-manipulation/</link>
       <pubDate>Mon, 30 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://krakend.io/features/response-manipulation/</guid>
+      <guid>http://www.krakend.io/features/response-manipulation/</guid>
       <description>
 
 &lt;h1 id=&#34;merging&#34;&gt;Merging&lt;/h1&gt;
@@ -341,10 +341,10 @@
     
     <item>
       <title>Concurrent Requests</title>
-      <link>http://krakend.io/features/concurrent-requests/</link>
+      <link>http://www.krakend.io/features/concurrent-requests/</link>
       <pubDate>Mon, 30 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://krakend.io/features/concurrent-requests/</guid>
+      <guid>http://www.krakend.io/features/concurrent-requests/</guid>
       <description>&lt;p&gt;If your backend services are running on several instances, you could use a &lt;code&gt;concurrency_level&lt;/code&gt; bigger than 1 with all your idempotent requests, in order to improve the error rate and response time distribution of the exposed endpoint. KrakenD will send up to &lt;code&gt;concurrency_level&lt;/code&gt; concurrent requests to the backends, ignoring the possible failures until it gets a succesful response or all the requests fail. Krakend will use the fastest succesful response and cancell the pending ones.&lt;/p&gt;
 
 &lt;p&gt;The tradeoff of this strategy is an increment of the loads the backend services will recive, so make sure your infrastructure is ready for it. But your users will love it!&lt;/p&gt;
@@ -379,10 +379,10 @@
     
     <item>
       <title>Security</title>
-      <link>http://krakend.io/features/security/</link>
+      <link>http://www.krakend.io/features/security/</link>
       <pubDate>Mon, 30 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://krakend.io/features/security/</guid>
+      <guid>http://www.krakend.io/features/security/</guid>
       <description>
 
 &lt;p&gt;KrakenD has implemented some security strategies&lt;/p&gt;
@@ -439,10 +439,10 @@
     
     <item>
       <title>Other</title>
-      <link>http://krakend.io/features/other/</link>
+      <link>http://www.krakend.io/features/other/</link>
       <pubDate>Mon, 30 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://krakend.io/features/other/</guid>
+      <guid>http://www.krakend.io/features/other/</guid>
       <description>
 
 &lt;h1 id=&#34;load-balancing&#34;&gt;Load balancing&lt;/h1&gt;
@@ -459,9 +459,9 @@
 &lt;li&gt;Create a simple QoS strategy for you API&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;This measures are complementary to the &lt;a href=&#34;http://krakend.io/throttling/circuit-breaker&#34;&gt;Circuit Breaker&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This measures are complementary to the &lt;a href=&#34;http://www.krakend.io/throttling/circuit-breaker&#34;&gt;Circuit Breaker&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Check out the &lt;a href=&#34;http://krakend.io/throttling/rate-limit&#34;&gt;Rate limit&lt;/a&gt; section for more info about this component.&lt;/p&gt;
+&lt;p&gt;Check out the &lt;a href=&#34;http://www.krakend.io/throttling/rate-limit&#34;&gt;Rate limit&lt;/a&gt; section for more info about this component.&lt;/p&gt;
 
 &lt;h1 id=&#34;circuit-breaker&#34;&gt;Circuit breaker&lt;/h1&gt;
 
@@ -473,7 +473,7 @@ traffic to the suffering backend.&lt;/p&gt;
 
 &lt;p&gt;The Circuit Breaker is a protection measure for your stack and avoids cascading failures. It is &lt;strong&gt;always enabled&lt;/strong&gt; (and is transparent to you).&lt;/p&gt;
 
-&lt;p&gt;Check out the &lt;a href=&#34;http://krakend.io/throttling/circuit-breaker&#34;&gt;Circuit Breaker&lt;/a&gt; section for more info about this component.&lt;/p&gt;
+&lt;p&gt;Check out the &lt;a href=&#34;http://www.krakend.io/throttling/circuit-breaker&#34;&gt;Circuit Breaker&lt;/a&gt; section for more info about this component.&lt;/p&gt;
 </description>
     </item>
     

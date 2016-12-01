@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Throttling-rsses on Devops.faith KrakenD</title>
-    <link>http://krakend.io/throttling/index.xml</link>
+    <link>http://www.krakend.io/throttling/index.xml</link>
     <description>Recent content in Throttling-rsses on Devops.faith KrakenD</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 01 Jul 2013 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://krakend.io/throttling/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.krakend.io/throttling/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>KrakenD Throttling</title>
-      <link>http://krakend.io/throttling/overview/</link>
+      <link>http://www.krakend.io/throttling/overview/</link>
       <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://krakend.io/throttling/overview/</guid>
+      <guid>http://www.krakend.io/throttling/overview/</guid>
       <description>&lt;p&gt;The KrakenD is a powerful tool that handles a huge amount of traffic and depending on the usage you could stress your
 own backend micro-services architecture by requesting a lot of data, compromising your backend SLA.&lt;/p&gt;
 
@@ -22,18 +22,18 @@ own backend micro-services architecture by requesting a lot of data, compromisin
 mechanisms to put you safe.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://krakend.io/throttling/overview&#34;&gt;The Circuit Breaker&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://krakend.io/throttling/rate-limit&#34;&gt;Rate limits&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.krakend.io/throttling/overview&#34;&gt;The Circuit Breaker&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.krakend.io/throttling/rate-limit&#34;&gt;Rate limits&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>KrakenD - Circuit Breaker</title>
-      <link>http://krakend.io/throttling/circuit-breaker/</link>
+      <link>http://www.krakend.io/throttling/circuit-breaker/</link>
       <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://krakend.io/throttling/circuit-breaker/</guid>
+      <guid>http://www.krakend.io/throttling/circuit-breaker/</guid>
       <description>
 
 &lt;p&gt;To keep KrakenD responsive and resilient, we added a &lt;strong&gt;Circuit Breaker&lt;/strong&gt; middleware on several points of the processing pipe. Thanks to this component, when KrakenD demands more throughput than your actual API stack is able to deliver properly, the &lt;strong&gt;Circuit Breaker&lt;/strong&gt; mechanism will detect the failures and prevent stressing your servers by not sending requests that are likely to fail. The &lt;strong&gt;Circuit Breaker&lt;/strong&gt; is also useful for dealing with network and other communication problems, by preventing too many requests to fail due timeouts, etc.&lt;/p&gt;
@@ -65,7 +65,7 @@ to the normal state and the system is considered healthy.&lt;/p&gt;
 
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;img src=&#34;http://krakend.io/images/documentation/circuit-breaker.png&#34; alt=&#34;Krakend logo&#34; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://www.krakend.io/images/documentation/circuit-breaker.png&#34; alt=&#34;Krakend logo&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -87,7 +87,7 @@ to the normal state and the system is considered healthy.&lt;/p&gt;
 
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;img src=&#34;http://krakend.io/images/documentation/circuit-breaker-states.png&#34; alt=&#34;Krakend logo&#34; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src=&#34;http://www.krakend.io/images/documentation/circuit-breaker-states.png&#34; alt=&#34;Krakend logo&#34; /&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -129,10 +129,10 @@ cb_max_errors = 10
     
     <item>
       <title>KrakenD - Rate limiting</title>
-      <link>http://krakend.io/throttling/rate-limit/</link>
+      <link>http://www.krakend.io/throttling/rate-limit/</link>
       <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://krakend.io/throttling/rate-limit/</guid>
+      <guid>http://www.krakend.io/throttling/rate-limit/</guid>
       <description>
 
 &lt;p&gt;The rate limits allow you to restrict the traffic to any component of the stack (the KrakenD itself and the actual API backend services) and mainly cover two different purposes:&lt;/p&gt;
@@ -143,7 +143,7 @@ cb_max_errors = 10
 &lt;li&gt;Create a simple QoS strategy for you API&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;This measures are complementary to the &lt;a href=&#34;http://krakend.io/throttling/circuit-breaker&#34;&gt;Circuit Breaker&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This measures are complementary to the &lt;a href=&#34;http://www.krakend.io/throttling/circuit-breaker&#34;&gt;Circuit Breaker&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h1 id=&#34;rate-limits-levels&#34;&gt;Rate limits levels&lt;/h1&gt;
 
@@ -161,7 +161,7 @@ the most specific takes place. The levels are:&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Service and Endpoint levels are always defined at service configuration level (file &lt;code&gt;/etc/krakend/service.yml&lt;/code&gt;), while
-the Client level is defined at Application configuration (&lt;code&gt;krakend.json&lt;/code&gt; or &lt;a href=&#34;http://krakend.io/designer/&#34;&gt;UI&lt;/a&gt;).&lt;/p&gt;
+the Client level is defined at Application configuration (&lt;code&gt;krakend.json&lt;/code&gt; or &lt;a href=&#34;http://www.krakend.io/designer/&#34;&gt;UI&lt;/a&gt;).&lt;/p&gt;
 
 &lt;h2 id=&#34;global-level&#34;&gt;Global level&lt;/h2&gt;
 

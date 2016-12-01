@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Commands-rsses on Devops.faith KrakenD</title>
-    <link>http://krakend.io/commands/index.xml</link>
+    <link>http://www.krakend.io/commands/index.xml</link>
     <description>Recent content in Commands-rsses on Devops.faith KrakenD</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 28 Oct 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://krakend.io/commands/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.krakend.io/commands/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Run</title>
-      <link>http://krakend.io/commands/run/</link>
+      <link>http://www.krakend.io/commands/run/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://krakend.io/commands/run/</guid>
+      <guid>http://www.krakend.io/commands/run/</guid>
       <description>
 
 &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
@@ -61,10 +61,10 @@ Global Flags:
     
     <item>
       <title>Check</title>
-      <link>http://krakend.io/commands/check/</link>
+      <link>http://www.krakend.io/commands/check/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://krakend.io/commands/check/</guid>
+      <guid>http://www.krakend.io/commands/check/</guid>
       <description>
 
 &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;

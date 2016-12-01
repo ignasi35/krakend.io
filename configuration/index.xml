@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Configuration-rsses on Devops.faith KrakenD</title>
-    <link>http://krakend.io/configuration/index.xml</link>
+    <link>http://www.krakend.io/configuration/index.xml</link>
     <description>Recent content in Configuration-rsses on Devops.faith KrakenD</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 14 Nov 2016 18:23:05 +0200</lastBuildDate>
-    <atom:link href="http://krakend.io/configuration/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.krakend.io/configuration/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>KrakenD Configuration File</title>
-      <link>http://krakend.io/configuration/</link>
+      <link>http://www.krakend.io/configuration/</link>
       <pubDate>Mon, 14 Nov 2016 18:23:05 +0200</pubDate>
       
-      <guid>http://krakend.io/configuration/</guid>
+      <guid>http://www.krakend.io/configuration/</guid>
       <description>
 
 &lt;p&gt;From the functional point of view, KrakenD only needs a single configuration file to build the gateway you want. That file could be defined using the &lt;code&gt;--config&lt;/code&gt; path and in the &lt;code&gt;service.yml&lt;/code&gt; configuration file. If no value is defined, KrakenD will try to load the configuration file from the &lt;strong&gt;default path&lt;/strong&gt;, &lt;code&gt;/etc/krakend/krakend.json&lt;/code&gt;.&lt;/p&gt;

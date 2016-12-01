@@ -2,121 +2,121 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://krakend.io/</loc>
+    <loc>http://www.krakend.io/</loc>
     <lastmod>2016-11-14T18:23:05+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/configuration/</loc>
+    <loc>http://www.krakend.io/configuration/</loc>
     <lastmod>2016-11-14T18:23:05+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/download/</loc>
+    <loc>http://www.krakend.io/download/</loc>
     <lastmod>2016-10-26T18:23:05+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/features/</loc>
+    <loc>http://www.krakend.io/features/</loc>
     <lastmod>2016-10-26T18:23:05+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/faq/</loc>
+    <loc>http://www.krakend.io/faq/</loc>
     <lastmod>2016-10-26T18:23:05+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/designer/</loc>
+    <loc>http://www.krakend.io/designer/</loc>
     <lastmod>2016-10-26T18:23:05+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/overview/ssl/</loc>
+    <loc>http://www.krakend.io/overview/ssl/</loc>
   </url>
   
   <url>
-    <loc>http://krakend.io/benchmarks/overview/</loc>
+    <loc>http://www.krakend.io/benchmarks/overview/</loc>
     <lastmod>2016-10-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/commands/run/</loc>
+    <loc>http://www.krakend.io/commands/run/</loc>
     <lastmod>2016-10-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/throttling/overview/</loc>
+    <loc>http://www.krakend.io/throttling/overview/</loc>
     <lastmod>2016-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/overview/introduction/</loc>
+    <loc>http://www.krakend.io/overview/introduction/</loc>
     <lastmod>2016-10-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/commands/check/</loc>
+    <loc>http://www.krakend.io/commands/check/</loc>
     <lastmod>2016-10-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/benchmarks/api-gateway-benchmark/</loc>
+    <loc>http://www.krakend.io/benchmarks/api-gateway-benchmark/</loc>
     <lastmod>2016-10-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/benchmarks/aws/</loc>
+    <loc>http://www.krakend.io/benchmarks/aws/</loc>
     <lastmod>2016-10-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/features/response-manipulation/</loc>
+    <loc>http://www.krakend.io/features/response-manipulation/</loc>
     <lastmod>2016-09-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/throttling/circuit-breaker/</loc>
+    <loc>http://www.krakend.io/throttling/circuit-breaker/</loc>
     <lastmod>2016-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/throttling/rate-limit/</loc>
+    <loc>http://www.krakend.io/throttling/rate-limit/</loc>
     <lastmod>2016-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/benchmarks/local/</loc>
+    <loc>http://www.krakend.io/benchmarks/local/</loc>
     <lastmod>2016-10-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/features/concurrent-requests/</loc>
+    <loc>http://www.krakend.io/features/concurrent-requests/</loc>
     <lastmod>2016-09-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/overview/installing/</loc>
+    <loc>http://www.krakend.io/overview/installing/</loc>
     <lastmod>2016-01-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/overview/usage/</loc>
+    <loc>http://www.krakend.io/overview/usage/</loc>
     <lastmod>2016-10-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/features/security/</loc>
+    <loc>http://www.krakend.io/features/security/</loc>
     <lastmod>2016-09-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/overview/configuration/</loc>
+    <loc>http://www.krakend.io/overview/configuration/</loc>
     <lastmod>2016-09-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://krakend.io/features/other/</loc>
+    <loc>http://www.krakend.io/features/other/</loc>
     <lastmod>2016-09-30T00:00:00+00:00</lastmod>
   </url>
   
