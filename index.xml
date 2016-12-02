@@ -383,8 +383,8 @@ own backend micro-services architecture by requesting a lot of data, compromisin
 mechanisms to put you safe.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.krakend.io/throttling/overview&#34;&gt;The Circuit Breaker&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.krakend.io/throttling/rate-limit&#34;&gt;Rate limits&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.krakend.io/throttling/circuit-breaker/&#34;&gt;The Circuit Breaker&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.krakend.io/throttling/rate-limit/&#34;&gt;Rate limits&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
