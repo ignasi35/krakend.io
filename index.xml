@@ -71,55 +71,8 @@
 &lt;h2 id=&#34;krakend-for-linux&#34;&gt;KrakenD for Linux&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.8_amd64.tar.gz&#34;&gt;Download&lt;/a&gt; Linux 64 bits &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.8_amd64.tar.gz.asc&#34;&gt;PGP&lt;/a&gt; &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.8_amd64.tar.gz.md5&#34;&gt;MD5&lt;/a&gt; &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.8_amd64.tar.gz.sha1&#34;&gt;SHA1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz&#34;&gt;Download&lt;/a&gt; Linux 64 bits &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz.asc&#34;&gt;PGP&lt;/a&gt; &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz.sha256&#34;&gt;SHA256&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&#34;package-verification&#34;&gt;Package verification&lt;/h3&gt;
-
-&lt;h4 id=&#34;pgp&#34;&gt;PGP&lt;/h4&gt;
-
-&lt;p&gt;We will check the deatched signature &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.8_amd64.tar.gz.asc&#34;&gt;PGP&lt;/a&gt; against our package &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.8_amd64.tar.gz&#34;&gt;KrakenD&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ gpg --verify krakend_0.3.8_amd64.tar.gz.asc krakend_0.3.8_amd64.tar.gz
-gpg: Signature made jue 01 dic 2016 14:00:38 CET using RSA key ID AB39BEA1
-gpg: Can&#39;t check signature: public key not found
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We don&amp;rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ gpg --keyserver keyserver.ubuntu.com --recv-key AB39BEA1
-gpg: requesting key AB39BEA1 from hkp server keyserver.ubuntu.com
-gpg: trustdb created
-gpg: key AB39BEA1: public key &amp;quot;Daniel Ortiz &amp;lt;dortiz@devops.faith&amp;gt;&amp;quot; imported
-gpg: Total number processed: 1
-gpg:                             imported: 1    (RSA: 1)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now you can verify the signature of the package:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ gpg --verify krakend_0.3.8_amd64.tar.gz.asc krakend_0.3.8_amd64.tar.gz
-gpg: Signature made jue 01 dic 2016 14:00:38 CET using RSA key ID AB39BEA1
-gpg: Good signature from &amp;quot;Daniel Ortiz &amp;lt;dortiz@devops.faith&amp;gt;&amp;quot;
-gpg: WARNING: This key is not certified with a trusted signature!
-gpg:                    There is no indication that the signature belongs to the owner.
-Primary key fingerprint: EF9B 4CED 47D0 ECC9 69F8  3B4A 7377 C22B AB39 BEA1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;md5&#34;&gt;MD5&lt;/h4&gt;
-
-&lt;p&gt;Compare the result of executing the next command with the content of the &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.8_amd64.tar.gz.md5&#34;&gt;MD5&lt;/a&gt; file.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ md5sum -b krakend_0.3.8_amd64.tar.gz
-950b747fa0eed12160de23a7eb3823fd *krakend_0.3.8_amd64.tar.gz
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;sha1&#34;&gt;SHA1&lt;/h4&gt;
-
-&lt;p&gt;Compare the result of executing the next command with the content of the &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.8_amd64.tar.gz.sha1&#34;&gt;SHA1&lt;/a&gt; file.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sha1sum -b krakend_0.3.8_amd64.tar.gz
-4e523fc9a21b1be7cd0b5a8f0e887577796ebdc1 *krakend_0.3.8_amd64.tar.gz
-&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;krakend-source&#34;&gt;KrakenD Source&lt;/h2&gt;
 
@@ -140,6 +93,46 @@ Primary key fingerprint: EF9B 4CED 47D0 ECC9 69F8  3B4A 7377 C22B AB39 BEA1
 &lt;p&gt;Download and installation via package using YUM (or any alternative rpm manager), for RHEL, CentOS, etc is documented at the &lt;a href=&#34;http://www.krakend.io/overview/installing&#34;&gt;installing&lt;/a&gt; page.&lt;/p&gt;
 
 &lt;p&gt;Here you have the &lt;a href=&#34;http://repo.krakend.io/rpm/krakend-repo-0.1-0.noarch.rpm&#34;&gt;repo rpm&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;package-verification&#34;&gt;Package verification&lt;/h3&gt;
+
+&lt;h4 id=&#34;pgp&#34;&gt;PGP&lt;/h4&gt;
+
+&lt;p&gt;We will check the deatched signature &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz.asc&#34;&gt;PGP&lt;/a&gt; against our package &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz&#34;&gt;KrakenD&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gpg --verify krakend_0.3.9_amd64.tar.gz.asc krakend_0.3.9_amd64.tar.gz
+gpg: Signature made vie 02 dic 2016 19:07:49 CET using RSA key ID AB39BEA1
+gpg: Can&#39;t check signature: public key not found
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We don&amp;rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gpg --keyserver keyserver.ubuntu.com --recv-key AB39BEA1
+gpg: requesting key AB39BEA1 from hkp server keyserver.ubuntu.com
+gpg: trustdb created
+gpg: key AB39BEA1: public key &amp;quot;Daniel Ortiz &amp;lt;dortiz@devops.faith&amp;gt;&amp;quot; imported
+gpg: Total number processed: 1
+gpg:                             imported: 1    (RSA: 1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you can verify the signature of the package:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ gpg --verify krakend_0.3.9_amd64.tar.gz.asc krakend_0.3.9_amd64.tar.gz
+gpg: Signature made jue 01 dic 2016 14:00:38 CET using RSA key ID AB39BEA1
+gpg: Good signature from &amp;quot;Daniel Ortiz &amp;lt;dortiz@devops.faith&amp;gt;&amp;quot;
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:                    There is no indication that the signature belongs to the owner.
+Primary key fingerprint: EF9B 4CED 47D0 ECC9 69F8  3B4A 7377 C22B AB39 BEA1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;sha256&#34;&gt;SHA256&lt;/h4&gt;
+
+&lt;p&gt;Compare the result of executing the next command with the content of the &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz.sha256&#34;&gt;SHA1&lt;/a&gt; file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sha1sum -b krakend_0.3.9_amd64.tar.gz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;fcdc23597ca98de8d3a6e4ab84a039b0635b099932ce2d49314f0b4a1f1ece17 *krakend_0.3.9_amd64.tar.gz&lt;/p&gt;
 </description>
     </item>
     
