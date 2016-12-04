@@ -156,6 +156,7 @@ a.badge-remove:hover {
 .showroom .jumbotron {
     background-color: #fff;
     text-align: center;
+    margin: 0;
 }
 
 .showroom .jumbotron h1 {
@@ -217,6 +218,25 @@ a.badge-remove:hover {
 .feature-block ul.features {
     font-size: 16px;
 }
+
+.feature-block .fa-check {
+    color: #72db67;
+    font-size: 25px;
+}
+
+.feature-comparison td {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.feature-comparison .header {
+    background-color: #bfc9d0;
+}
+
+.feature-comparison .header td {
+    font-weight: bolder;
+}
+
 .btn-border-only {
     border: 1px solid #fff;
     color: white;
