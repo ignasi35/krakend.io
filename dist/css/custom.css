@@ -178,6 +178,11 @@ a.badge-remove:hover {
     padding:40px 0;
     font-weight: 300;
 }
+
+.feature-block strong {
+    font-weight: 500;
+}
+
 .feature-block  p {
     font-size: 16px;
 }
@@ -348,6 +353,11 @@ section.docs h5 { color: #337ab7; font-size: 16px; line-height: 18px; font-weigh
 section.docs .note {
     background-color: #f7f3ca;
     border-color: #e0d705;
+}
+
+section.docs .note h4 {
+    color: #af813a;
+    font-weight: bold;
 }
 
 section.docs table {

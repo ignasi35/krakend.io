@@ -273,8 +273,8 @@ through, but on the other hand you can keep any particular abuser limited to its
 &lt;p&gt;Depending on your use case you will need to decide if you use one, the other, the two, or none of them (fastest):&lt;/p&gt;
 
 &lt;div class=&#34;alert note&#34;&gt;
-    &lt;h4&gt;&lt;i class=&#34;icon fa fa-sticky-note-o&#34;&gt;&lt;/i&gt; Note&lt;/h4&gt;
-    &lt;p&gt;From a &lt;strong&gt;performance point of view&lt;/strong&gt; the `client_max_rate` drops the performance as every incoming client 
+    &lt;h4&gt;&lt;i class=&#34;icon fa fa-sticky-note-o&#34;&gt;&lt;/i&gt; Performance note!&lt;/h4&gt;
+    &lt;p&gt;From a &lt;strong&gt;performance point of view&lt;/strong&gt; the &lt;tt&gt;client_max_rate&lt;/tt&gt; drops the performance as every incoming client 
     needs to be monitored.&lt;/p&gt;
  &lt;/div&gt;
 </description>
