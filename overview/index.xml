@@ -51,7 +51,7 @@
 
 &lt;p&gt;And this is how it would look like:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://www.krakend.io/docs/images/krakend-gateway.png&#34; alt=&#34;Gateway&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.krakend.io/images/documentation/krakend-gateway.png&#34; alt=&#34;Gateway&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The difference in size in this example would be because KrakenD server would have removed unneeded attributes from the responses.&lt;/p&gt;
 </description>

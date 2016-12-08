@@ -22,14 +22,13 @@
 
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-<link rel="stylesheet" href="http://www.krakend.io/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/bootstrap/css/bootstrap.min.css">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 
 <link rel="stylesheet" href="http://www.krakend.io/dist/css/AdminLTE.min.css">
-<link rel="stylesheet" href="http://www.krakend.io/dist/css/skins/skin-black-light.min.css">
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/skin-black-light.min.css">
 <link rel="stylesheet" href="http://www.krakend.io/dist/css/custom.css">
 
 
@@ -96,8 +95,8 @@
         <div class="jumbotron">
             <div class="container">
                 <h1>Release the KrakenD!</h1>
-                <p>Concentrate all your microservices under a slim API Gateway. Aggregate, filter, manipulate and add
-                    middlewares for your entire stack. </p>
+                <p>Design a tailored API for your frontend at a click. KrakenD aggregates and manipulates your current
+                    API responses to make them fit with your frontend products</p>
                 <p><a class="btn btn-primary btn-lg" href="/download" role="button">Free Download &raquo;</a></p>
             </div>
         </div>
@@ -141,12 +140,13 @@
 
             </div>
             <div class="col-lg-8 text-center">
-                <img src="/images/KrakenD.png" title="How KrakenD works"/>
+                <img src="/images/KrakenD.png" title="How KrakenD works" class="img-responsive"/>
                 <div class="footnote">
                     <p><strong>Image:</strong> An example of an endpoint in KrakenD that uses multiple
                         sources.</p>
                     <ul class="list-unstyled">
-                        <li><code>/checkout</code>: Using complete, partial or manipulated content from 5 different APIs</li>
+                        <li><code>/checkout</code>: Using complete, partial or manipulated content from 5 different APIs
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -211,9 +211,11 @@
                     </a>
                 </p>
 
-                <h3 class="feature">Just run the binary</h3>
-                <p>Everything you need to run the server:</p>
-                <p><code>krakend run --config endpoints.json</code></p>
+                <div class="hidden-xs hidden-sm">
+                    <h3 class="feature">Just run the binary</h3>
+                    <p>Everything you need to run the server:</p>
+                    <p><code>krakend run --config endpoints.json</code></p>
+                </div>
             </div>
 
             <div class="col-md-8">
@@ -226,13 +228,13 @@
         </div>
     </section>
 
-    <section class="feature-block zebra">
+    <section class="feature-block zebra hidden-xs hidden-sm">
         <div class="title">
             <h2>Open Source, Free plan and Enterprise plans</h2>
             <p>Whatever is the size of your company there is a plan for you, even the free.</p>
         </div>
     </section>
-    <section class="feature-block">
+    <section class="feature-block hidden-xs hidden-sm">
         <div class="container plans">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-3"></div>
@@ -314,7 +316,7 @@
     </section>
     <section class="feature-block">
 
-        <div class="container">
+        <div class="container hidden-xs hidden-sm">
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <h4>Productivity</h4>
                 <ul class="features">
@@ -371,9 +373,13 @@
                 </ul>
             </div>
         </div>
+        <div class="col-lg-12">
+            <p class="text-center"><a class="btn btn-success" href="/features">Compare features and plans</a></p>
+        </div>
     </section>
 
 </div>
+
 </div>
 
 
@@ -510,6 +516,6 @@ ga('send', 'pageview');
 
 </body>
 </html>
-<script src="http://www.krakend.io/plugins/jQuery/jquery-2.2.3.min.js"></script>
-<script src="http://www.krakend.io/bootstrap/js/bootstrap.min.js"></script>
+<script src="http://www.krakend.io/dist/js/jquery-2.2.3.min.js"></script>
+<script src="http://www.krakend.io/dist/js/bootstrap.min.js"></script>
 <script src="http://www.krakend.io/dist/js/app.min.js"></script>

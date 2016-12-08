@@ -15,11 +15,10 @@
 }
 
 /* Remove black background from logo */
-@media (max-width: 767px) {
-    .skin-black-light .main-header > .logo:hover {
-        background-color: #FFF;
-    }
+.skin-black-light .main-header > .logo:hover {
+    background-color: #FFF;
 }
+
 
 .main-footer {
     margin: 0;
@@ -141,8 +140,10 @@ a.badge-remove:hover {
     margin-bottom: 0;
 }
 
+
+
 .homepage .jumbotron p {
-    max-width: 600px;
+    max-width: 680px;
     margin-bottom: 30px;
     font-size: 24px;
 }
@@ -368,5 +369,15 @@ section.docs table>tbody>tr>td, section.docs table>tbody>tr>th, section.docs tab
 
 section.docs table>thead>tr {
     background-color: #ecf0f5;
+}
+
+
+/* SMALL SCREENS */
+
+@media only screen and (max-width: 1280px) {
+    /* Remove tentacles image */
+    .homepage .jumbotron {
+        background:none;
+    }
 }
 
