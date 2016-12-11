@@ -10,7 +10,7 @@
     <atom:link href="http://www.krakend.io/commands/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Run</title>
+      <title>Run command</title>
       <link>http://www.krakend.io/commands/run/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       
@@ -60,7 +60,7 @@ Global Flags:
     </item>
     
     <item>
-      <title>Check</title>
+      <title>Check command</title>
       <link>http://www.krakend.io/commands/check/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       

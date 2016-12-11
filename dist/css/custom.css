@@ -179,6 +179,12 @@ a.badge-remove:hover {
     font-weight: 300;
 }
 
+.feature-block .description {
+    display: block;
+    font-size: 12px;
+    color: #666;
+}
+
 .feature-block strong {
     font-weight: 500;
 }

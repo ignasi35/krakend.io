@@ -211,10 +211,10 @@ open are finite. In a gateway your focus should be freeing the connections as so
     
     <item>
       <title></title>
-      <link>http://www.krakend.io/overview/ssl/</link>
+      <link>http://www.krakend.io/docs/overview/ssl/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.krakend.io/overview/ssl/</guid>
+      <guid>http://www.krakend.io/docs/overview/ssl/</guid>
       <description>&lt;p&gt;Example of generation &lt;code&gt;$ openssl req -x509 -nodes -newkey rsa:2048 -keyout server.rsa.key -out server.rsa.crt -days 3650&lt;/code&gt;&lt;/p&gt;
 </description>
     </item>
@@ -314,7 +314,7 @@ Of course we invite you to do them for yourself!&lt;/p&gt;
     </item>
     
     <item>
-      <title>Run</title>
+      <title>Run command</title>
       <link>http://www.krakend.io/commands/run/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       
@@ -422,7 +422,7 @@ mechanisms to put you safe.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Check</title>
+      <title>Check command</title>
       <link>http://www.krakend.io/commands/check/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       

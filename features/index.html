@@ -18,14 +18,11 @@
 
 
 
-
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
+
 <link rel="stylesheet" href="http://www.krakend.io/dist/bootstrap/css/bootstrap.min.css">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-
-
+<link rel="stylesheet" href="http://www.krakend.io/dist/css/font-awesome.min.css">
 <link rel="stylesheet" href="http://www.krakend.io/dist/css/AdminLTE.min.css">
 <link rel="stylesheet" href="http://www.krakend.io/dist/css/skin-black-light.min.css">
 <link rel="stylesheet" href="http://www.krakend.io/dist/css/custom.css">
@@ -220,14 +217,18 @@
                 <td>Unlimited</td>
             </tr>
             <tr>
-                <td>Circuit breaker interval</td>
-                <td>60 seconds</td>
-                <td>10 seconds</td>
-            </tr>
-            <tr>
-                <td>Circuit breaker tolerance</td>
-                <td>3 errors in 1 minute</td>
-                <td>1 error every second</td>
+                <td>
+                    Circuit breaker optimization
+                    <span class="description">Number of consecutive errors allowed in the time window</span>
+                </td>
+                <td>
+                    Generic
+                    <span class="description">3 errors in 1 minute</span>
+                </td>
+                <td>
+                    High-load and burst
+                    <span class="description">10 errors in 10 seconds</span>
+                </td>
             </tr>
 
             <tr class="header">
@@ -309,8 +310,14 @@
                 <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
-                <td>Multiple HTTP Verbs (GET, POST, PUT, DELETE)</td>
+                <td>Basic set of HTTP Verbs
+                <span class="description">GET, POST, PUT</span> </td>
                 <td><i class="fa fa-check"></i></td>
+                <td><i class="fa fa-check"></i></td>
+            </tr>
+            <tr>
+                <td>Extended set of HTTP Verbs</td>
+                <td></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
