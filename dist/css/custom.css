@@ -4,6 +4,11 @@
     color: #254f9f;
 }
 
+.skin-black-light .sidebar-menu>li:hover>a, .skin-black-light .sidebar-menu>li.active>a {
+    color: #17396b;
+    background: #cce6f5;
+}
+
 .skin-black-light .main-header .navbar .navbar-custom-menu .navbar-nav > li > a,
 .skin-black-light .main-header .navbar .navbar-right > li > a,
 .skin-black-light .main-header .navbar .navbar-nav>li>a{
@@ -350,7 +355,7 @@ section.docs .TOC .box-title {
 }
 
 section.docs p, section.docs li { font-size: 16px; line-height: 24px;}
-section.docs h1 { color: #337ab7; font-size: 25px; line-height: 35px; font-weight: bold; border-bottom: 1px dashed #3c8dbc; }
+section.docs h1 { color: #337ab7; font-size: 25px; line-height: 35px; font-weight: 600; border-bottom: 1px dashed #3c8dbc; }
 section.docs h2 { color: #337ab7; font-size: 20px; line-height: 30px; font-weight: 600; border-bottom: 1px solid #eee; }
 section.docs h3 { color: #337ab7; font-size: 18px; line-height: 25px; font-weight: 400; }
 section.docs h4 { color: #337ab7; font-size: 17px; line-height: 20px; font-weight: 300; }

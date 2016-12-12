@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Devops.faith KrakenD</title>
+    <title>KrakenD: API Gateway and Manager</title>
     <link>http://www.krakend.io/index.xml</link>
-    <description>Recent content on Devops.faith KrakenD</description>
+    <description>Recent content on KrakenD: API Gateway and Manager</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 14 Nov 2016 18:23:05 +0200</lastBuildDate>
@@ -11,10 +11,10 @@
     
     <item>
       <title>KrakenD Configuration File</title>
-      <link>http://www.krakend.io/configuration/</link>
+      <link>http://www.krakend.io/docs/configuration/</link>
       <pubDate>Mon, 14 Nov 2016 18:23:05 +0200</pubDate>
       
-      <guid>http://www.krakend.io/configuration/</guid>
+      <guid>http://www.krakend.io/docs/configuration/</guid>
       <description>
 
 &lt;p&gt;From the functional point of view, KrakenD only needs a single configuration file to build the gateway you want. That file could be defined using the &lt;code&gt;--config&lt;/code&gt; path and in the &lt;code&gt;service.yml&lt;/code&gt; configuration file. If no value is defined, KrakenD will try to load the configuration file from the &lt;strong&gt;default path&lt;/strong&gt;, &lt;code&gt;/etc/krakend/krakend.json&lt;/code&gt;.&lt;/p&gt;
@@ -64,37 +64,35 @@
       <guid>http://www.krakend.io/download/</guid>
       <description>
 
+&lt;p&gt;Download the KrakenD version for the free plan.&lt;/p&gt;
+
 &lt;h1 id=&#34;krakend-free&#34;&gt;KrakenD Free&lt;/h1&gt;
-
-&lt;p&gt;Download the KrakenD version for the free plan:&lt;/p&gt;
-
-&lt;h2 id=&#34;krakend-for-linux&#34;&gt;KrakenD for Linux&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz&#34;&gt;Download&lt;/a&gt; Linux 64 bits &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz.asc&#34;&gt;PGP&lt;/a&gt; &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz.sha256&#34;&gt;SHA256&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;krakend-source&#34;&gt;KrakenD Source&lt;/h2&gt;
+&lt;h1 id=&#34;krakend-framework-source-code&#34;&gt;KrakenD framework source code&lt;/h1&gt;
 
-&lt;p&gt;If you want to build your own binaries use the open source framework:&lt;/p&gt;
+&lt;p&gt;KrakenD framework is &lt;strong&gt;open source&lt;/strong&gt;. If you want to build your own binaries use the code:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://github.com/devopsfaith/krakend&#34;&gt;Github reposistory&lt;/a&gt; (source code)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;package-installation&#34;&gt;Package installation&lt;/h2&gt;
+&lt;h1 id=&#34;installation-from-packages&#34;&gt;Installation from packages&lt;/h1&gt;
 
-&lt;h3 id=&#34;debian-based&#34;&gt;Debian based&lt;/h3&gt;
+&lt;h2 id=&#34;debian-based&#34;&gt;Debian based&lt;/h2&gt;
 
-&lt;p&gt;Download and installation via package using APT, for Debian and Ubuntu, is documented at the &lt;a href=&#34;http://www.krakend.io/overview/installing&#34;&gt;installing&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;Download and installation via package using APT, for Debian and Ubuntu, is documented at the &lt;a href=&#34;http://www.krakend.io/docs/overview/installing&#34;&gt;installing&lt;/a&gt; page.&lt;/p&gt;
 
-&lt;h3 id=&#34;rpm-based&#34;&gt;RPM based&lt;/h3&gt;
+&lt;h2 id=&#34;rpm-based&#34;&gt;RPM based&lt;/h2&gt;
 
-&lt;p&gt;Download and installation via package using YUM (or any alternative rpm manager), for RHEL, CentOS, etc is documented at the &lt;a href=&#34;http://www.krakend.io/overview/installing&#34;&gt;installing&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;Download and installation via package using YUM (or any alternative rpm manager), for RHEL, CentOS, etc is documented at the &lt;a href=&#34;http://www.krakend.io/docs/overview/installing&#34;&gt;installing&lt;/a&gt; page.&lt;/p&gt;
 
 &lt;p&gt;Here you have the &lt;a href=&#34;http://repo.krakend.io/rpm/krakend-repo-0.1-0.noarch.rpm&#34;&gt;repo rpm&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;package-verification&#34;&gt;Package verification&lt;/h3&gt;
+&lt;h2 id=&#34;package-verification&#34;&gt;Package verification&lt;/h2&gt;
 
 &lt;h4 id=&#34;pgp&#34;&gt;PGP&lt;/h4&gt;
 
@@ -130,9 +128,8 @@ Primary key fingerprint: EF9B 4CED 47D0 ECC9 69F8  3B4A 7377 C22B AB39 BEA1
 &lt;p&gt;Compare the result of executing the next command with the content of the &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz.sha256&#34;&gt;SHA1&lt;/a&gt; file.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ sha1sum -b krakend_0.3.9_amd64.tar.gz
+fcdc23597ca98de8d3a6e4ab84a039b0635b099932ce2d49314f0b4a1f1ece17 *krakend_0.3.9_amd64.tar.gz
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;fcdc23597ca98de8d3a6e4ab84a039b0635b099932ce2d49314f0b4a1f1ece17 *krakend_0.3.9_amd64.tar.gz&lt;/p&gt;
 </description>
     </item>
     
@@ -147,10 +144,10 @@ Primary key fingerprint: EF9B 4CED 47D0 ECC9 69F8  3B4A 7377 C22B AB39 BEA1
     
     <item>
       <title>KrakenD F.A.Q</title>
-      <link>http://www.krakend.io/faq/</link>
+      <link>http://www.krakend.io/docs/faq/</link>
       <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
       
-      <guid>http://www.krakend.io/faq/</guid>
+      <guid>http://www.krakend.io/docs/faq/</guid>
       <description>
 
 &lt;h1 id=&#34;understanding-the-behaviour&#34;&gt;Understanding the behaviour&lt;/h1&gt;
@@ -221,10 +218,10 @@ open are finite. In a gateway your focus should be freeing the connections as so
     
     <item>
       <title>Overview</title>
-      <link>http://www.krakend.io/benchmarks/overview/</link>
+      <link>http://www.krakend.io/docs/benchmarks/overview/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.krakend.io/benchmarks/overview/</guid>
+      <guid>http://www.krakend.io/docs/benchmarks/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;krakend-the-ultra-performer-api-gateway&#34;&gt;KrakenD, the &lt;strong&gt;ultra performer&lt;/strong&gt; API Gateway&lt;/h1&gt;
@@ -287,15 +284,15 @@ Of course we invite you to do them for yourself!&lt;/p&gt;
 
 &lt;h2 id=&#34;benchmark-in-a-macbook-pro&#34;&gt;Benchmark in a Macbook Pro&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://www.krakend.io/benchmarks/local&#34;&gt;Here you will find the results of the benchmarks&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.krakend.io/docs/benchmarks/local&#34;&gt;Here you will find the results of the benchmarks&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;benchmark-in-amazon-aws-ec2-instances&#34;&gt;Benchmark in Amazon AWS EC2 Instances&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://www.krakend.io/benchmarks/aws&#34;&gt;Here you will find the results of the benchmarks&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.krakend.io/docs/benchmarks/aws&#34;&gt;Here you will find the results of the benchmarks&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;api-gateway-benchmark&#34;&gt;Api Gateway Benchmark&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://www.krakend.io/benchmarks/api-gateway-benchmark&#34;&gt;Here you will find the results of the comparations&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.krakend.io/docs/benchmarks/api-gateway-benchmark&#34;&gt;Here you will find the results of the comparations&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;tooling&#34;&gt;Tooling&lt;/h1&gt;
 
@@ -315,10 +312,10 @@ Of course we invite you to do them for yourself!&lt;/p&gt;
     
     <item>
       <title>Run command</title>
-      <link>http://www.krakend.io/commands/run/</link>
+      <link>http://www.krakend.io/docs/commands/run/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.krakend.io/commands/run/</guid>
+      <guid>http://www.krakend.io/docs/commands/run/</guid>
       <description>
 
 &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
@@ -365,10 +362,10 @@ Global Flags:
     
     <item>
       <title>KrakenD Throttling</title>
-      <link>http://www.krakend.io/throttling/overview/</link>
+      <link>http://www.krakend.io/docs/throttling/overview/</link>
       <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://www.krakend.io/throttling/overview/</guid>
+      <guid>http://www.krakend.io/docs/throttling/overview/</guid>
       <description>&lt;p&gt;The KrakenD is a powerful tool that handles a huge amount of traffic and depending on the usage you could stress your
 own backend micro-services architecture by requesting a lot of data, compromising your backend SLA.&lt;/p&gt;
 
@@ -376,18 +373,18 @@ own backend micro-services architecture by requesting a lot of data, compromisin
 mechanisms to put you safe.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.krakend.io/throttling/circuit-breaker/&#34;&gt;The Circuit Breaker&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.krakend.io/throttling/rate-limit/&#34;&gt;Rate limits&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.krakend.io/docs/throttling/circuit-breaker/&#34;&gt;The Circuit Breaker&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.krakend.io/docs/throttling/rate-limit/&#34;&gt;Rate limits&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>Introduction to KrakenD</title>
-      <link>http://www.krakend.io/overview/introduction/</link>
+      <link>http://www.krakend.io/docs/overview/introduction/</link>
       <pubDate>Tue, 25 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.krakend.io/overview/introduction/</guid>
+      <guid>http://www.krakend.io/docs/overview/introduction/</guid>
       <description>
 
 &lt;p&gt;Consumers of REST API content (specially in microservices) often query backend services that weren&amp;rsquo;t coded for the UI implementation. This is of course a good practice, but the UI consumers need to do implementations that suffer a lot of complexity and burden with the sizes of their microservices responses.&lt;/p&gt;
@@ -423,10 +420,10 @@ mechanisms to put you safe.&lt;/p&gt;
     
     <item>
       <title>Check command</title>
-      <link>http://www.krakend.io/commands/check/</link>
+      <link>http://www.krakend.io/docs/commands/check/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.krakend.io/commands/check/</guid>
+      <guid>http://www.krakend.io/docs/commands/check/</guid>
       <description>
 
 &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
@@ -599,10 +596,10 @@ Syntax OK!
     
     <item>
       <title>Comparison of KrakenD vs other products in the market (Benchmark)</title>
-      <link>http://www.krakend.io/benchmarks/api-gateway-benchmark/</link>
+      <link>http://www.krakend.io/docs/benchmarks/api-gateway-benchmark/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.krakend.io/benchmarks/api-gateway-benchmark/</guid>
+      <guid>http://www.krakend.io/docs/benchmarks/api-gateway-benchmark/</guid>
       <description>
 
 &lt;p&gt;We wanted to compare our own product with other similar products in the market. In order to do so we used the same
@@ -920,10 +917,10 @@ Latency distribution:
     
     <item>
       <title>KrakenD Benchmarks on AWS</title>
-      <link>http://www.krakend.io/benchmarks/aws/</link>
+      <link>http://www.krakend.io/docs/benchmarks/aws/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.krakend.io/benchmarks/aws/</guid>
+      <guid>http://www.krakend.io/docs/benchmarks/aws/</guid>
       <description>
 
 &lt;h1 id=&#34;tl-dr&#34;&gt;TL;DR&lt;/h1&gt;
@@ -1125,10 +1122,10 @@ using your own data. This is a reference to contrast your own tests.&lt;/p&gt;
     
     <item>
       <title>Response manipulation</title>
-      <link>http://www.krakend.io/features/response-manipulation/</link>
+      <link>http://www.krakend.io/docs/features/response-manipulation/</link>
       <pubDate>Mon, 30 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://www.krakend.io/features/response-manipulation/</guid>
+      <guid>http://www.krakend.io/docs/features/response-manipulation/</guid>
       <description>
 
 &lt;h1 id=&#34;merging&#34;&gt;Merging&lt;/h1&gt;
@@ -1455,10 +1452,10 @@ using your own data. This is a reference to contrast your own tests.&lt;/p&gt;
     
     <item>
       <title>KrakenD - Circuit Breaker</title>
-      <link>http://www.krakend.io/throttling/circuit-breaker/</link>
+      <link>http://www.krakend.io/docs/throttling/circuit-breaker/</link>
       <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://www.krakend.io/throttling/circuit-breaker/</guid>
+      <guid>http://www.krakend.io/docs/throttling/circuit-breaker/</guid>
       <description>
 
 &lt;p&gt;To keep KrakenD responsive and resilient, we added a &lt;strong&gt;Circuit Breaker&lt;/strong&gt; middleware on several points of the processing pipe. Thanks to this component, when KrakenD demands more throughput than your actual API stack is able to deliver properly, the &lt;strong&gt;Circuit Breaker&lt;/strong&gt; mechanism will detect the failures and prevent stressing your servers by not sending requests that are likely to fail. The &lt;strong&gt;Circuit Breaker&lt;/strong&gt; is also useful for dealing with network and other communication problems, by preventing too many requests to fail due timeouts, etc.&lt;/p&gt;

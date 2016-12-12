@@ -7,7 +7,7 @@
   </url>
   
   <url>
-    <loc>http://www.krakend.io/configuration/</loc>
+    <loc>http://www.krakend.io/docs/configuration/</loc>
     <lastmod>2016-11-14T18:23:05+02:00</lastmod>
   </url>
   
@@ -22,7 +22,7 @@
   </url>
   
   <url>
-    <loc>http://www.krakend.io/faq/</loc>
+    <loc>http://www.krakend.io/docs/faq/</loc>
     <lastmod>2016-10-26T18:23:05+02:00</lastmod>
   </url>
   
@@ -36,87 +36,87 @@
   </url>
   
   <url>
-    <loc>http://www.krakend.io/benchmarks/overview/</loc>
+    <loc>http://www.krakend.io/docs/benchmarks/overview/</loc>
     <lastmod>2016-10-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.krakend.io/commands/run/</loc>
+    <loc>http://www.krakend.io/docs/commands/run/</loc>
     <lastmod>2016-10-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.krakend.io/throttling/overview/</loc>
+    <loc>http://www.krakend.io/docs/throttling/overview/</loc>
     <lastmod>2016-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.krakend.io/overview/introduction/</loc>
+    <loc>http://www.krakend.io/docs/overview/introduction/</loc>
     <lastmod>2016-10-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.krakend.io/commands/check/</loc>
+    <loc>http://www.krakend.io/docs/commands/check/</loc>
     <lastmod>2016-10-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.krakend.io/benchmarks/api-gateway-benchmark/</loc>
+    <loc>http://www.krakend.io/docs/benchmarks/api-gateway-benchmark/</loc>
     <lastmod>2016-10-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.krakend.io/benchmarks/aws/</loc>
+    <loc>http://www.krakend.io/docs/benchmarks/aws/</loc>
     <lastmod>2016-10-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.krakend.io/features/response-manipulation/</loc>
+    <loc>http://www.krakend.io/docs/features/response-manipulation/</loc>
     <lastmod>2016-09-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.krakend.io/throttling/circuit-breaker/</loc>
+    <loc>http://www.krakend.io/docs/throttling/circuit-breaker/</loc>
     <lastmod>2016-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.krakend.io/throttling/rate-limit/</loc>
+    <loc>http://www.krakend.io/docs/throttling/rate-limit/</loc>
     <lastmod>2016-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.krakend.io/benchmarks/local/</loc>
+    <loc>http://www.krakend.io/docs/benchmarks/local/</loc>
     <lastmod>2016-10-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.krakend.io/features/concurrent-requests/</loc>
+    <loc>http://www.krakend.io/docs/features/concurrent-requests/</loc>
     <lastmod>2016-09-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.krakend.io/overview/installing/</loc>
+    <loc>http://www.krakend.io/docs/overview/installing/</loc>
     <lastmod>2016-01-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.krakend.io/overview/usage/</loc>
+    <loc>http://www.krakend.io/docs/overview/usage/</loc>
     <lastmod>2016-10-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.krakend.io/features/security/</loc>
+    <loc>http://www.krakend.io/docs/features/security/</loc>
     <lastmod>2016-09-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.krakend.io/overview/configuration/</loc>
+    <loc>http://www.krakend.io/docs/overview/configuration/</loc>
     <lastmod>2016-09-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.krakend.io/features/other/</loc>
+    <loc>http://www.krakend.io/docs/features/other/</loc>
     <lastmod>2016-09-30T00:00:00+00:00</lastmod>
   </url>
   
