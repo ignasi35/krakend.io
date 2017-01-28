@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.17" />
+<meta name="generator" content="Hugo 0.18.1" />
 
 
     <title>KrakenD Benchmarks on AWS - KrakenD: API Gateway and Manager</title>
@@ -11,9 +11,6 @@
     
     <meta property="description" content="Performance tests of KrakenD on Amazon AWS environment">
     
-
-
-
 
 
 
@@ -135,16 +132,34 @@
     
         
         <li class="treeview">
-            <a href="/docs/configuration/">
-                <i class='fa fa-file-text-o'></i>  <span>Configuration Options</span>
+            <a href="javascript:;">
+                <i class='fa fa-file-text-o'></i> <span>Configuration</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
             </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/configuration/configuration-start/"><i class="fa fa-circle-o %}"></i> Configuring KrakenD</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/configuration/standalone/"><i class="fa fa-circle-o %}"></i> Standalone Configuration</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/configuration/cluster/"><i class="fa fa-circle-o %}"></i> Cluster Configuration</a>
+                </li>
+            
+            </ul>
         </li>
         
     
         
         <li class="treeview">
             <a href="javascript:;">
-                <i class='fa fa-check'></i> <span>Features</span>
+                <i class='fa fa-check'></i> <span>Endpoints Features</span>
                 <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -165,6 +180,32 @@
             
                 <li class="">
                     <a href="/docs/features/other/"><i class="fa fa-circle-o %}"></i> Other</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-connectdevelop'></i> <span>Cluster Management</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/cluster/cluster-overview/"><i class="fa fa-circle-o %}"></i> Overview</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/cluster/configuration/"><i class="fa fa-circle-o %}"></i> Cluster configuration</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/cluster/subscription-levels/"><i class="fa fa-circle-o %}"></i> Subscription levels</a>
                 </li>
             
             </ul>
@@ -228,10 +269,6 @@
                 </span>
             </a>
             <ul class="treeview-menu menu-open">
-            
-                <li class="">
-                    <a href="/docs/benchmarks/overview/"><i class="fa fa-circle-o %}"></i> Overview</a>
-                </li>
             
                 <li class="">
                     <a href="/docs/benchmarks/api-gateway-benchmark/"><i class="fa fa-circle-o %}"></i> KrakenD vs others</a>
@@ -307,15 +344,15 @@
 <li><a href="#results">Results</a>
 <ul>
 <li><a href="#proxy-test-on-t2-micro">Proxy test on <code>t2.micro</code></a></li>
-<li><a href="#agreggate-test-on-t2-micro">Agreggate test on <code>t2.micro</code></a></li>
+<li><a href="#aggregate-test-on-t2-micro">Aggregate test on <code>t2.micro</code></a></li>
 <li><a href="#proxy-test-on-t2-medium">Proxy test on <code>t2.medium</code></a></li>
-<li><a href="#agreggate-test-on-t2-medium">Agreggate test on <code>t2.medium</code></a></li>
+<li><a href="#aggregate-test-on-t2-medium">Aggregate test on <code>t2.medium</code></a></li>
 <li><a href="#proxy-test-on-m4-large">Proxy test on <code>m4.large</code></a></li>
-<li><a href="#agreggate-test-on-m4-large">Agreggate test on <code>m4.large</code></a></li>
+<li><a href="#aggregate-test-on-m4-large">Aggregate test on <code>m4.large</code></a></li>
 <li><a href="#proxy-test-on-c4-xlarge">Proxy test on <code>c4.xlarge</code></a></li>
-<li><a href="#agreggate-test-on-c4-xlarge">Agreggate test on <code>c4.xlarge</code></a></li>
+<li><a href="#aggregate-test-on-c4-xlarge">Aggregate test on <code>c4.xlarge</code></a></li>
 <li><a href="#proxy-test-on-c4-2xlarge">Proxy test on <code>c4.2xlarge</code></a></li>
-<li><a href="#agreggate-test-on-c4-2xlarge">Agreggate test on <code>c4.2xlarge</code></a></li>
+<li><a href="#aggregate-test-on-c4-2xlarge">Aggregate test on <code>c4.2xlarge</code></a></li>
 <li><a href="#conclusions">Conclusions</a></li>
 </ul></li>
 </ul>
@@ -344,13 +381,13 @@
 </ul>
 
 <p>The test consists in running <code>hey</code> against a KrakenD endpoint. The KrakenD endpoint uses as the backend an URL in (<code>LWAN</code>).
-After runnint the test, the <code>hey</code> output is <a href="https://github.com/devopsfaith/hey-to-csv">parsed and converted to CSV</a> in order to generate the graphs.</p>
+After running the test, the <code>hey</code> output is <a href="https://github.com/devopsfaith/hey-to-csv">parsed and converted to CSV</a> in order to generate the graphs.</p>
 
 <p>For each instance type there are 2 different tests:</p>
 
 <ul>
 <li><strong>Proxy</strong>: We called proxy test when the KrakenD is just used as gateway and calls to a single endpoint to the web server (<code>/foo</code> endpoint in the configuration).</li>
-<li><strong>Agreggate</strong>: We called agreggate test when the KrakenD calls to a 3 different endpoints in the web server and agreggates the results (<code>/social</code> endpoint in the configuration).</li>
+<li><strong>Aggregate</strong>: We called aggregate test when the KrakenD calls to a 3 different endpoints in the web server and aggregates the results (<code>/social</code> endpoint in the configuration).</li>
 </ul>
 
 <p>The instance types we tested are:</p>
@@ -462,7 +499,7 @@ After runnint the test, the <code>hey</code> output is <a href="https://github.c
 
 <script src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_micro_test01.csv"></script>
 
-<h2 id="agreggate-test-on-t2-micro">Agreggate test on <code>t2.micro</code></h2>
+<h2 id="aggregate-test-on-t2-micro">Aggregate test on <code>t2.micro</code></h2>
 
 <script src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_micro_aggregate.csv"></script>
 
@@ -470,7 +507,7 @@ After runnint the test, the <code>hey</code> output is <a href="https://github.c
 
 <script src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_medium_test01.csv"></script>
 
-<h2 id="agreggate-test-on-t2-medium">Agreggate test on <code>t2.medium</code></h2>
+<h2 id="aggregate-test-on-t2-medium">Aggregate test on <code>t2.medium</code></h2>
 
 <script src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_medium_aggregate.csv"></script>
 
@@ -478,7 +515,7 @@ After runnint the test, the <code>hey</code> output is <a href="https://github.c
 
 <script src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=m4_large_test01.csv"></script>
 
-<h2 id="agreggate-test-on-m4-large">Agreggate test on <code>m4.large</code></h2>
+<h2 id="aggregate-test-on-m4-large">Aggregate test on <code>m4.large</code></h2>
 
 <script src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=m4_large_aggregate.csv"></script>
 
@@ -486,7 +523,7 @@ After runnint the test, the <code>hey</code> output is <a href="https://github.c
 
 <script src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_xlarge_test01.csv"></script>
 
-<h2 id="agreggate-test-on-c4-xlarge">Agreggate test on <code>c4.xlarge</code></h2>
+<h2 id="aggregate-test-on-c4-xlarge">Aggregate test on <code>c4.xlarge</code></h2>
 
 <script src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_xlarge_aggregate.csv"></script>
 
@@ -494,7 +531,7 @@ After runnint the test, the <code>hey</code> output is <a href="https://github.c
 
 <script src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_2xlarge_test01.csv"></script>
 
-<h2 id="agreggate-test-on-c4-2xlarge">Agreggate test on <code>c4.2xlarge</code></h2>
+<h2 id="aggregate-test-on-c4-2xlarge">Aggregate test on <code>c4.2xlarge</code></h2>
 
 <script src="https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_2xlarge_aggregate.csv"></script>
 
@@ -513,7 +550,7 @@ credit the instance will perform worst.</p>
 
 <ul>
 <li>Use <code>micro</code> instances by default.</li>
-<li>If you expect high and continued load with complex use cases (intesive agreggation and manipulation) <code>c4.2xlarge</code> is worth it</li>
+<li>If you expect high and continued load with complex use cases (intensive aggregation and manipulation) <code>c4.2xlarge</code> is worth it</li>
 <li>If you want to maintain quality of service with high load but a relative simple app, <code>c4.xlarge</code></li>
 <li>For low to moderate loads use <code>micro</code> or a cluster of micros.</li>
 <li>We wouldn&rsquo;t choose <code>m4</code> in any scenario for the money/performance.</li>
@@ -581,7 +618,7 @@ using your own data. This is a reference to contrast your own tests.</p>
         </div>
         <div class="row">
             <div class="col-md-5 additional-links">
-                <strong>Copyright &copy; 2016 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2017 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
             </div>
             <div class="pull-right hidden-xs">
                 Made with <i class="fa fa-heart-o" style="color:hotpink"></i> in Barcelona

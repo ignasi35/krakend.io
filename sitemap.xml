@@ -2,37 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.krakend.io/</loc>
-    <lastmod>2016-11-14T18:23:05+02:00</lastmod>
+    <loc>http://www.krakend.io/docs/cluster/cluster-overview/</loc>
+    <lastmod>2017-01-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.krakend.io/docs/configuration/</loc>
-    <lastmod>2016-11-14T18:23:05+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.krakend.io/download/</loc>
-    <lastmod>2016-10-26T18:23:05+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.krakend.io/features/</loc>
-    <lastmod>2016-10-26T18:23:05+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.krakend.io/docs/faq/</loc>
-    <lastmod>2016-10-26T18:23:05+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.krakend.io/designer/</loc>
-    <lastmod>2016-10-26T18:23:05+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.krakend.io/docs/overview/ssl/</loc>
+    <loc>http://www.krakend.io/docs/configuration/configuration-start/</loc>
+    <lastmod>2017-01-19T18:21:05+02:00</lastmod>
   </url>
   
   <url>
@@ -53,6 +29,21 @@
   <url>
     <loc>http://www.krakend.io/docs/overview/introduction/</loc>
     <lastmod>2016-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.krakend.io/docs/cluster/configuration/</loc>
+    <lastmod>2017-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.krakend.io/docs/cluster/subscription-levels/</loc>
+    <lastmod>2017-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.krakend.io/docs/configuration/standalone/</loc>
+    <lastmod>2017-01-19T18:21:05+02:00</lastmod>
   </url>
   
   <url>
@@ -91,6 +82,11 @@
   </url>
   
   <url>
+    <loc>http://www.krakend.io/docs/configuration/cluster/</loc>
+    <lastmod>2017-01-19T18:21:05+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.krakend.io/docs/features/concurrent-requests/</loc>
     <lastmod>2016-09-30T00:00:00+00:00</lastmod>
   </url>
@@ -118,6 +114,42 @@
   <url>
     <loc>http://www.krakend.io/docs/features/other/</loc>
     <lastmod>2016-09-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.krakend.io/download/</loc>
+    <lastmod>2016-10-26T18:23:05+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.krakend.io/features/</loc>
+    <lastmod>2016-10-26T18:23:05+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.krakend.io/docs/faq/</loc>
+    <lastmod>2016-10-26T18:23:05+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.krakend.io/designer/</loc>
+    <lastmod>2016-10-26T18:23:05+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.krakend.io/docs/overview/ssl/</loc>
+  </url>
+  
+  <url>
+    <loc>http://www.krakend.io/docs/</loc>
+    <lastmod>2016-10-26T18:23:05+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.krakend.io/</loc>
+    <lastmod>2017-01-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
 </urlset>

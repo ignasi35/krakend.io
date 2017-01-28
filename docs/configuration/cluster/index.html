@@ -6,10 +6,10 @@
 <meta name="generator" content="Hugo 0.18.1" />
 
 
-    <title>Overview - KrakenD: API Gateway and Manager</title>
-    <meta property="og:title" content="Overview - KrakenD: API Gateway and Manager">
+    <title>Cluster Configuration - KrakenD: API Gateway and Manager</title>
+    <meta property="og:title" content="Cluster Configuration - KrakenD: API Gateway and Manager">
     
-    <meta property="description" content="Performance tests of KrakenD">
+    <meta property="description" content="Configuring the KrakenD Cluster">
     
 
 
@@ -131,14 +131,14 @@
         
     
         
-        <li class="treeview">
+        <li class="treeview active">
             <a href="javascript:;">
                 <i class='fa fa-file-text-o'></i> <span>Configuration</span>
                 <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
                 </span>
             </a>
-            <ul class="treeview-menu">
+            <ul class="treeview-menu menu-open">
             
                 <li class="">
                     <a href="/docs/configuration/configuration-start/"><i class="fa fa-circle-o %}"></i> Configuring KrakenD</a>
@@ -148,7 +148,7 @@
                     <a href="/docs/configuration/standalone/"><i class="fa fa-circle-o %}"></i> Standalone Configuration</a>
                 </li>
             
-                <li class="">
+                <li class="active">
                     <a href="/docs/configuration/cluster/"><i class="fa fa-circle-o %}"></i> Cluster Configuration</a>
                 </li>
             
@@ -311,7 +311,7 @@
         <section class="content-header">
             
 <h1>
-    Overview
+    Cluster Configuration
     <small> Documentation </small>
 </h1>
 
@@ -326,122 +326,10 @@
             <div class="box-body">
                 
                 
-                <div class="pull-right col-md-4 TOC">
-                    <div class="box">
-                    <div class="box-header with-border">
-                        <h5 class="box-title"><i class="fa fa-book"></i> Table of Contents</h5>
-                        <div class="pull-right">
-                            <a data-widget="collapse"><i class="fa fa-minus"></i></a>
-                        </div>
-                    </div>
 
-                        <div class="box-body">
-                            <nav id="TableOfContents">
-<ul>
-<li><a href="#krakend-the-ultra-performer-api-gateway">KrakenD, the <strong>ultra performer</strong> API Gateway</a></li>
-<li><a href="#tl-dr-benchmark-results">TL;DR: <strong>Benchmark results</strong></a>
-<ul>
-<li><a href="#benchmark-in-a-macbook-pro">Benchmark in a Macbook Pro</a></li>
-<li><a href="#benchmark-in-amazon-aws-ec2-instances">Benchmark in Amazon AWS EC2 Instances</a></li>
-<li><a href="#api-gateway-benchmark">Api Gateway Benchmark</a></li>
-</ul></li>
-<li><a href="#tooling">Tooling</a>
-<ul>
-<li><a href="#hey">hey</a></li>
-<li><a href="#api-gateway-benchmark-1">api-gateway-benchmark</a></li>
-</ul></li>
-</ul>
-</nav>
-                        </div>
-                    </div>
-                </div>
-                
+                <p>A KrakenD cluster can be configured remotely and the cluster manager applies all the changes automatically to every node.</p>
 
-                
-
-<h1 id="krakend-the-ultra-performer-api-gateway">KrakenD, the <strong>ultra performer</strong> API Gateway</h1>
-
-<p>An API Gateway is a component that needs to deliver really fast, as it is an added layer in the infrastructure. KrakenD
-was built with performance in mind. In this page and inner pages you&rsquo;ll find several tests we did to measure the performance.
-Of course we invite you to do them for yourself!</p>
-
-<h1 id="tl-dr-benchmark-results">TL;DR: <strong>Benchmark results</strong></h1>
-
-<p><strong>~18,000 requests/second</strong> on an ordinary laptop.</p>
-
-<p>The following table summarizes different performance tests using Amazon EC2 virtual instances and an example with a laptop.</p>
-
-<p><table class="table table-striped">
-    <tbody><tr>
-        <th style="width: 10px">#</th>
-        <th>Hardware specs</th>
-        <th>Requests second</th>
-        <th>Average response</th>
-    </tr>
-    <tr>
-        <td>1.</td>
-        <td>Amazon EC2 (c4.2xlarge)</td>
-        <td>10126.1613 reqs/s</td>
-        <td>9.8ms</td>
-    </tr>
-    <tr>
-        <td>2.</td>
-        <td>Amazon EC2 (c4.xlarge)</td>
-        <td>8465.4012 reqs/s</td>
-        <td>11.7ms</td>
-    </tr>
-    <tr>
-        <td>3.</td>
-        <td>Amazon EC2 (m4.large)</td>
-        <td>3634.1247 reqs/s</td>
-        <td>27.3ms</td>
-    </tr>
-    <tr>
-        <td>4.</td>
-        <td>Amazon EC2 (t2.medium)</td>
-        <td>2781.8611 reqs/s</td>
-        <td>351.3ms</td>
-    </tr>
-    <tr>
-        <td>5.</td>
-        <td>Amazon EC2 (t2.micro)</td>
-        <td>2757.6407 reqs/s</td>
-        <td>35.8ms</td>
-    </tr>
-    <tr>
-        <td>6.</td>
-        <td>MacBook Pro (Aug 2015) 2,2 GHz Intel Core i7</td>
-        <td>18157.4274 reqs/s</td>
-        <td>5.5ms</td>
-    </tr>
-    </tbody>
- </table></p>
-
-<h2 id="benchmark-in-a-macbook-pro">Benchmark in a Macbook Pro</h2>
-
-<p><a href="/docs/benchmarks/local">Here you will find the results of the benchmarks</a></p>
-
-<h2 id="benchmark-in-amazon-aws-ec2-instances">Benchmark in Amazon AWS EC2 Instances</h2>
-
-<p><a href="/docs/benchmarks/aws">Here you will find the results of the benchmarks</a></p>
-
-<h2 id="api-gateway-benchmark">Api Gateway Benchmark</h2>
-
-<p><a href="/docs/benchmarks/api-gateway-benchmark">Here you will find the results of the comparisons</a></p>
-
-<h1 id="tooling">Tooling</h1>
-
-<h2 id="hey">hey</h2>
-
-<p>Some local benchmarks used the <a href="https://github.com/rakyll/hey">hey</a> tool, which is an Apache Benchmark (ab) replacement tool.</p>
-
-<h2 id="api-gateway-benchmark-1">api-gateway-benchmark</h2>
-
-<blockquote>
-<p>This project aims to provide a complete set of tools needed to do simple performance comparisons in the API manager/gateway space. It is inspired by the great Framework Benchmarks project by TechEmpower.</p>
-</blockquote>
-
-<p>Check the <a href="https://github.com/varnish/api-gateway-benchmarks">varnish/api-gateway-benchmarks</a> project for more info.</p>
+<p>For more information on the cluster configuration see the documentation specific to <a href="/docs/cluster/cluster-overview">Cluster Management</a>.</p>
 
 
             </div>

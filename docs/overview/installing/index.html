@@ -3,15 +3,12 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.17" />
+<meta name="generator" content="Hugo 0.18.1" />
 
 
     <title>Installing KrakenD - KrakenD: API Gateway and Manager</title>
     <meta property="og:title" content="Installing KrakenD - KrakenD: API Gateway and Manager">
     
-
-
-
 
 
 
@@ -133,16 +130,34 @@
     
         
         <li class="treeview">
-            <a href="/docs/configuration/">
-                <i class='fa fa-file-text-o'></i>  <span>Configuration Options</span>
+            <a href="javascript:;">
+                <i class='fa fa-file-text-o'></i> <span>Configuration</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
             </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/configuration/configuration-start/"><i class="fa fa-circle-o %}"></i> Configuring KrakenD</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/configuration/standalone/"><i class="fa fa-circle-o %}"></i> Standalone Configuration</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/configuration/cluster/"><i class="fa fa-circle-o %}"></i> Cluster Configuration</a>
+                </li>
+            
+            </ul>
         </li>
         
     
         
         <li class="treeview">
             <a href="javascript:;">
-                <i class='fa fa-check'></i> <span>Features</span>
+                <i class='fa fa-check'></i> <span>Endpoints Features</span>
                 <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -163,6 +178,32 @@
             
                 <li class="">
                     <a href="/docs/features/other/"><i class="fa fa-circle-o %}"></i> Other</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-connectdevelop'></i> <span>Cluster Management</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/cluster/cluster-overview/"><i class="fa fa-circle-o %}"></i> Overview</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/cluster/configuration/"><i class="fa fa-circle-o %}"></i> Cluster configuration</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/cluster/subscription-levels/"><i class="fa fa-circle-o %}"></i> Subscription levels</a>
                 </li>
             
             </ul>
@@ -226,10 +267,6 @@
                 </span>
             </a>
             <ul class="treeview-menu">
-            
-                <li class="">
-                    <a href="/docs/benchmarks/overview/"><i class="fa fa-circle-o %}"></i> Overview</a>
-                </li>
             
                 <li class="">
                     <a href="/docs/benchmarks/api-gateway-benchmark/"><i class="fa fa-circle-o %}"></i> KrakenD vs others</a>
@@ -299,12 +336,10 @@
                         <div class="box-body">
                             <nav id="TableOfContents">
 <ul>
+<li><a href="#install-using-docker">Install using Docker</a></li>
 <li><a href="#rpm-installation">RPM installation</a></li>
 <li><a href="#deb-installation">DEB installation</a></li>
 <li><a href="#manual-installation">Manual installation</a></li>
-<li><a href="#provision-with-puppet">Provision with Puppet</a></li>
-<li><a href="#provision-with-ansible">Provision with Ansible</a></li>
-<li><a href="#docker">Docker</a></li>
 </ul>
 </nav>
                         </div>
@@ -313,6 +348,21 @@
                 
 
                 
+
+<h1 id="install-using-docker">Install using Docker</h1>
+
+<p>If you are already a Docker user this is the easiest way to get started:</p>
+
+<pre><code>docker pull devopsfaith/krakend
+docker run -p 8080:8080 -v $PWD:/etc/krakend/ devopsfaith/krakend
+</code></pre>
+
+<p>Requirements:</p>
+
+<ul>
+<li>The current directory must contain your API configuration file <code>krakend.json</code>. <a href="/designer/">Generate it here</a>
+<br /></li>
+</ul>
 
 <h1 id="rpm-installation">RPM installation</h1>
 
@@ -338,7 +388,7 @@ $ dnf install -y krakend
 $ systemctl start krakend
 </code></pre>
 
-<p>The process has been tested on centos 7 &amp; fedora 24</p>
+<p>The process has been tested on Centos 7 &amp; Fedora 24</p>
 
 <h1 id="deb-installation">DEB installation</h1>
 
@@ -359,7 +409,7 @@ $ apt-get update
 $ apt-get install -y krakend
 </code></pre>
 
-<p>The process has been tested on debian 8 and ubuntu 16.x</p>
+<p>The process has been tested on Debian 8 and ubuntu 16.x</p>
 
 <h1 id="manual-installation">Manual installation</h1>
 
@@ -369,18 +419,6 @@ $ apt-get install -y krakend
 <li>Create your <code>/etc/krakend/krakend.json</code> config file</li>
 <li>Start the KrakenD: <code>./krakend run</code></li>
 </ol>
-
-<h1 id="provision-with-puppet">Provision with Puppet</h1>
-
-<p>TBD</p>
-
-<h1 id="provision-with-ansible">Provision with Ansible</h1>
-
-<p>TBD</p>
-
-<h1 id="docker">Docker</h1>
-
-<p>TBD</p>
 
 
             </div>
@@ -441,7 +479,7 @@ $ apt-get install -y krakend
         </div>
         <div class="row">
             <div class="col-md-5 additional-links">
-                <strong>Copyright &copy; 2016 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2017 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
             </div>
             <div class="pull-right hidden-xs">
                 Made with <i class="fa fa-heart-o" style="color:hotpink"></i> in Barcelona

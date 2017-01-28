@@ -6,213 +6,85 @@
     <description>Recent content on KrakenD: API Gateway and Manager</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Nov 2016 18:23:05 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 21 Jan 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://www.krakend.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>KrakenD Configuration File</title>
-      <link>http://www.krakend.io/docs/configuration/</link>
-      <pubDate>Mon, 14 Nov 2016 18:23:05 +0200</pubDate>
+      <title>Cluster Management Overview</title>
+      <link>http://www.krakend.io/docs/cluster/cluster-overview/</link>
+      <pubDate>Sat, 21 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://www.krakend.io/docs/configuration/</guid>
+      <guid>http://www.krakend.io/docs/cluster/cluster-overview/</guid>
       <description>
 
-&lt;p&gt;From the functional point of view, KrakenD only needs a single configuration file to build the gateway you want. That file could be defined using the &lt;code&gt;--config&lt;/code&gt; path and in the &lt;code&gt;service.yml&lt;/code&gt; configuration file. If no value is defined, KrakenD will try to load the configuration file from the &lt;strong&gt;default path&lt;/strong&gt;, &lt;code&gt;/etc/krakend/krakend.json&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;When running a Standalone installation if for any reason the KrakenD instance stops or the machine goes down your service
+is discontinued and your clients disconnected.&lt;/p&gt;
 
-&lt;h1 id=&#34;supported-formats&#34;&gt;Supported formats&lt;/h1&gt;
+&lt;p&gt;A KrakenD cluster prevents this problem as it consists of multiple KrakenD instances running simultaneously and working
+together to provide increased reliability, higher throughput, scalability, and fail-over.&lt;/p&gt;
 
-&lt;p&gt;The following formats are supported to write the configuration file:&lt;/p&gt;
+&lt;p&gt;The KrakenD cluster provides these immediate benefits:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;YAML&lt;/li&gt;
-&lt;li&gt;TOML&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;JSON&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Increased throughput&lt;/strong&gt;: The KrakenD cluster does not limit the number of requests the service can deliver. And allows
+to add several nodes as you need (see your subscription)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scalability&lt;/strong&gt;: The capacity of an application deployed on a KrakenD cluster can be increased dynamically to meet demand as you can add
+KrakenD instances to the cluster without interruption of the service.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;High-Availability and Failover&lt;/strong&gt;: If for any reason a server dies or the instance fails the rest of the members in the cluster continue providing the service
+without affecting the global availability.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Load Balancing&lt;/strong&gt;: To do an even distribution of requests to the different KrakenD instances.&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Nevertheless, the KrakenDesigner (javascript app) only supports &lt;code&gt;JSON&lt;/code&gt; at the moment, and this is why &lt;strong&gt;we recommend using JSON&lt;/strong&gt; at least in the experimenting phase.&lt;/p&gt;
+&lt;h1 id=&#34;introducing-the-cluster-manager&#34;&gt;Introducing the Cluster Manager&lt;/h1&gt;
 
-&lt;h2 id=&#34;validating-the-syntax-of-the-configuration-file&#34;&gt;Validating the syntax of the configuration file&lt;/h2&gt;
+&lt;p&gt;The Cluster Manager uses the fantastic Hashicorp&amp;rsquo;s library Memberlist &lt;a href=&#34;http://github.com/hashicorp/memberlist&#34;&gt;Memberlist&lt;/a&gt;
+ and manages cluster membership and member failure detection using a gossip based protocol (UDP). Memberlist is eventually consistent.
+ Node failures are detected and network partitions are partially tolerated by attempting to communicate to potentially dead nodes through multiple routes.&lt;/p&gt;
 
-&lt;p&gt;Let&amp;rsquo;s say you are modifying by hand the file &lt;code&gt;~/my-krakend.json&lt;/code&gt;. When you are set, you can check the syntax of the file by running:&lt;/p&gt;
+&lt;p&gt;A KrakenD cluster uses the &lt;strong&gt;KrakenD Cluster Manager&lt;/strong&gt; to coordinate the formation of the cluster. The Cluster Manager
+is an independent binary with the following responsibilities:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;krakend --config ~/my-krakend.json check
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Validate your subscription level and validates the license&lt;/li&gt;
+&lt;li&gt;Keep all the KrakenDs configuration up to date&lt;/li&gt;
+&lt;li&gt;Graceful restart of the services when needed&lt;/li&gt;
+&lt;li&gt;Collect and centralize all the metrics and logs sent by the different KrakenD nodes&lt;/li&gt;
+&lt;li&gt;Administer the membership of the nodes and act as seeder of the cluster&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;By adding the flag &lt;code&gt;--debug&lt;/code&gt; you will be able to see the full output with the interpretation of the file:&lt;/p&gt;
+&lt;p&gt;Once all the nodes are registered in the cluster, the only communication with the Cluster Manager is to send the logs and metrics.
+If for any reason the cluster manager is stopped the krakenD nodes will continue to run anyway in cluster as they recognize themselves
+as a cluster. But if after several days the nodes cannot connect with the manager all the nodes will degrade to the free version
+with all the limits as they apply and will unregister themselves from the cluster.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;krakend --config ~/my-krakend.json --debug
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;krakend-nodes&#34;&gt;KrakenD Nodes&lt;/h1&gt;
 
-&lt;p&gt;Of course you can try to start the service directly as this will be done anyway. When the syntax is correct you&amp;rsquo;ll see the message&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Syntax OK!
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The configuration file contains a lot of different options that are explained here. Let&amp;rsquo;s dip a toe in the water first by reviewing the skeleton of the configuration file.&lt;/p&gt;
-
-&lt;h2 id=&#34;configuration-sample&#34;&gt;Configuration sample&lt;/h2&gt;
-
-&lt;p&gt;TBD&lt;/p&gt;
+&lt;p&gt;The binary for the krakenD nodes it&amp;rsquo;s the same as the standalone. So any standalone installation could be at some point used to be included
+inside a cluster with a simple change in its configuration file.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>Download KrakenD</title>
-      <link>http://www.krakend.io/download/</link>
-      <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
+      <title>Configuring KrakenD</title>
+      <link>http://www.krakend.io/docs/configuration/configuration-start/</link>
+      <pubDate>Thu, 19 Jan 2017 18:21:05 +0200</pubDate>
       
-      <guid>http://www.krakend.io/download/</guid>
+      <guid>http://www.krakend.io/docs/configuration/configuration-start/</guid>
       <description>
 
-&lt;p&gt;Download the KrakenD version for the free plan.&lt;/p&gt;
+&lt;p&gt;Depending on the size of your infrastructure and license you might need a single instance of the KrakenD or to have a KrakenD cluster instead.&lt;/p&gt;
 
-&lt;h1 id=&#34;krakend-free&#34;&gt;KrakenD Free&lt;/h1&gt;
+&lt;h2 id=&#34;krakend-standalone&#34;&gt;KrakenD Standalone&lt;/h2&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz&#34;&gt;Download&lt;/a&gt; Linux 64 bits &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz.asc&#34;&gt;PGP&lt;/a&gt; &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz.sha256&#34;&gt;SHA256&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;In a nutshell, if you are using &lt;strong&gt;KrakenD Standalone&lt;/strong&gt; the business logic (for developers) is passed using the &lt;code&gt;--config&lt;/code&gt; flag at startup time, while the system configuration (operations) is taken from the &lt;code&gt;service.yml&lt;/code&gt; file. Any change of these files requires restarting the service.&lt;/p&gt;
 
-&lt;h1 id=&#34;krakend-framework-source-code&#34;&gt;KrakenD framework source code&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.krakend.io/docs/configuration/standalone&#34;&gt;Continue to Configure KrakenD Standalone&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;KrakenD framework is &lt;strong&gt;open source&lt;/strong&gt;. If you want to build your own binaries use the code:&lt;/p&gt;
+&lt;h2 id=&#34;krakend-cluster&#34;&gt;KrakenD Cluster&lt;/h2&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://github.com/devopsfaith/krakend&#34;&gt;Github reposistory&lt;/a&gt; (source code)&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;On the other hand, when running a group of KrakenD instances using the &lt;strong&gt;KrakenD Cluster Manager&lt;/strong&gt; (KCM) the configuration is automatically injected and updated by the manager to all running KrakenD nodes.&lt;/p&gt;
 
-&lt;h1 id=&#34;installation-from-packages&#34;&gt;Installation from packages&lt;/h1&gt;
-
-&lt;h2 id=&#34;debian-based&#34;&gt;Debian based&lt;/h2&gt;
-
-&lt;p&gt;Download and installation via package using APT, for Debian and Ubuntu, is documented at the &lt;a href=&#34;http://www.krakend.io/docs/overview/installing&#34;&gt;installing&lt;/a&gt; page.&lt;/p&gt;
-
-&lt;h2 id=&#34;rpm-based&#34;&gt;RPM based&lt;/h2&gt;
-
-&lt;p&gt;Download and installation via package using YUM (or any alternative rpm manager), for RHEL, CentOS, etc is documented at the &lt;a href=&#34;http://www.krakend.io/docs/overview/installing&#34;&gt;installing&lt;/a&gt; page.&lt;/p&gt;
-
-&lt;p&gt;Here you have the &lt;a href=&#34;http://repo.krakend.io/rpm/krakend-repo-0.1-0.noarch.rpm&#34;&gt;repo rpm&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;package-verification&#34;&gt;Package verification&lt;/h2&gt;
-
-&lt;h4 id=&#34;pgp&#34;&gt;PGP&lt;/h4&gt;
-
-&lt;p&gt;We will check the deatched signature &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz.asc&#34;&gt;PGP&lt;/a&gt; against our package &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz&#34;&gt;KrakenD&lt;/a&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ gpg --verify krakend_0.3.9_amd64.tar.gz.asc krakend_0.3.9_amd64.tar.gz
-gpg: Signature made vie 02 dic 2016 19:07:49 CET using RSA key ID AB39BEA1
-gpg: Can&#39;t check signature: public key not found
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We don&amp;rsquo;t have the packager public key (AB39BEA1) in our system. You need to retrieve the public key from a key server.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ gpg --keyserver keyserver.ubuntu.com --recv-key AB39BEA1
-gpg: requesting key AB39BEA1 from hkp server keyserver.ubuntu.com
-gpg: trustdb created
-gpg: key AB39BEA1: public key &amp;quot;Daniel Ortiz &amp;lt;dortiz@devops.faith&amp;gt;&amp;quot; imported
-gpg: Total number processed: 1
-gpg:                             imported: 1    (RSA: 1)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now you can verify the signature of the package:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ gpg --verify krakend_0.3.9_amd64.tar.gz.asc krakend_0.3.9_amd64.tar.gz
-gpg: Signature made jue 01 dic 2016 14:00:38 CET using RSA key ID AB39BEA1
-gpg: Good signature from &amp;quot;Daniel Ortiz &amp;lt;dortiz@devops.faith&amp;gt;&amp;quot;
-gpg: WARNING: This key is not certified with a trusted signature!
-gpg:                    There is no indication that the signature belongs to the owner.
-Primary key fingerprint: EF9B 4CED 47D0 ECC9 69F8  3B4A 7377 C22B AB39 BEA1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;sha256&#34;&gt;SHA256&lt;/h4&gt;
-
-&lt;p&gt;Compare the result of executing the next command with the content of the &lt;a href=&#34;http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz.sha256&#34;&gt;SHA1&lt;/a&gt; file.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sha1sum -b krakend_0.3.9_amd64.tar.gz
-fcdc23597ca98de8d3a6e4ab84a039b0635b099932ce2d49314f0b4a1f1ece17 *krakend_0.3.9_amd64.tar.gz
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>KrakenD - Pricing and Plans</title>
-      <link>http://www.krakend.io/features/</link>
-      <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
-      
-      <guid>http://www.krakend.io/features/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>KrakenD F.A.Q</title>
-      <link>http://www.krakend.io/docs/faq/</link>
-      <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
-      
-      <guid>http://www.krakend.io/docs/faq/</guid>
-      <description>
-
-&lt;h1 id=&#34;understanding-the-behaviour&#34;&gt;Understanding the behaviour&lt;/h1&gt;
-
-&lt;h2 id=&#34;i-am-seeing-frequent-503-errors-in-the-logs&#34;&gt;I am seeing frequent &lt;code&gt;503&lt;/code&gt; errors in the logs&lt;/h2&gt;
-
-&lt;p&gt;E.g:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;2016/11/13 - 18:01:18 | 200 |    5.352143ms | ::1 |   GET     /frontpage
-2016/11/13 - 18:01:18 | 503 |       5.662µs | ::1 |   GET     /frontpage
-2016/11/13 - 18:01:18 | 503 |       5.662µs | ::1 |   GET     /frontpage
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;max_rate&lt;/code&gt; setting defines the maximum number of requests allowed in a single second to an endpoint. When this
-number is reached, subsequent connections are rejected with a &lt;code&gt;503&lt;/code&gt; error. This limitation is optional and is usually
-set to avoid hammering your own backends and compromising their stability.&lt;/p&gt;
-
-&lt;h3 id=&#34;solution&#34;&gt;Solution&lt;/h3&gt;
-
-&lt;p&gt;Increase the &lt;code&gt;max_rate&lt;/code&gt; number or disable it (&lt;code&gt;max_rate = 0&lt;/code&gt;). This setting can be set globaly for all the endpoints,
-or overridden individually per endpoint.&lt;/p&gt;
-
-&lt;p&gt;Remember: failling fast is always better than overloading your infrastructure and degrading the quality of your entire services.&lt;/p&gt;
-
-&lt;h2 id=&#34;i-am-having-empty-responses&#34;&gt;I am having empty responses&lt;/h2&gt;
-
-&lt;p&gt;The KrakenD service will cut the connection and will return and empty response if the backend does not respond in the
-time set by the &lt;code&gt;timeout&lt;/code&gt; variable. This variable is usually written in magnitude of &lt;strong&gt;milliseconds&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;solution-1&#34;&gt;Solution&lt;/h3&gt;
-
-&lt;p&gt;Whenever possible add caching layers in your backends, scale the infrastructure, etc. so that can answer requests in a
-decent time. Increasing the &lt;code&gt;timeout&lt;/code&gt; variable is an option but but should be always &lt;strong&gt;your last option&lt;/strong&gt;. If your
-backends are not able to respond in a short time think that when you increment the timeout what you really do is
-to block connections waiting for the backend. The memory consumption will increase and the number of connections you can
-open are finite. In a gateway your focus should be freeing the connections as soon as possible.&lt;/p&gt;
-
-&lt;p&gt;Values above &lt;code&gt;2000ms&lt;/code&gt; are not recommended.&lt;/p&gt;
-
-&lt;h2 id=&#34;reserved-endpoints&#34;&gt;Reserved endpoints&lt;/h2&gt;
-
-&lt;p&gt;The following names cannot be used as endpoint names as they are reserved:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;/__debug/
-/favicon.ico
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>KrakenDesigner</title>
-      <link>http://www.krakend.io/designer/</link>
-      <pubDate>Wed, 26 Oct 2016 18:23:05 +0200</pubDate>
-      
-      <guid>http://www.krakend.io/designer/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://www.krakend.io/docs/overview/ssl/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.krakend.io/docs/overview/ssl/</guid>
-      <description>&lt;p&gt;Example of generation &lt;code&gt;$ openssl req -x509 -nodes -newkey rsa:2048 -keyout server.rsa.key -out server.rsa.crt -days 3650&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.krakend.io/docs/cluster/cluster-configuration/&#34;&gt;Continue to Configure KrakenD Cluster&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -292,7 +164,7 @@ Of course we invite you to do them for yourself!&lt;/p&gt;
 
 &lt;h2 id=&#34;api-gateway-benchmark&#34;&gt;Api Gateway Benchmark&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://www.krakend.io/docs/benchmarks/api-gateway-benchmark&#34;&gt;Here you will find the results of the comparations&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.krakend.io/docs/benchmarks/api-gateway-benchmark&#34;&gt;Here you will find the results of the comparisons&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;tooling&#34;&gt;Tooling&lt;/h1&gt;
 
@@ -389,7 +261,7 @@ mechanisms to put you safe.&lt;/p&gt;
 
 &lt;p&gt;Consumers of REST API content (specially in microservices) often query backend services that weren&amp;rsquo;t coded for the UI implementation. This is of course a good practice, but the UI consumers need to do implementations that suffer a lot of complexity and burden with the sizes of their microservices responses.&lt;/p&gt;
 
-&lt;p&gt;KrakenD is an &lt;strong&gt;API Gateway&lt;/strong&gt; and proxy generator that sits between the client and all the source servers, adding a new layer that removes all the complexity to the clients, providing them only the information that the UI needs. KrakenD acts as an &lt;strong&gt;aggregator&lt;/strong&gt; of many sources into single endpoints and allows you to group, wrap, transform and shrink responses. Additionally it supports a myriad of middelwares and plugins that allow you to extend the functionality, such as adding Oauth authorization or security layers (SSL, certificates, HTTP Strict Transport Security, Clickjacking protection, HTTP Public Key Pinning, MIME-sniffing prevention, XSS protection).&lt;/p&gt;
+&lt;p&gt;KrakenD is an &lt;strong&gt;API Gateway&lt;/strong&gt; and proxy generator that sits between the client and all the source servers, adding a new layer that removes all the complexity to the clients, providing them only the information that the UI needs. KrakenD acts as an &lt;strong&gt;aggregator&lt;/strong&gt; of many sources into single endpoints and allows you to group, wrap, transform and shrink responses. Additionally it supports a myriad of middleware and plugins that allow you to extend the functionality, such as adding Oauth authorization or security layers (SSL, certificates, HTTP Strict Transport Security, Clickjacking protection, HTTP Public Key Pinning, MIME-sniffing prevention, XSS protection).&lt;/p&gt;
 
 &lt;p&gt;KrakenD not only supports HTTP(S), but because it is a set of generic libraries you can build all type of API Gateways and proxies, including for instance, a RPC gateway.&lt;/p&gt;
 
@@ -415,6 +287,180 @@ mechanisms to put you safe.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://www.krakend.io/images/documentation/krakend-gateway.png&#34; alt=&#34;Gateway&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The difference in size in this example would be because KrakenD server would have removed unneeded attributes from the responses.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cluster configuration</title>
+      <link>http://www.krakend.io/docs/cluster/configuration/</link>
+      <pubDate>Sat, 21 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/cluster/configuration/</guid>
+      <description>
+
+&lt;p&gt;Running a cluster basically requires the conditions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The Cluster Manager is running&lt;/li&gt;
+&lt;li&gt;The KrakenD nodes configurations has the cluster mode enabled&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;starting-the-krakend-cluster-manager&#34;&gt;Starting the KrakenD Cluster Manager&lt;/h1&gt;
+
+&lt;p&gt;After downloading the cluster manager and installing it you can start it using:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;krakendcm start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can have several cluster managers running as long as they conform a unique group. This will give you high availability
+for the cluster manager itself.&lt;/p&gt;
+
+&lt;h1 id=&#34;adding-nodes-to-the-cluster&#34;&gt;Adding nodes to the cluster&lt;/h1&gt;
+
+&lt;p&gt;In order to add nodes to the cluster, make sure to enable the clustering mode in its service configuration. To do so edit
+ the file &lt;code&gt;/etc/krakend/service.yml&lt;/code&gt; and put the DNS or the IP of the machine running the Cluster Manager. For instance:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;seed: 192.168.1.100
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If your subscription has reached the maximum number of nodes you&amp;rsquo;ll see a message like this in the cluster manager log:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Your current subscription does not allow more nodes running. Please upgrade to add more nodes.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can always upgrade your subscription and add more nodes.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cluster configuration</title>
+      <link>http://www.krakend.io/docs/cluster/subscription-levels/</link>
+      <pubDate>Sat, 21 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/cluster/subscription-levels/</guid>
+      <description>&lt;p&gt;When you start the Cluster Manager the binary will validate against the server the subscription level. It will behave
+according to your subscription. For instance, if your subscription allows to have 10 nodes in the cluster it won&amp;rsquo;t allow
+ to add the 11th node unless you upgrade. The cluster manager will check daily the subscription.&lt;/p&gt;
+
+&lt;p&gt;The subscription validation is very tolerant. This means that if for instance when the subscription is validated there
+ is trouble reaching the server the cluster manager can keep trying for several days without affecting your service
+ conditions. Even when the cluster manager detects that your subscription has expired you will have some days margin
+ to renew it before the nodes are degraded to the &amp;ldquo;free&amp;rdquo; version.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Standalone Configuration</title>
+      <link>http://www.krakend.io/docs/configuration/standalone/</link>
+      <pubDate>Thu, 19 Jan 2017 18:21:05 +0200</pubDate>
+      
+      <guid>http://www.krakend.io/docs/configuration/standalone/</guid>
+      <description>
+
+&lt;p&gt;After &lt;a href=&#34;http://www.krakend.io/overview/installing&#34;&gt;installing&lt;/a&gt; KrakenD there are two different files you need to take into account.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The &lt;strong&gt;application&lt;/strong&gt; configuration: (e.g: &lt;code&gt;/etc/krakend/krakend.json&lt;/code&gt;). This file defines all the endpoints and business logic performed by the KrakenD.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;service&lt;/strong&gt; settings: (Typically &lt;code&gt;/etc/krakend/service.yml&lt;/code&gt;). Defines ports, SSL certificates and some global limits. It also declares the path to the krakend.json file.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For your convenience the installation is placed under the &lt;code&gt;/etc/krakend/&lt;/code&gt; directory.&lt;/p&gt;
+
+&lt;p&gt;When you run for the first time KrakenD you will need to pass the &lt;code&gt;--config&lt;/code&gt;. If no value is defined, KrakenD will try to find the attribute &lt;code&gt;config_file&lt;/code&gt; from the &lt;code&gt;service.yml&lt;/code&gt; file (commented by default).&lt;/p&gt;
+
+&lt;h2 id=&#34;generating-a-configuration-file&#34;&gt;Generating a configuration file&lt;/h2&gt;
+
+&lt;p&gt;The easiest way to get your first configuration file is by simply using the &lt;a href=&#34;http://www.krakend.io/designer/&#34;&gt;KrakenDesigner&lt;/a&gt;. This is a simple javascript application
+ that helps you understand and set the different alues for all the options and when you are done allows you to download the settings. It aslo allows to save anytime and resume or modify your existing configuration later.
+ No data is uploaded ever to the server and everything stays in your browser.&lt;/p&gt;
+
+&lt;h3 id=&#34;supported-formats&#34;&gt;Supported formats&lt;/h3&gt;
+
+&lt;p&gt;The KrakenDesigner will save and load the configuration file in JSON format, but if you want to use other flavours these are the ones supported by the KrakenD:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;YAML&lt;/li&gt;
+&lt;li&gt;TOML&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JSON&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Nevertheless, &lt;strong&gt;we recommend using JSON&lt;/strong&gt; at least in the experimenting phase so you can use the KrakenDesigner for your convenience.&lt;/p&gt;
+
+&lt;h2 id=&#34;validating-the-syntax-of-the-configuration-file&#34;&gt;Validating the syntax of the configuration file&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say you are modifying by hand the file &lt;code&gt;~/my-krakend.json&lt;/code&gt;. When you are set, you can check the syntax of the file by running:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;krakend --config ~/my-krakend.json check
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By adding the flag &lt;code&gt;--debug&lt;/code&gt; you will be able to see the full output with the interpretation of the file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;krakend --config ~/my-krakend.json --debug
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Of course you can try to start the service directly as this will be done anyway. When the syntax is correct you&amp;rsquo;ll see the message&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Syntax OK!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The configuration file contains a lot of different options that are not explained in this section, the best way to get familiar with them is using the KrakenDesigner.&lt;/p&gt;
+
+&lt;h2 id=&#34;configuration-file-example&#34;&gt;Configuration file example&lt;/h2&gt;
+
+&lt;p&gt;This is how a configuration file might look like.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;name&amp;quot;: &amp;quot;Sample KrakenD configuration&amp;quot;,
+  &amp;quot;version&amp;quot;: 1,
+  &amp;quot;endpoints&amp;quot;: [
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/github&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/&amp;quot;,
+          &amp;quot;host&amp;quot;: [
+            &amp;quot;https://api.github.com&amp;quot;
+          ],
+          &amp;quot;whitelist&amp;quot;: [
+            &amp;quot;authorizations_url&amp;quot;,
+            &amp;quot;code_search_url&amp;quot;
+          ]
+        }
+      ],
+      &amp;quot;timeout&amp;quot;: &amp;quot;1500ms&amp;quot;,
+      &amp;quot;cache_ttl&amp;quot;: &amp;quot;6h&amp;quot;,
+      &amp;quot;max_rate&amp;quot;: &amp;quot;1&amp;quot;
+    },
+    {
+      &amp;quot;endpoint&amp;quot;: &amp;quot;/users/{user}&amp;quot;,
+      &amp;quot;method&amp;quot;: &amp;quot;GET&amp;quot;,
+      &amp;quot;backend&amp;quot;: [
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/users/{user}&amp;quot;,
+          &amp;quot;host&amp;quot;: [
+            &amp;quot;https://jsonplaceholder.typicode.com&amp;quot;
+          ],
+          &amp;quot;mapping&amp;quot;: {
+            &amp;quot;email&amp;quot;: &amp;quot;personal_email&amp;quot;
+          }
+        },
+        {
+          &amp;quot;url_pattern&amp;quot;: &amp;quot;/posts/{user}&amp;quot;,
+          &amp;quot;host&amp;quot;: [
+            &amp;quot;https://jsonplaceholder.typicode.com&amp;quot;
+          ]
+        }
+      ]
+    }
+  ],
+  &amp;quot;oauth&amp;quot;: {
+    &amp;quot;disable&amp;quot;: true
+  },
+  &amp;quot;cache_ttl&amp;quot;: &amp;quot;30m&amp;quot;,
+  &amp;quot;timeout&amp;quot;: &amp;quot;5s&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -614,7 +660,7 @@ environment and conditions and tested the following products:&lt;/p&gt;
 
 &lt;p&gt;For the benchmarks we based the tests on the benchmarking project &lt;a href=&#34;https://github.com/varnish/api-gateway-benchmarks&#34;&gt;varnish/api-gateway-benchmarks&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;At the time of writing, KrakenD does not support auth features, so we just benchmarked it with &lt;em&gt;test01&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;At the time of writing, KrakenD does not support auth features, so we just did the benchmark with &lt;em&gt;test01&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;tldr&#34;&gt;TLDR;&lt;/h1&gt;
 
@@ -940,13 +986,13 @@ Latency distribution:
 &lt;/ul&gt;
 
 &lt;p&gt;The test consists in running &lt;code&gt;hey&lt;/code&gt; against a KrakenD endpoint. The KrakenD endpoint uses as the backend an URL in (&lt;code&gt;LWAN&lt;/code&gt;).
-After runnint the test, the &lt;code&gt;hey&lt;/code&gt; output is &lt;a href=&#34;https://github.com/devopsfaith/hey-to-csv&#34;&gt;parsed and converted to CSV&lt;/a&gt; in order to generate the graphs.&lt;/p&gt;
+After running the test, the &lt;code&gt;hey&lt;/code&gt; output is &lt;a href=&#34;https://github.com/devopsfaith/hey-to-csv&#34;&gt;parsed and converted to CSV&lt;/a&gt; in order to generate the graphs.&lt;/p&gt;
 
 &lt;p&gt;For each instance type there are 2 different tests:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Proxy&lt;/strong&gt;: We called proxy test when the KrakenD is just used as gateway and calls to a single endpoint to the web server (&lt;code&gt;/foo&lt;/code&gt; endpoint in the configuration).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Agreggate&lt;/strong&gt;: We called agreggate test when the KrakenD calls to a 3 different endpoints in the web server and agreggates the results (&lt;code&gt;/social&lt;/code&gt; endpoint in the configuration).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Aggregate&lt;/strong&gt;: We called aggregate test when the KrakenD calls to a 3 different endpoints in the web server and aggregates the results (&lt;code&gt;/social&lt;/code&gt; endpoint in the configuration).&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;The instance types we tested are:&lt;/p&gt;
@@ -1058,7 +1104,7 @@ After runnint the test, the &lt;code&gt;hey&lt;/code&gt; output is &lt;a href=&#
 
 &lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_micro_test01.csv&#34;&gt;&lt;/script&gt;
 
-&lt;h2 id=&#34;agreggate-test-on-t2-micro&#34;&gt;Agreggate test on &lt;code&gt;t2.micro&lt;/code&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;aggregate-test-on-t2-micro&#34;&gt;Aggregate test on &lt;code&gt;t2.micro&lt;/code&gt;&lt;/h2&gt;
 
 &lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_micro_aggregate.csv&#34;&gt;&lt;/script&gt;
 
@@ -1066,7 +1112,7 @@ After runnint the test, the &lt;code&gt;hey&lt;/code&gt; output is &lt;a href=&#
 
 &lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_medium_test01.csv&#34;&gt;&lt;/script&gt;
 
-&lt;h2 id=&#34;agreggate-test-on-t2-medium&#34;&gt;Agreggate test on &lt;code&gt;t2.medium&lt;/code&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;aggregate-test-on-t2-medium&#34;&gt;Aggregate test on &lt;code&gt;t2.medium&lt;/code&gt;&lt;/h2&gt;
 
 &lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=t2_medium_aggregate.csv&#34;&gt;&lt;/script&gt;
 
@@ -1074,7 +1120,7 @@ After runnint the test, the &lt;code&gt;hey&lt;/code&gt; output is &lt;a href=&#
 
 &lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=m4_large_test01.csv&#34;&gt;&lt;/script&gt;
 
-&lt;h2 id=&#34;agreggate-test-on-m4-large&#34;&gt;Agreggate test on &lt;code&gt;m4.large&lt;/code&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;aggregate-test-on-m4-large&#34;&gt;Aggregate test on &lt;code&gt;m4.large&lt;/code&gt;&lt;/h2&gt;
 
 &lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=m4_large_aggregate.csv&#34;&gt;&lt;/script&gt;
 
@@ -1082,7 +1128,7 @@ After runnint the test, the &lt;code&gt;hey&lt;/code&gt; output is &lt;a href=&#
 
 &lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_xlarge_test01.csv&#34;&gt;&lt;/script&gt;
 
-&lt;h2 id=&#34;agreggate-test-on-c4-xlarge&#34;&gt;Agreggate test on &lt;code&gt;c4.xlarge&lt;/code&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;aggregate-test-on-c4-xlarge&#34;&gt;Aggregate test on &lt;code&gt;c4.xlarge&lt;/code&gt;&lt;/h2&gt;
 
 &lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_xlarge_aggregate.csv&#34;&gt;&lt;/script&gt;
 
@@ -1090,7 +1136,7 @@ After runnint the test, the &lt;code&gt;hey&lt;/code&gt; output is &lt;a href=&#
 
 &lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_2xlarge_test01.csv&#34;&gt;&lt;/script&gt;
 
-&lt;h2 id=&#34;agreggate-test-on-c4-2xlarge&#34;&gt;Agreggate test on &lt;code&gt;c4.2xlarge&lt;/code&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;aggregate-test-on-c4-2xlarge&#34;&gt;Aggregate test on &lt;code&gt;c4.2xlarge&lt;/code&gt;&lt;/h2&gt;
 
 &lt;script src=&#34;https://gist.github.com/kpacha/91caba50e47160f656069373b0f0605d.js?file=c4_2xlarge_aggregate.csv&#34;&gt;&lt;/script&gt;
 
@@ -1109,7 +1155,7 @@ credit the instance will perform worst.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Use &lt;code&gt;micro&lt;/code&gt; instances by default.&lt;/li&gt;
-&lt;li&gt;If you expect high and continued load with complex use cases (intesive agreggation and manipulation) &lt;code&gt;c4.2xlarge&lt;/code&gt; is worth it&lt;/li&gt;
+&lt;li&gt;If you expect high and continued load with complex use cases (intensive aggregation and manipulation) &lt;code&gt;c4.2xlarge&lt;/code&gt; is worth it&lt;/li&gt;
 &lt;li&gt;If you want to maintain quality of service with high load but a relative simple app, &lt;code&gt;c4.xlarge&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;For low to moderate loads use &lt;code&gt;micro&lt;/code&gt; or a cluster of micros.&lt;/li&gt;
 &lt;li&gt;We wouldn&amp;rsquo;t choose &lt;code&gt;m4&lt;/code&gt; in any scenario for the money/performance.&lt;/li&gt;
@@ -1130,9 +1176,9 @@ using your own data. This is a reference to contrast your own tests.&lt;/p&gt;
 
 &lt;h1 id=&#34;merging&#34;&gt;Merging&lt;/h1&gt;
 
-&lt;p&gt;KrakenD is able to merge responses from several backend APIs and return them in a single response to the client. The merge operation is implemented in a responsive way, so it will do its &amp;lsquo;best effort&amp;rsquo; trying to get all the required parts from the backends and returning the composed object as soon as possible. In order to avoid a degradated user experience during hight load peaks or network errors, the merge layer uses a timeout.&lt;/p&gt;
+&lt;p&gt;KrakenD is able to merge responses from several backend APIs and return them in a single response to the client. The merge operation is implemented in a responsive way, so it will do its &amp;lsquo;best effort&amp;rsquo; trying to get all the required parts from the backends and returning the composed object as soon as possible. In order to avoid a degraded user experience during high load peaks or network errors, the merge layer uses a timeout.&lt;/p&gt;
 
-&lt;p&gt;When the timeout is exceded, the merging component will return an incomplete response with all the parts it already collected before the timeout.&lt;/p&gt;
+&lt;p&gt;When the timeout is exceeded, the merging component will return an incomplete response with all the parts it already collected before the timeout.&lt;/p&gt;
 
 &lt;p&gt;Example:&lt;/p&gt;
 
@@ -1546,6 +1592,159 @@ cb_max_errors = 5
 cb_timeout  = 1s 
 cb_max_errors = 10
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>KrakenD - Rate limiting</title>
+      <link>http://www.krakend.io/docs/throttling/rate-limit/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.krakend.io/docs/throttling/rate-limit/</guid>
+      <description>
+
+&lt;p&gt;The rate limits allow you to restrict the traffic to any component of the stack (the KrakenD itself and the actual API backend services) and mainly cover two different purposes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Avoid flooding your system with massive requests&lt;/li&gt;
+&lt;li&gt;Establish a quota of usage for your API&lt;/li&gt;
+&lt;li&gt;Create a simple QoS strategy for you API&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This measures are complementary to the &lt;a href=&#34;http://www.krakend.io/docs/throttling/circuit-breaker&#34;&gt;Circuit Breaker&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;rate-limits-levels&#34;&gt;Rate limits levels&lt;/h1&gt;
+
+&lt;p&gt;There are three different levels where you can apply throttling limits, if the same limit is defined in several levels
+the most specific takes place. The levels are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Service level (Global)&lt;/li&gt;
+&lt;li&gt;Endpoint level
+
+&lt;ul&gt;
+&lt;li&gt;Client level&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Backend&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Service and Endpoint levels are always defined at service configuration level (file &lt;code&gt;/etc/krakend/service.yml&lt;/code&gt;), while
+the Client level is defined at Application configuration (&lt;code&gt;krakend.json&lt;/code&gt; or &lt;a href=&#34;http://www.krakend.io/designer/&#34;&gt;UI&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h2 id=&#34;global-level&#34;&gt;Global level&lt;/h2&gt;
+
+&lt;p&gt;The &lt;code&gt;global_max_rate&lt;/code&gt; is the &lt;strong&gt;hard limit of the KrakenD service&lt;/strong&gt; (defaults to 0). This is similar to what you would do
+at a firewall level to limit/burst the traffic you send to your backend. Leaving this value set to &lt;code&gt;0&lt;/code&gt; makes KrakenD go
+as fast as possible. If you want to set a limit a good reference is to chose the 95% of your backend throughput.&lt;/p&gt;
+
+&lt;p&gt;When set, the rate counts against all endpoints.&lt;/p&gt;
+
+&lt;p&gt;You can find this parameter in the &lt;code&gt;service.yml&lt;/code&gt; configuration file, e.g:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;global_max_rate: 1500 # req/s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;default-max-rate-per-endpoint&#34;&gt;Default max rate per endpoint&lt;/h2&gt;
+
+&lt;p&gt;HARD LIMIT
+At a service level you can define a &lt;strong&gt;default maximum rate limit per endpoint&lt;/strong&gt;. Unless the application configuration
+overwrites this limit this limit will be set for all the endpoints.&lt;/p&gt;
+
+&lt;p&gt;Limits the request per second the KrakenD service will process for a single endpoint.&lt;/p&gt;
+
+&lt;p&gt;This parameter is defined at the &lt;code&gt;service.yml&lt;/code&gt; configuration file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;max_rate_per_endpoint: 1000 # req/s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;client&#34;&gt;Client&lt;/h2&gt;
+
+&lt;p&gt;Limits the request per second the KrakenD service will process for a single endpoint and a given client. There are two client identification strategies: by token set in a request header and by client IP.&lt;/p&gt;
+
+&lt;p&gt;This level is defined at the &lt;code&gt;krakend.json&lt;/code&gt; configuration file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+{
+  &amp;quot;endpoint&amp;quot;: &amp;quot;/account&amp;quot;,
+  &amp;quot;backend&amp;quot;: [
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/user&amp;quot;
+    }
+  ],
+  &amp;quot;client_max_rate&amp;quot;: &amp;quot;1&amp;quot;
+},
+{
+  &amp;quot;endpoint&amp;quot;: &amp;quot;/products&amp;quot;,
+  &amp;quot;backend&amp;quot;: [
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/items/list&amp;quot;
+    }
+  ],
+  &amp;quot;client_max_rate&amp;quot;: &amp;quot;1&amp;quot;,
+  &amp;quot;throttling_header&amp;quot;: &amp;quot;X-Token&amp;quot;
+},
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Client rate limiting could have an impact on the global performance, so use it with caution.&lt;/p&gt;
+
+&lt;h2 id=&#34;backend&#34;&gt;Backend&lt;/h2&gt;
+
+&lt;p&gt;Limits the request per second the KrakenD service will send to a given backend for a given endpoint.&lt;/p&gt;
+
+&lt;p&gt;This parameter is defined at the &lt;code&gt;krakend.json&lt;/code&gt; configuration file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;...
+{
+  &amp;quot;endpoint&amp;quot;: &amp;quot;/github&amp;quot;,
+  &amp;quot;backend&amp;quot;: [
+    {
+      &amp;quot;url_pattern&amp;quot;: &amp;quot;/&amp;quot;
+    }
+  ],
+  &amp;quot;endpoint_max_rate&amp;quot;: &amp;quot;1&amp;quot;
+},
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;implementation-details&#34;&gt;Implementation details&lt;/h1&gt;
+
+&lt;p&gt;Our rate limiting middlewares are using a &lt;a href=&#34;https://en.wikipedia.org/wiki/Token_bucket&#34;&gt;token bucket algorithm&lt;/a&gt; with a &lt;code&gt;bucket capacity == tokens added per second&lt;/code&gt; so KrakenD is able to allow some bursting on the request rates.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www-scf.usc.edu/~trigunay/token_filter.png&#34; alt=&#34;token bucket&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;limiting-the-amount-of-connections-per-client-client-max-rate&#34;&gt;Limiting the amount of connections per client (&lt;code&gt;client_max_rate&lt;/code&gt;)&lt;/h2&gt;
+
+&lt;p&gt;On the other hand, the &lt;code&gt;client_max_rate&lt;/code&gt; limits the maximum requests allowed to every client within a second. The value should
+be significantly lower than you would use for &lt;code&gt;max_rate&lt;/code&gt;, as this limit will be multiplied by the number of active clients in that moment.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;client_max_rate : 10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If 200 different customers (with different IPs) hit the KrakenD, they will be allowed to generate a total traffic of&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;200 ips x 10 req/s = 2000req/s  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;comparison-of-max-rate-vs-client-max-rate&#34;&gt;Comparison of &lt;code&gt;max_rate&lt;/code&gt; vs &lt;code&gt;client_max_rate&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;The &lt;code&gt;max_rate&lt;/code&gt; is an absolute number and you have the exact control on how much traffic you are allowing to hit the backend. In
+an eventual DDoS the &lt;code&gt;max_rate&lt;/code&gt; can help in a way since it won&amp;rsquo;t accept more traffic than allowed. But on the other hand
+a single host could abuse the system taking a big percentage of that quota.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;client_max_rate&lt;/code&gt; is a limit per client. It won&amp;rsquo;t help you if you just want to control the total traffic, as
+the total traffic supported by the backend depends on the number of different requesting clients. A DDoS will then happily pass
+through, but on the other hand you can keep any particular abuser limited to its quota.&lt;/p&gt;
+
+&lt;p&gt;Depending on your use case you will need to decide if you use one, the other, the two, or none of them (fastest):&lt;/p&gt;
+
+&lt;div class=&#34;alert note&#34;&gt;
+    &lt;h4&gt;&lt;i class=&#34;icon fa fa-sticky-note-o&#34;&gt;&lt;/i&gt; Performance note!&lt;/h4&gt;
+    &lt;p&gt;From a &lt;strong&gt;performance point of view&lt;/strong&gt; the &lt;tt&gt;client_max_rate&lt;/tt&gt; drops the performance as every incoming client 
+    needs to be monitored.&lt;/p&gt;
+ &lt;/div&gt;
 </description>
     </item>
     

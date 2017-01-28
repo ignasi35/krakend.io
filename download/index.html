@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.17" />
+<meta name="generator" content="Hugo 0.18.1" />
 
 
     <title>Download KrakenD - KrakenD: API Gateway and Manager</title>
@@ -11,9 +11,6 @@
     
     <meta property="description" content="Download KrakenD binary">
     
-
-
-
 
 
 
@@ -135,16 +132,34 @@
     
         
         <li class="treeview">
-            <a href="/docs/configuration/">
-                <i class='fa fa-file-text-o'></i>  <span>Configuration Options</span>
+            <a href="javascript:;">
+                <i class='fa fa-file-text-o'></i> <span>Configuration</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
             </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/configuration/configuration-start/"><i class="fa fa-circle-o %}"></i> Configuring KrakenD</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/configuration/standalone/"><i class="fa fa-circle-o %}"></i> Standalone Configuration</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/configuration/cluster/"><i class="fa fa-circle-o %}"></i> Cluster Configuration</a>
+                </li>
+            
+            </ul>
         </li>
         
     
         
         <li class="treeview">
             <a href="javascript:;">
-                <i class='fa fa-check'></i> <span>Features</span>
+                <i class='fa fa-check'></i> <span>Endpoints Features</span>
                 <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -165,6 +180,32 @@
             
                 <li class="">
                     <a href="/docs/features/other/"><i class="fa fa-circle-o %}"></i> Other</a>
+                </li>
+            
+            </ul>
+        </li>
+        
+    
+        
+        <li class="treeview">
+            <a href="javascript:;">
+                <i class='fa fa-connectdevelop'></i> <span>Cluster Management</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+            
+                <li class="">
+                    <a href="/docs/cluster/cluster-overview/"><i class="fa fa-circle-o %}"></i> Overview</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/cluster/configuration/"><i class="fa fa-circle-o %}"></i> Cluster configuration</a>
+                </li>
+            
+                <li class="">
+                    <a href="/docs/cluster/subscription-levels/"><i class="fa fa-circle-o %}"></i> Subscription levels</a>
                 </li>
             
             </ul>
@@ -228,10 +269,6 @@
                 </span>
             </a>
             <ul class="treeview-menu">
-            
-                <li class="">
-                    <a href="/docs/benchmarks/overview/"><i class="fa fa-circle-o %}"></i> Overview</a>
-                </li>
             
                 <li class="">
                     <a href="/docs/benchmarks/api-gateway-benchmark/"><i class="fa fa-circle-o %}"></i> KrakenD vs others</a>
@@ -301,9 +338,10 @@
                         <div class="box-body">
                             <nav id="TableOfContents">
 <ul>
-<li><a href="#krakend-free">KrakenD Free</a></li>
+<li><a href="#download-tarball">Download tarball</a></li>
+<li><a href="#download-via-docker">Download via Docker</a></li>
 <li><a href="#krakend-framework-source-code">KrakenD framework source code</a></li>
-<li><a href="#installation-from-packages">Installation from packages</a>
+<li><a href="#linux-packages">Linux packages</a>
 <ul>
 <li><a href="#debian-based">Debian based</a></li>
 <li><a href="#rpm-based">RPM based</a></li>
@@ -325,13 +363,19 @@
 
                 
 
-<p>Download the KrakenD version for the free plan.</p>
+<p>Download the KrakenD binary file here. Or use our <a href="https://hub.docker.com/r/devopsfaith/krakend">Docker repository</a></p>
 
-<h1 id="krakend-free">KrakenD Free</h1>
+<h1 id="download-tarball">Download tarball</h1>
+
+<p>Krakend ready to decompress and execute for a specific platform</p>
 
 <ul>
-<li><a href="http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz">Download</a> Linux 64 bits <a href="http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz.asc">PGP</a> <a href="http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz.sha256">SHA256</a></li>
+<li><strong>Linux 64 bits</strong>: <a href="http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz">Download</a> | <a href="http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz.asc">PGP</a> <a href="http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz.sha256">SHA256</a></li>
 </ul>
+
+<h1 id="download-via-docker">Download via Docker</h1>
+
+<p>Download and <a href="/docs/overview/installing">Install with Docker</a></p>
 
 <h1 id="krakend-framework-source-code">KrakenD framework source code</h1>
 
@@ -341,7 +385,7 @@
 <li><a href="http://github.com/devopsfaith/krakend">Github reposistory</a> (source code)</li>
 </ul>
 
-<h1 id="installation-from-packages">Installation from packages</h1>
+<h1 id="linux-packages">Linux packages</h1>
 
 <h2 id="debian-based">Debian based</h2>
 
@@ -357,7 +401,7 @@
 
 <h4 id="pgp">PGP</h4>
 
-<p>We will check the deatched signature <a href="http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz.asc">PGP</a> against our package <a href="http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz">KrakenD</a>.</p>
+<p>We will check the detached signature <a href="http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz.asc">PGP</a> against our package <a href="http://repo.krakend.io/bin/krakend_0.3.9_amd64.tar.gz">KrakenD</a>.</p>
 
 <pre><code>$ gpg --verify krakend_0.3.9_amd64.tar.gz.asc krakend_0.3.9_amd64.tar.gz
 gpg: Signature made vie 02 dic 2016 19:07:49 CET using RSA key ID AB39BEA1
@@ -451,7 +495,7 @@ fcdc23597ca98de8d3a6e4ab84a039b0635b099932ce2d49314f0b4a1f1ece17 *krakend_0.3.9_
         </div>
         <div class="row">
             <div class="col-md-5 additional-links">
-                <strong>Copyright &copy; 2016 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2017 <a href="http://devops.faith">Devops Faith</a>.</strong> All rights reserved.
             </div>
             <div class="pull-right hidden-xs">
                 Made with <i class="fa fa-heart-o" style="color:hotpink"></i> in Barcelona
