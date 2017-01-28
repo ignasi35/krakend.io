@@ -347,9 +347,9 @@ without affecting the global availability.</li>
 
 <h1 id="introducing-the-cluster-manager">Introducing the Cluster Manager</h1>
 
-<p>The Cluster Manager uses the fantastic Hashicorp&rsquo;s library Memberlist <a href="http://github.com/hashicorp/memberlist">Memberlist</a>
- and manages cluster membership and member failure detection using a gossip based protocol (UDP). Memberlist is eventually consistent.
- Node failures are detected and network partitions are partially tolerated by attempting to communicate to potentially dead nodes through multiple routes.</p>
+<p>The Cluster Manager administers all the nodes that provide the same KrakenD service in the cluster. It manages cluster
+membership and member failure detection using a gossip based protocol (UDP).  Node failures are detected
+and network partitions are partially tolerated by attempting to communicate to potentially dead nodes through multiple routes.</p>
 
 <p>A KrakenD cluster uses the <strong>KrakenD Cluster Manager</strong> to coordinate the formation of the cluster. The Cluster Manager
 is an independent binary with the following responsibilities:</p>
@@ -358,11 +358,12 @@ is an independent binary with the following responsibilities:</p>
 <li>Validate your subscription level and validates the license</li>
 <li>Keep all the KrakenDs configuration up to date</li>
 <li>Graceful restart of the services when needed</li>
-<li>Collect and centralize all the metrics and logs sent by the different KrakenD nodes</li>
+<li>Collect and centralize all the stats sent by the different KrakenD nodes</li>
 <li>Administer the membership of the nodes and act as seeder of the cluster</li>
 </ul>
 
-<p>Once all the nodes are registered in the cluster, the only communication with the Cluster Manager is to send the logs and metrics.
+<p>Once all the nodes are registered in the cluster, the only communication with the Cluster Manager is to send the stats and
+metrics and to collect configuration updates.
 If for any reason the cluster manager is stopped the krakenD nodes will continue to run anyway in cluster as they recognize themselves
 as a cluster. But if after several days the nodes cannot connect with the manager all the nodes will degrade to the free version
 with all the limits as they apply and will unregister themselves from the cluster.</p>

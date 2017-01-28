@@ -338,6 +338,7 @@
 <ul>
 <li><a href="#starting-the-krakend-cluster-manager">Starting the KrakenD Cluster Manager</a></li>
 <li><a href="#adding-nodes-to-the-cluster">Adding nodes to the cluster</a></li>
+<li><a href="#removing-nodes-from-the-cluster">Removing nodes from the cluster</a></li>
 </ul>
 </nav>
                         </div>
@@ -369,7 +370,7 @@ for the cluster manager itself.</p>
 <p>In order to add nodes to the cluster, make sure to enable the clustering mode in its service configuration. To do so edit
  the file <code>/etc/krakend/service.yml</code> and put the DNS or the IP of the machine running the Cluster Manager. For instance:</p>
 
-<pre><code>seed: 192.168.1.100
+<pre><code>seed: 192.168.1.100:7000
 </code></pre>
 
 <p>If your subscription has reached the maximum number of nodes you&rsquo;ll see a message like this in the cluster manager log:</p>
@@ -378,6 +379,15 @@ for the cluster manager itself.</p>
 </code></pre>
 
 <p>You can always upgrade your subscription and add more nodes.</p>
+
+<h1 id="removing-nodes-from-the-cluster">Removing nodes from the cluster</h1>
+
+<p>Removing a node from the cluster only requires to stop or kill the KrakenD service in the desired node. After stopping
+it the Cluster Manager will immediately mark the node as removed.</p>
+
+<p>If for any reason a node leaves unexpectedly the cluster, like in a network failure, the node is marked as unreachable and if
+ after a grace period there is no communication saying otherwise it will be marked as down. Any node that has left can
+ rejoin the cluster anytime.</p>
 
 
             </div>
