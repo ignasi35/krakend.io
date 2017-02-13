@@ -351,16 +351,16 @@
 
 <h1 id="install-using-docker">Install using Docker</h1>
 
-<p>If you are already a Docker user this is the easiest way to get started:</p>
+<p>If you are already a Docker the easiest way to get started is pulling the <a href="https://hub.docker.com/r/devopsfaith/krakend/">KrakenD image</a> from Docker Hub:</p>
 
 <pre><code>docker pull devopsfaith/krakend
 docker run -p 8080:8080 -v $PWD:/etc/krakend/ devopsfaith/krakend
 </code></pre>
 
-<p>Requirements:</p>
+<p><strong>Requirements</strong>:</p>
 
 <ul>
-<li>The current directory must contain your API configuration file <code>krakend.json</code>. <a href="/designer/">Generate it here</a>
+<li>The current directory must contain the <code>krakend.json</code> file with your endpoint definition, you can <a href="/designer/">generate it here</a>
 <br /></li>
 </ul>
 
