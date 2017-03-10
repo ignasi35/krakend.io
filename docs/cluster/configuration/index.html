@@ -269,6 +269,10 @@
             <ul class="treeview-menu">
             
                 <li class="">
+                    <a href="/docs/benchmarks/overview/"><i class="fa fa-circle-o %}"></i> Benchmarks Overview</a>
+                </li>
+            
+                <li class="">
                     <a href="/docs/benchmarks/api-gateway-benchmark/"><i class="fa fa-circle-o %}"></i> KrakenD vs others</a>
                 </li>
             
@@ -359,7 +363,7 @@
 
 <p>After downloading the cluster manager and installing it you can start it using:</p>
 
-<pre><code>krakendcm start
+<pre><code>krakend-cluster-manager
 </code></pre>
 
 <p>You can have several cluster managers running as long as they conform a unique group. This will give you high availability
@@ -373,6 +377,14 @@ for the cluster manager itself.</p>
 <pre><code>seed: 192.168.1.100:7000
 </code></pre>
 
+<p>Then start the KrakenD service with no special parameter. Once it has started you will see in the log of the cluster a
+message like this:</p>
+
+<pre><code>CM  2017/02/13 - 18:18:23.290 ▶ INFO Sending the limits to the krakend: krakend_3f20a44d-3d93-4bc9-829b-b76b22055142
+</code></pre>
+
+<p>The message shows the ID that has been assigned to the new node (<code>3f20a44d-3d93-4bc9-829b-b76b22055142</code> in this example).</p>
+
 <p>If your subscription has reached the maximum number of nodes you&rsquo;ll see a message like this in the cluster manager log:</p>
 
 <pre><code>Your current subscription does not allow more nodes running. Please upgrade to add more nodes.
@@ -383,7 +395,7 @@ for the cluster manager itself.</p>
 <h1 id="removing-nodes-from-the-cluster">Removing nodes from the cluster</h1>
 
 <p>Removing a node from the cluster only requires to stop or kill the KrakenD service in the desired node. After stopping
-it the Cluster Manager will immediately mark the node as removed.</p>
+it the Cluster Manager will immediately mark the node as removed, but the statistics will last while the time window is valid.</p>
 
 <p>If for any reason a node leaves unexpectedly the cluster, like in a network failure, the node is marked as unreachable and if
  after a grace period there is no communication saying otherwise it will be marked as down. Any node that has left can

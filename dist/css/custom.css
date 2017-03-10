@@ -236,10 +236,16 @@ a.badge-remove:hover {
     font-size: 16px;
 }
 
+.feature-block .fa {
+    color: #c1c1c1;
+    font-size: 25px;
+}
+
 .feature-block .fa-check {
     color: #72db67;
     font-size: 25px;
 }
+
 
 .feature-comparison td {
     font-size: 16px;

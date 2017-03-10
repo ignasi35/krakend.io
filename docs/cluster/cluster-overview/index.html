@@ -269,6 +269,10 @@
             <ul class="treeview-menu">
             
                 <li class="">
+                    <a href="/docs/benchmarks/overview/"><i class="fa fa-circle-o %}"></i> Benchmarks Overview</a>
+                </li>
+            
+                <li class="">
                     <a href="/docs/benchmarks/api-gateway-benchmark/"><i class="fa fa-circle-o %}"></i> KrakenD vs others</a>
                 </li>
             
@@ -327,13 +331,10 @@
 
                 
 
-<p>When running a Standalone installation if for any reason the KrakenD instance stops or the machine goes down your service
-is discontinued and your clients disconnected.</p>
-
-<p>A KrakenD cluster prevents this problem as it consists of multiple KrakenD instances running simultaneously and working
+<p>A KrakenD cluster consists of multiple KrakenD instances running simultaneously and working
 together to provide increased reliability, higher throughput, scalability, and fail-over.</p>
 
-<p>The KrakenD cluster provides these immediate benefits:</p>
+<p>The KrakenD cluster provides these immediate <strong>benefits</strong>:</p>
 
 <ul>
 <li><strong>Increased throughput</strong>: The KrakenD cluster does not limit the number of requests the service can deliver. And allows
@@ -342,7 +343,8 @@ to add several nodes as you need (see your subscription)</li>
 KrakenD instances to the cluster without interruption of the service.</li>
 <li><strong>High-Availability and Failover</strong>: If for any reason a server dies or the instance fails the rest of the members in the cluster continue providing the service
 without affecting the global availability.</li>
-<li><strong>Load Balancing</strong>: To do an even distribution of requests to the different KrakenD instances.<br /></li>
+<li><strong>Load Balancing</strong>: To do an even distribution of requests to the different KrakenD instances.</li>
+<li><strong>Control</strong>: As the Cluster Manager comes with a web interface to see the activity of the cluster.</li>
 </ul>
 
 <h1 id="introducing-the-cluster-manager">Introducing the Cluster Manager</h1>
@@ -355,23 +357,31 @@ and network partitions are partially tolerated by attempting to communicate to p
 is an independent binary with the following responsibilities:</p>
 
 <ul>
-<li>Validate your subscription level and validates the license</li>
-<li>Keep all the KrakenDs configuration up to date</li>
-<li>Graceful restart of the services when needed</li>
-<li>Collect and centralize all the stats sent by the different KrakenD nodes</li>
-<li>Administer the membership of the nodes and act as seeder of the cluster</li>
+<li>Validates your subscription level and validates the license</li>
+<li>Keeps all the KrakenDs configuration up to date</li>
+<li>Restarts gracefully the services when needed</li>
+<li>Collects and centralizes all the stats sent by the different KrakenD nodes</li>
+<li>Administers the membership of the nodes and acts as seeder (leader) of the cluster</li>
 </ul>
 
 <p>Once all the nodes are registered in the cluster, the only communication with the Cluster Manager is to send the stats and
-metrics and to collect configuration updates.
-If for any reason the cluster manager is stopped the krakenD nodes will continue to run anyway in cluster as they recognize themselves
-as a cluster. But if after several days the nodes cannot connect with the manager all the nodes will degrade to the free version
-with all the limits as they apply and will unregister themselves from the cluster.</p>
+metrics and to collect configuration updates.</p>
+
+<p>If for any reason the cluster manager is stopped the KrakenD nodes will continue to run anyway in cluster as they recognize themselves
+as a cluster. But if after several days the nodes cannot connect with the manager all the nodes will degrade to the <em>free version</em>
+with all the corresponding limits and will un-register themselves from the cluster.</p>
 
 <h1 id="krakend-nodes">KrakenD Nodes</h1>
 
-<p>The binary for the krakenD nodes it&rsquo;s the same as the standalone. So any standalone installation could be at some point used to be included
+<p>The binary for the KrakenD nodes it&rsquo;s the same as the standalone. So any standalone installation could be at some point used to be included
 inside a cluster with a simple change in its configuration file.</p>
+
+<h1 id="web-interface-cluster-manager">Web interface: Cluster Manager</h1>
+
+<p>The cluster manager machine exposes by default a web interface in the port <code>9897</code>. The activity of your cluster can be
+followed in a URL like <strong><a href="http://localhost:9897">http://localhost:9897</a></strong> (use your own IP)</p>
+
+<p>The web interface shows the activity to all your nodes and to your backends.</p>
 
 
             </div>

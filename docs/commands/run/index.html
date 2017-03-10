@@ -271,6 +271,10 @@
             <ul class="treeview-menu">
             
                 <li class="">
+                    <a href="/docs/benchmarks/overview/"><i class="fa fa-circle-o %}"></i> Benchmarks Overview</a>
+                </li>
+            
+                <li class="">
                     <a href="/docs/benchmarks/api-gateway-benchmark/"><i class="fa fa-circle-o %}"></i> KrakenD vs others</a>
                 </li>
             
@@ -326,41 +330,13 @@
             <div class="box-body">
                 
                 
-                <div class="pull-right col-md-4 TOC">
-                    <div class="box">
-                    <div class="box-header with-border">
-                        <h5 class="box-title"><i class="fa fa-book"></i> Table of Contents</h5>
-                        <div class="pull-right">
-                            <a data-widget="collapse"><i class="fa fa-minus"></i></a>
-                        </div>
-                    </div>
-
-                        <div class="box-body">
-                            <nav id="TableOfContents">
-<ul>
-<li><a href="#overview">Overview</a></li>
-<li><a href="#usage">Usage</a>
-<ul>
-<li><a href="#configuration">Configuration</a></li>
-</ul></li>
-<li><a href="#example">Example</a></li>
-</ul>
-</nav>
-                        </div>
-                    </div>
-                </div>
-                
 
                 
 
-<h1 id="overview">Overview</h1>
-
-<p>The <code>krakend run</code> starts the KrakenD with the passed flags.</p>
-
-<h1 id="usage">Usage</h1>
+<p>The <code>krakend run --help</code> shows the following options:</p>
 
 <pre><code>$ krakend run -h
-krakend 0.3.8
+krakend 0.3.9
 
 Usage:
   krakend run [flags]
@@ -371,9 +347,12 @@ Flags:
       --log string                  Log level (ERROR, WARNING, INFO, DEBUG)
       --max_rate_per_endpoint int   Max req/s per endpoint
       --port int                    Listening port for the http service
+      --remote_rpc string           The address of the cluster manager
+      --rpc_bind string             The interface to bind the rpc client
       --ssl_certificate string      Path to the SSL Certificate
       --ssl_port int                Listening port for the https service
       --ssl_private_key string      Path to the SSL Private Key
+      --stats_lapse duration        Time to send the stats to the cluster (default 30s)
       --stats_port int              Listening port for the stats service
       --stdout                      Log to the stdout (default true)
       --syslog                      Log to syslog
@@ -383,15 +362,28 @@ Global Flags:
   -d, --debug           Enable the debug
 </code></pre>
 
-<h2 id="configuration">Configuration</h2>
+<p>When using the <code>krakend run</code> command the service will start using all the parameters saved in the file
+<code>/etc/krakend/service.yml</code>), but you can always overwrite them at startup time by passing the specific flag or flags.</p>
 
-<p>The <code>krakend run</code> command can overwrite some configuration params defined at the service configuration file (<code>/etc/krakend/service.yml</code>)</p>
+<h2 id="example">Example</h2>
 
-<p>TBD</p>
+<p>The most common way of starting the service is:</p>
 
-<h1 id="example">Example</h1>
+<pre><code>krakend run --config krakend.json
+</code></pre>
 
-<p>TBD</p>
+<p>Or just <code>krakend run</code> if there is a valid path in the <code>service.yml</code> file.</p>
+
+<p>But for instance, let&rsquo;s say you might want to start the KrakenD service in a different port than specified in the
+<code>service.yml</code> file for a specific test, you could accomplish this by doing:</p>
+
+<pre><code>krakend run --config path/to/krakend.json --port 8888
+</code></pre>
+
+<p>In development and testing phase increase the verbosity to see what is going on:</p>
+
+<pre><code>krakend run --log INFO
+</code></pre>
 
 
             </div>

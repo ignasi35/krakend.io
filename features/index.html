@@ -103,8 +103,31 @@
     <section class="feature-block">
     <div class="container plans">
     <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-3"></div>
-        <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="col-xs-12 col-md-4">
+            <div class="plan-box">
+                <div class="summary-box text-center">
+                    <h3 class="item-heading">Open Source</h3>
+                    <div class="item-intro">Ready for production</div>
+                    <div class="price">
+                        <span class="currency">$</span>
+                        <span class="amount">0</span>
+                    </div>
+                    <div class="unit">free</div>
+                    <div class="action">
+                        <div class="btn-container"><a href="#" class="btn btn-border-only">Clone</a></div>
+                        <div class="note">No restrictions on implemented features</div>
+                    </div>
+                </div>
+                <div class="details-box">
+                    <ul class="details-list list-unstyled">
+                        <li><i class="fa fa-check" aria-hidden="true"></i> Unlimited throughput</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i> Unlimited endpoints</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-4">
             <div class="plan-box">
                 <div class="summary-box text-center">
                     <h3 class="item-heading">Free</h3>
@@ -133,7 +156,7 @@
             </div>
         </div>
 
-        <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="col-xs-12 col-md-4">
             <div class="plan-box">
                 <div class="summary-box text-center">
                     <h3 class="item-heading">Enterprise</h3>
@@ -174,7 +197,8 @@
 </section>
 <section class="feature-block zebra">
     <div class="container title">
-        <h2>Compare plans</h2>
+        <h2>Compare <strong>on-premises</strong> plans</h2>
+        <p>You own and host the server</p>
 
     </div>
 </section>
@@ -185,42 +209,78 @@
         <table class="table table-responsive feature-comparison">
             <thead>
             <tr>
-                <th width="60%">Feature</th>
-                <th>Free</th>
-                <th>Enterprise</th>
+                <th>Feature</th>
+                <th width="15%">Opensource</th>
+                <th width="15%">Free</th>
+                <th width="15%">Enterprise</th>
             </tr>
             </thead>
             <tbody class="table-bordered">
             <tr>
                 <td>Throughput</td>
+                <td>Unlimited</td>
                 <td>Up to 1000 reqs/s</td>
                 <td>Unlimited</td>
             </tr>
             <tr>
                 <td>Endpoints</td>
+                <td>Unlimited</td>
                 <td>Up to 5</td>
                 <td>Unlimited</td>
             </tr>
             <tr>
                 <td>Backend sources per endpoint</td>
+                <td>Unlimited</td>
                 <td>Up to 3</td>
                 <td>Unlimited</td>
             </tr>
             <tr>
                 <td>Parallel requests to backend per call</td>
+                <td>Unlimited</td>
                 <td>x1</td>
                 <td>Unlimited</td>
+
             </tr>
             <tr>
-                <td>Nodes</td>
-                <td>1</td>
-                <td>Unlimited</td>
+                <td>Cluster</td>
+                <td><i class="fa fa-close"></i></td>
+                <td>1 node</td>
+                <td>Up to Unlimited</td>
             </tr>
+            <tr>
+                <td>Centralized application configuration (<code>krakend.json</code>)
+                    <span class="description">All API endpoints, backend definitions and behavior from a single file (<a href="http://localhost:1313/docs/overview/configuration/">more</a>)</span>
+                </td>
+
+                <td><i class="fa fa-check"></i></td>
+                <td><i class="fa fa-check"></i></td>
+                <td><i class="fa fa-check"></i></td>
+            </tr>
+            <tr>
+                <td>Centralized server configuration file (<code>service.yml</code>)
+                    <span class="description">Ports, SSL certificates, logging settings, keep alive, timeouts... (<a href="http://localhost:1313/docs/overview/configuration/">more</a>)</span>
+                </td>
+
+                <td><i class="fa fa-close"></i></td>
+                <td><i class="fa fa-check"></i></td>
+                <td><i class="fa fa-check"></i></td>
+            </tr>
+            <tr>
+                <td>Real time configuration injection
+                    <span class="description">KrakenD ready to accept new configurations and endpoint definitions while running with no down time</span>
+                </td>
+
+                <td><i class="fa fa-close"></i></td>
+                <td><i class="fa fa-check"></i></td>
+                <td><i class="fa fa-check"></i></td>
+            </tr>
+
             <tr>
                 <td>
                     Circuit breaker optimization
                     <span class="description">Number of consecutive errors allowed in the time window</span>
                 </td>
+                <td><i class="fa fa-close"></i></td>
                 <td>
                     Generic
                     <span class="description">3 errors in 1 minute</span>
@@ -230,12 +290,28 @@
                     <span class="description">10 errors in 10 seconds</span>
                 </td>
             </tr>
-
+            <tr>
+                <td>Activity Dashboard (UI)
+                    <span class="description">Shows the cluster usage stats, graphs and useful info to follow the activity</span>
+                </td>
+                <td><i class="fa fa-close"></i></td>
+                <td><i class="fa fa-close"></i></td>
+                <td><i class="fa fa-check"></i></td>
+            </tr>
+            <tr>
+                <td>Security headers</td>
+                <td>
+                   <a href="https://github.com/devopsfaith/krakend/blob/master/examples/gin/main.go#L47" data-toggle="tooltip" data-placement="top" title="Click for example">Via 3rd party</a>
+                </td>
+                <td><i class="fa fa-close"></i></td>
+                <td><i class="fa fa-check"></i></td>
+            </tr>
             <tr class="header">
-                <td colspan="3">Productivity</td>
+                <td colspan="4">Productivity</td>
             </tr>
             <tr>
                 <td>Visual API Designer</td>
+                <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
@@ -243,14 +319,11 @@
                 <td>Microservices agreggation</td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
+                <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Backend for Frontend</td>
                 <td><i class="fa fa-check"></i></td>
-                <td><i class="fa fa-check"></i></td>
-            </tr>
-            <tr>
-                <td>Object whitelisting and blacklisting</td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
@@ -258,9 +331,11 @@
                 <td>Multiple encodings (e.g: receive both in XML and JSON and return in JSON)</td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
+                <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Response composition (capture, groups, renames...)</td>
+                <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
@@ -268,172 +343,198 @@
                 <td>Response filtering (whitelist and blacklist)</td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
+                <td><i class="fa fa-check"></i></td>
             </tr>
 
             <tr class="header">
-                <td colspan="3">Reliability & performance</td>
+                <td colspan="4">Reliability & performance</td>
             </tr>
             <tr>
                 <td>Cluster manager</td>
-                <td></td>
+                <td><i class="fa fa-close"></i></td>
+                <td><i class="fa fa-close"></i></td>
                 <td><i class="fa fa-check"></i></td>
 
             </tr>
             <tr>
+                <td>Throttling (limits of usage)</td>
+                <td><i class="fa fa-close"></i></td>
+                <td><i class="fa fa-check"></i></td>
+                <td><i class="fa fa-check"></i></td>
+            </tr>
+            <tr>
                 <td>New Relic integration</td>
-                <td></td>
+                <td><i class="fa fa-close"></i></td>
+                <td><i class="fa fa-close"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Load balancing</td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
+                <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Multiple installation options (rpm, deb, binary...)</td>
+                <td><i class="fa fa-close"></i></td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Multiple security options</td>
+                <td><i class="fa fa-close"></i></td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Circuit breaker (fail fast and avoid smashing stressed backends)</td>
+                <td><i class="fa fa-close"></i></td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Custom caching headers</td>
+                <td><i class="fa fa-close"></i></td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Basic set of HTTP Verbs
-                <span class="description">GET, POST, PUT</span> </td>
+                    <span class="description">GET, POST, PUT</span></td>
+                <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Extended set of HTTP Verbs</td>
-                <td></td>
+                <td><i class="fa fa-close"></i></td>
+                <td><i class="fa fa-close"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Concurrent API calls to backend for the same request</td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
+                <td><i class="fa fa-check"></i></td>
             </tr>
 
             <tr class="header">
-                <td colspan="3">Security</td>
+                <td colspan="4">Monitoring and statistics of usage</td>
             </tr>
 
             <tr>
-                <td>Throttling (limits of usage)</td>
-                <td><i class="fa fa-check"></i></td>
+                <td>Activity Dashboard (UI)
+                    <span class="description">Shows the cluster usage stats, graphs and useful info to follow the activity</span>
+                </td>
+                <td><i class="fa fa-close"></i></td>
+                <td><i class="fa fa-close"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
+                <td>Statistics available in the cloud</td>
+                <td><i class="fa fa-close"></i></td>
+                <td><i class="fa fa-close"></i></td>
+                <td><i class="fa fa-check"></i></td>
+            </tr>
+
+
+            <tr class="header">
+                <td colspan="4">Security</td>
+            </tr>
+            <tr>
                 <td>User quota</td>
+                <td><i class="fa fa-close"></i></td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Support for SSL</td>
+                <td><i class="fa fa-close"></i></td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>OAuth client credentials grant supported</td>
+                <td><i class="fa fa-close"></i></td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Restrict connections by host</td>
+                <td><i class="fa fa-close"></i></td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>HTTP Strict Transport Security (HSTS)</td>
+                <td><i class="fa fa-close"></i></td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Clickjacking protection</td>
+                <td><i class="fa fa-close"></i></td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>HTTP Public Key Pinning (HPKP)</td>
+                <td><i class="fa fa-close"></i></td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>MIME-Sniffing prevention</td>
+                <td><i class="fa fa-close"></i></td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Cross-site scripting (XSS) protection</td>
+                <td><i class="fa fa-close"></i></td>
                 <td><i class="fa fa-check"></i></td>
                 <td><i class="fa fa-check"></i></td>
             </tr>
+            </tbody>
+        </table>
 
-            <tr class="header">
-                <td colspan="3">Coming soon... (roadmap)</td>
+        <h3>Other features in the roadmap</h3>
+        <table class="table table-responsive feature-comparison">
+            <thead>
+            <tr>
+                <th width="55%">Feature</th>
             </tr>
-
+            </thead>
+            <tbody>
             <tr>
                 <td>Other OAuth2 grant types</td>
-                <td></td>
-                <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Authentication layer</td>
-                <td><i class="fa fa-check"></i></td>
-                <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Full HTTP2 support</td>
-                <td><i class="fa fa-check"></i></td>
-                <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>More encodings formats and protocols</td>
-                <td><i class="fa fa-check"></i></td>
-                <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Automatic encoding</td>
-                <td><i class="fa fa-check"></i></td>
-                <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Automatic Api documentation</td>
-                <td><i class="fa fa-check"></i></td>
-                <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Automatic client (SDK) generation</td>
-                <td></td>
-                <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Integration with service discovery components</td>
-                <td></td>
-                <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Integration with external configuration services</td>
-                <td></td>
-                <td><i class="fa fa-check"></i></td>
             </tr>
             <tr>
                 <td>Integration with other 3rd party components</td>
-                <td></td>
-                <td><i class="fa fa-check"></i></td>
             </tr>
             </tbody>
         </table>

@@ -17,13 +17,10 @@
       <guid>http://www.krakend.io/docs/cluster/cluster-overview/</guid>
       <description>
 
-&lt;p&gt;When running a Standalone installation if for any reason the KrakenD instance stops or the machine goes down your service
-is discontinued and your clients disconnected.&lt;/p&gt;
-
-&lt;p&gt;A KrakenD cluster prevents this problem as it consists of multiple KrakenD instances running simultaneously and working
+&lt;p&gt;A KrakenD cluster consists of multiple KrakenD instances running simultaneously and working
 together to provide increased reliability, higher throughput, scalability, and fail-over.&lt;/p&gt;
 
-&lt;p&gt;The KrakenD cluster provides these immediate benefits:&lt;/p&gt;
+&lt;p&gt;The KrakenD cluster provides these immediate &lt;strong&gt;benefits&lt;/strong&gt;:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Increased throughput&lt;/strong&gt;: The KrakenD cluster does not limit the number of requests the service can deliver. And allows
@@ -32,7 +29,8 @@ to add several nodes as you need (see your subscription)&lt;/li&gt;
 KrakenD instances to the cluster without interruption of the service.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;High-Availability and Failover&lt;/strong&gt;: If for any reason a server dies or the instance fails the rest of the members in the cluster continue providing the service
 without affecting the global availability.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Load Balancing&lt;/strong&gt;: To do an even distribution of requests to the different KrakenD instances.&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Load Balancing&lt;/strong&gt;: To do an even distribution of requests to the different KrakenD instances.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Control&lt;/strong&gt;: As the Cluster Manager comes with a web interface to see the activity of the cluster.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&#34;introducing-the-cluster-manager&#34;&gt;Introducing the Cluster Manager&lt;/h1&gt;
@@ -45,23 +43,31 @@ and network partitions are partially tolerated by attempting to communicate to p
 is an independent binary with the following responsibilities:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Validate your subscription level and validates the license&lt;/li&gt;
-&lt;li&gt;Keep all the KrakenDs configuration up to date&lt;/li&gt;
-&lt;li&gt;Graceful restart of the services when needed&lt;/li&gt;
-&lt;li&gt;Collect and centralize all the stats sent by the different KrakenD nodes&lt;/li&gt;
-&lt;li&gt;Administer the membership of the nodes and act as seeder of the cluster&lt;/li&gt;
+&lt;li&gt;Validates your subscription level and validates the license&lt;/li&gt;
+&lt;li&gt;Keeps all the KrakenDs configuration up to date&lt;/li&gt;
+&lt;li&gt;Restarts gracefully the services when needed&lt;/li&gt;
+&lt;li&gt;Collects and centralizes all the stats sent by the different KrakenD nodes&lt;/li&gt;
+&lt;li&gt;Administers the membership of the nodes and acts as seeder (leader) of the cluster&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Once all the nodes are registered in the cluster, the only communication with the Cluster Manager is to send the stats and
-metrics and to collect configuration updates.
-If for any reason the cluster manager is stopped the krakenD nodes will continue to run anyway in cluster as they recognize themselves
-as a cluster. But if after several days the nodes cannot connect with the manager all the nodes will degrade to the free version
-with all the limits as they apply and will unregister themselves from the cluster.&lt;/p&gt;
+metrics and to collect configuration updates.&lt;/p&gt;
+
+&lt;p&gt;If for any reason the cluster manager is stopped the KrakenD nodes will continue to run anyway in cluster as they recognize themselves
+as a cluster. But if after several days the nodes cannot connect with the manager all the nodes will degrade to the &lt;em&gt;free version&lt;/em&gt;
+with all the corresponding limits and will un-register themselves from the cluster.&lt;/p&gt;
 
 &lt;h1 id=&#34;krakend-nodes&#34;&gt;KrakenD Nodes&lt;/h1&gt;
 
-&lt;p&gt;The binary for the krakenD nodes it&amp;rsquo;s the same as the standalone. So any standalone installation could be at some point used to be included
+&lt;p&gt;The binary for the KrakenD nodes it&amp;rsquo;s the same as the standalone. So any standalone installation could be at some point used to be included
 inside a cluster with a simple change in its configuration file.&lt;/p&gt;
+
+&lt;h1 id=&#34;web-interface-cluster-manager&#34;&gt;Web interface: Cluster Manager&lt;/h1&gt;
+
+&lt;p&gt;The cluster manager machine exposes by default a web interface in the port &lt;code&gt;9897&lt;/code&gt;. The activity of your cluster can be
+followed in a URL like &lt;strong&gt;&lt;a href=&#34;http://localhost:9897&#34;&gt;http://localhost:9897&lt;/a&gt;&lt;/strong&gt; (use your own IP)&lt;/p&gt;
+
+&lt;p&gt;The web interface shows the activity to all your nodes and to your backends.&lt;/p&gt;
 </description>
     </item>
     
@@ -90,7 +96,7 @@ inside a cluster with a simple change in its configuration file.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Overview</title>
+      <title>Benchmarks Overview</title>
       <link>http://www.krakend.io/docs/benchmarks/overview/</link>
       <pubDate>Fri, 28 Oct 2016 00:00:00 +0000</pubDate>
       
@@ -191,14 +197,10 @@ Of course we invite you to do them for yourself!&lt;/p&gt;
       <guid>http://www.krakend.io/docs/commands/run/</guid>
       <description>
 
-&lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
-
-&lt;p&gt;The &lt;code&gt;krakend run&lt;/code&gt; starts the KrakenD with the passed flags.&lt;/p&gt;
-
-&lt;h1 id=&#34;usage&#34;&gt;Usage&lt;/h1&gt;
+&lt;p&gt;The &lt;code&gt;krakend run --help&lt;/code&gt; shows the following options:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ krakend run -h
-krakend 0.3.8
+krakend 0.3.9
 
 Usage:
   krakend run [flags]
@@ -209,9 +211,12 @@ Flags:
       --log string                  Log level (ERROR, WARNING, INFO, DEBUG)
       --max_rate_per_endpoint int   Max req/s per endpoint
       --port int                    Listening port for the http service
+      --remote_rpc string           The address of the cluster manager
+      --rpc_bind string             The interface to bind the rpc client
       --ssl_certificate string      Path to the SSL Certificate
       --ssl_port int                Listening port for the https service
       --ssl_private_key string      Path to the SSL Private Key
+      --stats_lapse duration        Time to send the stats to the cluster (default 30s)
       --stats_port int              Listening port for the stats service
       --stdout                      Log to the stdout (default true)
       --syslog                      Log to syslog
@@ -221,15 +226,28 @@ Global Flags:
   -d, --debug           Enable the debug
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;
+&lt;p&gt;When using the &lt;code&gt;krakend run&lt;/code&gt; command the service will start using all the parameters saved in the file
+&lt;code&gt;/etc/krakend/service.yml&lt;/code&gt;), but you can always overwrite them at startup time by passing the specific flag or flags.&lt;/p&gt;
 
-&lt;p&gt;The &lt;code&gt;krakend run&lt;/code&gt; command can overwrite some configuration params defined at the service configuration file (&lt;code&gt;/etc/krakend/service.yml&lt;/code&gt;)&lt;/p&gt;
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
 
-&lt;p&gt;TBD&lt;/p&gt;
+&lt;p&gt;The most common way of starting the service is:&lt;/p&gt;
 
-&lt;h1 id=&#34;example&#34;&gt;Example&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt;krakend run --config krakend.json
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;TBD&lt;/p&gt;
+&lt;p&gt;Or just &lt;code&gt;krakend run&lt;/code&gt; if there is a valid path in the &lt;code&gt;service.yml&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;p&gt;But for instance, let&amp;rsquo;s say you might want to start the KrakenD service in a different port than specified in the
+&lt;code&gt;service.yml&lt;/code&gt; file for a specific test, you could accomplish this by doing:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;krakend run --config path/to/krakend.json --port 8888
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In development and testing phase increase the verbosity to see what is going on:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;krakend run --log INFO
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -310,7 +328,7 @@ mechanisms to put you safe.&lt;/p&gt;
 
 &lt;p&gt;After downloading the cluster manager and installing it you can start it using:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;krakendcm start
+&lt;pre&gt;&lt;code&gt;krakend-cluster-manager
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;You can have several cluster managers running as long as they conform a unique group. This will give you high availability
@@ -324,6 +342,14 @@ for the cluster manager itself.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;seed: 192.168.1.100:7000
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;Then start the KrakenD service with no special parameter. Once it has started you will see in the log of the cluster a
+message like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;CM  2017/02/13 - 18:18:23.290 ▶ INFO Sending the limits to the krakend: krakend_3f20a44d-3d93-4bc9-829b-b76b22055142
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The message shows the ID that has been assigned to the new node (&lt;code&gt;3f20a44d-3d93-4bc9-829b-b76b22055142&lt;/code&gt; in this example).&lt;/p&gt;
+
 &lt;p&gt;If your subscription has reached the maximum number of nodes you&amp;rsquo;ll see a message like this in the cluster manager log:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;Your current subscription does not allow more nodes running. Please upgrade to add more nodes.
@@ -334,7 +360,7 @@ for the cluster manager itself.&lt;/p&gt;
 &lt;h1 id=&#34;removing-nodes-from-the-cluster&#34;&gt;Removing nodes from the cluster&lt;/h1&gt;
 
 &lt;p&gt;Removing a node from the cluster only requires to stop or kill the KrakenD service in the desired node. After stopping
-it the Cluster Manager will immediately mark the node as removed.&lt;/p&gt;
+it the Cluster Manager will immediately mark the node as removed, but the statistics will last while the time window is valid.&lt;/p&gt;
 
 &lt;p&gt;If for any reason a node leaves unexpectedly the cluster, like in a network failure, the node is marked as unreachable and if
  after a grace period there is no communication saying otherwise it will be marked as down. Any node that has left can
@@ -482,9 +508,8 @@ according to your subscription. For instance, if your subscription allows to hav
       <guid>http://www.krakend.io/docs/commands/check/</guid>
       <description>
 
-&lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
-
-&lt;p&gt;The &lt;code&gt;krakend check&lt;/code&gt; command validates the passed configuration. Since KrakenD doesn&amp;rsquo;t implement a strict parsing, typos in the config file could be shadowed. In order to validate your config completely, it is recommended to use the &lt;code&gt;--debug&lt;/code&gt; flag.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;krakend check&lt;/code&gt; command validates the passed configuration. Since KrakenD does not implement a strict parsing, typos
+ in the config file could be shadowed. In order to validate your config completely, it is recommended to use the &lt;code&gt;--debug&lt;/code&gt; flag.&lt;/p&gt;
 
 &lt;h1 id=&#34;usage&#34;&gt;Usage&lt;/h1&gt;
 
