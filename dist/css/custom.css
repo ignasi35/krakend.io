@@ -19,6 +19,10 @@
 
 }
 
+.github-container iframe {
+    margin-top: 15px;
+}
+
 /* Remove black background from logo */
 .skin-black-light .main-header > .logo:hover {
     background-color: #FFF;
