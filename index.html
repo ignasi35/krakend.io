@@ -112,10 +112,10 @@
 
     <section class="feature-block">
         <div class="container">
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <h3>How it works?</h3>
-                <p>KrakenD is your <strong>self-designed REST API Gateway</strong> that feeds from your existing REST
-                    services.
+                <p>KrakenD is your <strong>self-designed REST API Gateway</strong> that feeds from your existing data
+                    services (Your APIs, legacy, cloud, IoT...)
                     Just define visually or in a configuration file the endpoints your
                     applications will use and the KrakenD will fetch and transform the content at your will for you.</p>
 
@@ -125,25 +125,27 @@
                     backend servers to create a new API response that fits perfectly with your applications needs, not
                     with the microservice design.</p>
 
+
+            </div>
+            <div class="col-lg-9 text-center">
+                <img src="/images/KrakendFlow.png" title="How KrakenD works" class="img-responsive"/>
+                <div class="footnote">
+                    <p><strong>Image:</strong> An example of flow for an endpoint in KrakenD that uses 3 different backend sources.</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-lg-6">
                 <h4 class="feature">Protect your own APIs</h4>
                 <p>Avoid harmful usage of your own backends by rate limiting the access, enabling OAuth, SSL,
                     certificates and a long list of other <strong>security and traffic management options</strong>.</p>
-
+            </div>
+            <div class="col-lg-6">
                 <h4 class="feature">Extensible via plugins</h4>
                 <p>The design of the KrakenD follows the UNIX philosophy and stacks middleware (or plugins) that add
                     any features you might need, whether they are enterprise or coded by the community.</p>
 
-
-            </div>
-            <div class="col-lg-8 text-center">
-                <img src="/images/KrakenD.png" title="How KrakenD works" class="img-responsive"/>
-                <div class="footnote">
-                    <p><strong>Image:</strong> An example of an endpoint in KrakenD that uses multiple sources.</p>
-                    <ul class="list-unstyled">
-                        <li><code>/checkout</code>: Using complete, partial or manipulated content from 5 different APIs
-                        </li>
-                    </ul>
-                </div>
             </div>
         </div>
     </section>
